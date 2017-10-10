@@ -258,3 +258,8 @@ void RENsetcoord( int *index, double *xx, double *yy, int *ENreturn_value){
 	rv = ENsetcoord( nodeindex, x, y);
 	*ENreturn_value = rv;
 }
+
+void RENreport(int *ENreturn_value){
+   int rv = ENreport();
+   *ENreturn_value = rv;
+}

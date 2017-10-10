@@ -65,3 +65,5 @@ void RENgetqualinfo(int *code, char **chemname, char **chemunit, int *tracenode,
 
 void RENgetcoord( int *index, double *xx, double *yy, int *ENreturn_value);
 void RENsetcoord( int *index, double *xx, double *yy, int *ENreturn_value);
+
+void RENreport(int *ENreturn_value);
