@@ -53,8 +53,8 @@ ENclose()
 The US EPA website for Epanet includes example programs for a hydrant rating curve 
 and chlorine dosage analysis.  An implementation of those programs using R and epanet2toolkit
 are included with the package as tests:
-- [Hydrant Rating Example]()   
-- [Chlorine Dosage Example]()   
+- [Hydrant Rating Example](https://github.com/bradleyjeck/epanet2toolkit/blob/master/tests/testthat/test_epanet_example_2.r)   
+- [Chlorine Dosage Example](https://github.com/bradleyjeck/epanet2toolkit/blob/master/tests/testthat/test_epanet_example_3.r)   
 
 
 
