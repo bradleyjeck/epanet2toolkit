@@ -38,7 +38,7 @@ Time parameter codes consist of the following constants:
 }
 \examples{
 # path to Net1.inp example file included with this package 
-inp <- file.path( find.package("epanet2"), "extdata","Net1.inp") 
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp") 
 ENopen(inp, "Net1.rpt")
 ENgettimeparam("EN_DURATION")
 ENgettimeparam("EN_HYDSTEP")

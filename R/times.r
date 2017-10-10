@@ -11,7 +11,7 @@
 #' \code{ENgettimeparam} retrieves the value of one or more specific analysis time parameters.
 #' 
 #' @export
-#' @useDynLib epanet2 RENgettimeparam 
+#' @useDynLib epanet2toolkit RENgettimeparam 
 #' @param paramcode A character string or integer specifying the parameter code
 #'   (see below).
 #' 
@@ -38,7 +38,7 @@
 #' 
 #' @examples
 #' # path to Net1.inp example file included with this package 
-#' inp <- file.path( find.package("epanet2"), "extdata","Net1.inp") 
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp") 
 #' ENopen(inp, "Net1.rpt")
 #' ENgettimeparam("EN_DURATION")
 #' ENgettimeparam("EN_HYDSTEP")
@@ -86,7 +86,7 @@ ENgettimeparam <- function(paramcode) {
 #' \code{ENsettimeparam} sets the value of a time parameter.
 #' 
 #' @export
-#' @useDynLib epanet2 RENsettimeparam 
+#' @useDynLib epanet2toolkit RENsettimeparam 
 #' @param paramcode An integer or character
 #' @param timevalue An integer or character value of the time parameters in seconds.
 #' 

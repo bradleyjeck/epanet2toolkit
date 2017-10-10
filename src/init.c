@@ -81,7 +81,7 @@ static const R_CallMethodDef callMethods[] ={
     NULL
 };
 
-void R_init_epanet2(DllInfo *dll)
+void R_init_epanet2toolkit(DllInfo *dll)
 {
     R_registerRoutines(dll, cMethods, callMethods, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);

@@ -9,6 +9,6 @@
 
 
 library(testthat)
-library(epanet2)
+library(epanet2toolkit)
 
-test_check("epanet2")
+test_check("epanet2toolkit")

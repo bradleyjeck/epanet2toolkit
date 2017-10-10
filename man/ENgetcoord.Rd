@@ -7,7 +7,7 @@
 ENgetcoord(nodeindex)
 }
 \arguments{
-\item{index}{of node}
+\item{nodeindex}{of node}
 }
 \value{
 vector of x,y coordinate

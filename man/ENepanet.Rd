@@ -18,7 +18,7 @@ runs a complete EPANET simulation
 }
 \examples{
 # path to Net1.inp example file included with this package
-inp <- file.path( find.package("epanet2"), "extdata","Net1.inp") 
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp") 
 print(inp)
 ENepanet( inp, "Net1.rpt") 
 # try opening Net1.rpt in a text editor or reading it back

@@ -7,7 +7,7 @@
 
 #' Get coordinates for a node 
 #' 
-#' @param index of node
+#' @param nodeindex of node
 #' @return vector of x,y coordinate
 #' @export 
 #' @useDynLib epanet2toolkit RENgetcoord

@@ -60,7 +60,7 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' \code{ENclose} closes the EPANET Toolkit system (including all files being processed).
 #' 
 #' @export
-#' @useDynLib epanet2toolit enClose
+#' @useDynLib epanet2toolkit enClose
 #' 
 #' @note \code{ENclose} must be called when all processing has been completed, even if an error
 #'   condition was encountered.
