@@ -10,7 +10,7 @@
 #' \code{enOpen} opens the EPANET Toolkit to analyze a particular water distribution system.
 #' 
 #' @export
-#' @useDynLib epanet2 enOpen
+#' @useDynLib epanet2toolkit enOpen
 #' @param inpFileName A string, the name of the EPANET Input file.
 #' @param rptFileName A string, the name of the EPANET Report file.
 #' @param outFileName A string, the name of an optional binary Output file.
@@ -60,7 +60,7 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' \code{ENclose} closes the EPANET Toolkit system (including all files being processed).
 #' 
 #' @export
-#' @useDynLib epanet2 enClose
+#' @useDynLib epanet2toolit enClose
 #' 
 #' @note \code{ENclose} must be called when all processing has been completed, even if an error
 #'   condition was encountered.
@@ -87,7 +87,7 @@ ENclose <- function() {
 #' \code{ENgetcount} retrieves the number of network components of a specific type.
 #' 
 #' @export
-#' @useDynLib epanet2 RENgetcount
+#' @useDynLib epanet2toolkit RENgetcount
 #' @param compcode A character string, integer or numeric specifying the component code(s) 
 #'   (see below).
 #' 
@@ -151,7 +151,7 @@ ENgetcount <- function(compcode) {
 #' \code{ENgetflowunits} retrieves a code number indicating the units used to express all flow rates.
 #' 
 #' @export
-#' @useDynLib epanet2 enGetFlowUnits
+#' @useDynLib epanet2toolkit enGetFlowUnits
 #' @return An integer, the code numnber indicating the flow units.
 #' 
 #' @note Flow units codes are as follows:
@@ -193,7 +193,7 @@ ENgetflowunits <- function() {
 #' \code{ENgetqualtype} retrieves the type of water quality analysis called for.
 #' 
 #' @export
-#' @useDynLib epanet2 enGetQualType
+#' @useDynLib epanet2toolkit enGetQualType
 #' @return A named integer vector, the water quality analysis code (see below) and
 #'   the index of node traced in a source tracing analysis.
 #' 
