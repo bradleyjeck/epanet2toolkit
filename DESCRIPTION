@@ -1,0 +1,16 @@
+Package: epanet2toolkit
+Type: Package
+Title: epanet2toolkit
+Version: 0.0.1
+Date: 2017-10-10
+Author: Ernesto Arandia, Bradley J. Eck
+Maintainer: Brad Eck <brad@bradeck.net>
+Suggests:
+    testthat
+Description: enables simulation of water networks piping networks using Epanet.
+    The package provides functions from the Epanet programmer's toolkit as R
+    functions so that basic or customized simulations can be carried out from R.
+    The package uses Epanet version 2.1 from Open Water Analytics
+    <https://github.com/OpenWaterAnalytics/EPANET/releases/tag/v2.1>.  
+License: file LICENSE
+RoxygenNote: 6.0.1
