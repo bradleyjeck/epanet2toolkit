@@ -20,6 +20,12 @@
 #' 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___patterns.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetpatternid(1)
+#' ENclose()
 ENgetpatternid <- function(patternindex) {
 	
 	if (missing(patternindex)) {
@@ -55,6 +61,12 @@ ENgetpatternid <- function(patternindex) {
 #' @note Pattern indexes are consecutive integers starting from 1.
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___patterns.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetpatternindex("1")
+#' ENclose()
 ENgetpatternindex <- function(patternid) {
 	
 	if (missing(patternid)) {
@@ -88,6 +100,12 @@ ENgetpatternindex <- function(patternid) {
 #' 
 #' @note Pattern indexes are consecutive integers starting from 1.
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetpatternlen(1)
+#' ENclose()
 ENgetpatternlen <- function(patternindex) {
 	
 	if (missing(patternindex)) {
@@ -127,6 +145,14 @@ ENgetpatternlen <- function(patternindex) {
 #' @seealso \code{ENgetpatternindex}, \code{ENgetpatternlen}, \code{ENsetpatternvalue}
 #' \url{http://wateranalytics.org/EPANET/group___patterns.html}
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetpatternvalue(1,1)
+#' ENgetpatternvalue(1,2)
+#' ENgetpatternvalue(1,3)
+#' ENclose()
 ENgetpatternvalue <- function(index, period) {
 	
 	# check the arguments
@@ -182,6 +208,14 @@ ENgetpatternvalue <- function(index, period) {
 #' 
 #' @seealso \code{ENgetpatternindex}, \code{ENgetpatternlen}, 
 #'   \code{ENgetpatternvalue}, \code{ENsetpatternvalue}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENsetpattern(1, 1:10)		
+#' ENgetpatternvalue(1,1)
+#' ENgetpatternvalue(1,10)
+#' ENclose()
 ENsetpattern <- function(index, factors) {
 		
 	if (missing(index)) {
@@ -215,6 +249,14 @@ ENsetpattern <- function(index, factors) {
 #' @return returns NULL inivisbly on success
 #' @export
 #' @useDynLib epanet2toolkit enSetPatternValue
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetpatternvalue(1,3)
+#' ENsetpatternvalue(1,3, 9.876)
+#' ENgetpatternvalue(1,3)
+#' ENclose()
 ENsetpatternvalue <- function(index, period, value) {
   
   if (is.numeric(index)) {

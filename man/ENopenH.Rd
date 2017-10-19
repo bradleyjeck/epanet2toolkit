@@ -16,6 +16,16 @@ Call \code{ENopenH} prior to running the first hydraulic analysis using the
   
   Do not call this function if \code{ENsolveH} is being used to run a complete hydraulic analysis.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENopenH()
+ENinitH(0)
+ENrunH()
+ENcloseH()
+ENclose()
+}
 \seealso{
 \code{ENinitH}, \code{ENrunH}, \code{ENnextH}, \code{ENcloseH}
 }

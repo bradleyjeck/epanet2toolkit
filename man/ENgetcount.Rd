@@ -30,10 +30,12 @@ Component codes consist of the following:
   The number of junctions in a network equals the number of nodes minus the number of tanks and reservoirs.
 }
 \examples{
-\dontrun{
-  ENgetcount(0)
-  ENgetcount("EN_NODECOUNT")
-}
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetcount(0)
+ENgetcount("EN_NODECOUNT")
+ENclose()
 }
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___network_info.html}

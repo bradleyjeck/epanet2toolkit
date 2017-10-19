@@ -29,7 +29,9 @@ This function is used in conjunction with \code{ENrunH} to
   }
 }
 \examples{
-\dontrun{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
   # store simulation times
   t = NULL
   ENopenH()
@@ -43,7 +45,7 @@ This function is used in conjunction with \code{ENrunH} to
   }
   ENcloseH()
   ENclose()
- } 
+  
 }
 \seealso{
 \code{ENopenH}, \code{ENinitH}, \code{ENrunH}, \code{ENcloseH}, \code{ENsettimeparam}

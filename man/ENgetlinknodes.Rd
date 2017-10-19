@@ -21,6 +21,14 @@ Node and link indexes are consecutive integers starting from 1.
   The From and To nodes are as defined for the link in the EPANET input file. The actual direction of
   flow in the link is not considered.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetlinknodes(1)
+ENgetlinknodes(11)
+ENclose()
+}
 \seealso{
 \code{\link{ENgetlinkindex} }
 }

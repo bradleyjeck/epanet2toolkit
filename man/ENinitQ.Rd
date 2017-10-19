@@ -20,6 +20,16 @@ Call ENinitQ before running quality analysis using ENrunQ with ENnextQ or ENstep
 ENopenQ must have been called prior to calling ENinitQ.  
 Do not call ENinitQ with ENsolveQ.
 }
+\examples{
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENsolveH()
+ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+ENopenQ()
+ENinitQ(0)
+ENrunQ()
+ENcloseQ()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

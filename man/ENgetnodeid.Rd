@@ -18,6 +18,15 @@ A character string, the ID label of the specified node.
 \note{
 Node indexes are consecutive integers starting from 1.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetnodeid(1)
+ENgetnodeid(5)
+ENgetnodeid(9)
+ENclose()
+}
 \seealso{
 \code{ENgetnodeindex}
 \url{http://wateranalytics.org/EPANET/group___network_info.html}

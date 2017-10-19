@@ -32,6 +32,13 @@ Flow units codes are as follows:
   Flow units in liters or cubic meters implies that metric units are used for all other quantities in 
   addition to flow. Otherwise US units are employed. (See Units of Measurement).
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetflowunits()
+ENclose()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
 }

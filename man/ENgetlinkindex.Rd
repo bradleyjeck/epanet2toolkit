@@ -18,6 +18,13 @@ integer index of requested link
 \note{
 Link indexes are consecutive integers starting from 1.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetlinkindex("22")
+ENclose()
+}
 \seealso{
 \code{\link{ENgetlinkid} }
 }

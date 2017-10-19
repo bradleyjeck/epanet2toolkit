@@ -54,6 +54,15 @@ Controls are indexed starting from 1 in the order in which they were entered int
   To remove a control on a particular link, set the \code{lindex} parameter to 0. Values for the
   other parameters in the function will be ignored.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetcontrol(1)
+ENsetcontrol(1, ctype=2, lindex=3, setting=1, nindex=0, level=54)		
+ENgetcontrol(1)
+ENclose() 
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___controls.html}
 \code{ENsetcontrol}

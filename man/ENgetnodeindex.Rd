@@ -18,6 +18,14 @@ Retrieve the index of a node
 \note{
 Node indexes are consecutive integers starting from 1.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetnodeindex("10")
+ENgetnodeindex("23")
+ENclose()
+}
 \seealso{
 \code{ENgetnodeid} 
 \url{http://wateranalytics.org/EPANET/group___network_info.html}

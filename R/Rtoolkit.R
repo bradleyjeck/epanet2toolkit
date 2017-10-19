@@ -7,7 +7,7 @@
 
 #' Open the EPANET Toolkit.
 #' 
-#' \code{enOpen} opens the EPANET Toolkit to analyze a particular water distribution system.
+#' \code{ENopen} opens the EPANET Toolkit to analyze a particular water distribution system.
 #' 
 #' @export
 #' @useDynLib epanet2toolkit enOpen
@@ -26,8 +26,14 @@
 #'   \code{enOpen} must be called before any of the other toolkit functions are used. The only
 #'   exception is \code{enEpanet}.
 #' 
-#' @seealso \code{enClose} 
+#' @seealso 
+#' \code{ENclose}  
 #' \url{http://wateranalytics.org/EPANET/group___file_management.html} 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENclose()
 ENopen <- function(inpFileName, rptFileName, outFileName) {
 	
 	# check the arguments
@@ -67,6 +73,11 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' 
 #' @seealso \code{\link{ENopen}}
 #' \url{http://wateranalytics.org/EPANET/group___file_management.html} 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENclose()
 ENclose <- function() {
 
 	if( !getOpenflag()){
@@ -106,10 +117,12 @@ ENclose <- function() {
 #' 
 #'   The number of junctions in a network equals the number of nodes minus the number of tanks and reservoirs.
 #' @examples
-#' \dontrun{
-#'   ENgetcount(0)
-#'   ENgetcount("EN_NODECOUNT")
-#' }
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetcount(0)
+#' ENgetcount("EN_NODECOUNT")
+#' ENclose()
 ENgetcount <- function(compcode) {
 	
 	codeTable = c("EN_NODECOUNT", "EN_TANKCOUNT", "EN_LINKCOUNT", "EN_PATCOUNT", "EN_CURVECOUNT", "EN_CONTROLCOUNT")
@@ -142,10 +155,6 @@ ENgetcount <- function(compcode) {
 } 
 
 
-##################
-# enGetFlowUnits
-##################
-
 #' Retrieve a code number indicating the units used to express all flow rates.
 #' 
 #' \code{ENgetflowunits} retrieves a code number indicating the units used to express all flow rates.
@@ -175,6 +184,12 @@ ENgetcount <- function(compcode) {
 #' 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetflowunits()
+#' ENclose()
 ENgetflowunits <- function() {
 	
 	codetable <- c("EN_CFS", "EN_GPM", "EN_MGD", "EN_IMGD",	"EN_AFD", "EN_LPS", "EN_LPM",
@@ -209,6 +224,12 @@ ENgetflowunits <- function() {
 #' 
 #' @seealso \code{ENsetqualtype}
 #' \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetqualtype()
+#' ENclose()
 ENgetqualtype <- function() {
 	
 	codetable <- c("EN_NONE", "EN_CHEM", "EN_AGE", "EN_TRACE") 

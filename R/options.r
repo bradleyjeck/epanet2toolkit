@@ -26,6 +26,13 @@
 #'   \code{EN_DEMANDMULT} \tab   4  
 #'   }
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetoption(0)
+#' ENgetoption("EN_TRIALS")
+#' ENclose()
 ENgetoption <- function(optioncode) {
 	
 	codeTable = c("EN_TRIALS", "EN_ACCURACY", "EN_TOLERANCE", "EN_EMITEXPON", "EN_DEMANDMULT")
@@ -77,6 +84,14 @@ ENgetoption <- function(optioncode) {
 #' 	 }   
 #' 
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetoption("EN_TRIALS")
+#' ENsetoption("EN_TRIALS", 22)
+#' ENgetoption("EN_TRIALS")
+#' ENclose()
 ENsetoption <- function(optioncode, value) {
 
 	codeTable = c("EN_TRIALS", "EN_ACCURACY", "EN_TOLERANCE", "EN_EMITEXPON", "EN_DEMANDMULT")

@@ -31,6 +31,17 @@ Water quality analysis codes are as follows:
 
   The tracenode value will be 0 when the quality code is not \code{EN_TRACE}.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetqualtype()
+ENclose()
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetqualtype()
+ENclose()
+}
 \seealso{
 \code{ENsetqualtype}
 \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}

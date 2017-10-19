@@ -12,6 +12,14 @@ Returns NULL invisibly on success or throws an error or warning
 \description{
 Solve network water quality for all time periods
 }
+\examples{
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt","Net1.bin")
+ENsolveH()
+ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+ENsolveQ()
+ENclose()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

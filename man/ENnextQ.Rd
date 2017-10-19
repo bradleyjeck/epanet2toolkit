@@ -13,6 +13,18 @@ seconds until next hydraulic event occurs or
 \description{
 Advances WQ simulation to start of the next hydraulic time period.
 }
+\examples{
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENsolveH()
+ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+ENopenQ()
+ENinitQ(0)
+ENrunQ()
+ENnextQ()
+ENrunQ()
+ENcloseQ()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

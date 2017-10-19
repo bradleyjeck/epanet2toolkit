@@ -19,6 +19,13 @@ Retrieve the parameters of a simple control statement.
 Controls are indexed starting from 1 in the order in which they were entered into the
   \code{[CONTROLS]} section of the EPANET input file.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetcontrol(1)
+ENclose() 
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___controls.html}
 \code{\link{ENsetcontrol}}
