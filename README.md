@@ -6,11 +6,14 @@ uses [Epanet version 2.1 from Open Water Analytics](https://github.com/OpenWater
 
 
 ## Installation
-Install the development version from github.com
+Install the latest release from CRAN
+```
+install.packages("epanet2toolkit")
+```
+Or, install the development version from github.com
 ```
 devtools::install_github("bradleyjeck\epanet2toolkit")
 ```
-The package will soon be available on CRAN. 
 
 ## Getting Started
 After installation, the package needs to be loaded for use.
