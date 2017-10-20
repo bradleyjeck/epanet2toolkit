@@ -13,6 +13,13 @@
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @useDynLib epanet2toolkit RENsolveQ
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt","Net1.bin")
+#' ENsolveH()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENsolveQ()
+#' ENclose()
 ENsolveQ <- function(){
 	
 	x <- .C("RENsolveQ", as.integer(-1))
@@ -27,6 +34,16 @@ ENsolveQ <- function(){
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @useDynLib epanet2toolkit RENopenQ
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENsolveH()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENopenQ()
+#' ENinitQ(0)
+#' ENrunQ()
+#' ENcloseQ()
+#' ENclose()
 ENopenQ <- function(){
 	
 	x <- .C("RENopenQ", as.integer(-1))
@@ -45,6 +62,15 @@ ENopenQ <- function(){
 #' @details Call ENinitQ before running quality analysis using ENrunQ with ENnextQ or ENstepQ.  
 #' ENopenQ must have been called prior to calling ENinitQ.  
 #' Do not call ENinitQ with ENsolveQ.  
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENsolveH()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENopenQ()
+#' ENinitQ(0)
+#' ENrunQ()
+#' ENcloseQ()
 ENinitQ <- function( saveFlag){
    if( length(saveFlag) != 1) stop("single input required")
    sf <- as.integer(saveFlag)	
@@ -62,6 +88,15 @@ ENinitQ <- function( saveFlag){
 #' an extended period WQ simulation. 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENsolveH()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENopenQ()
+#' ENinitQ(0)
+#' ENrunQ()
+#' ENcloseQ()
 ENrunQ <- function(){
 	x <- .C("RENrunQ", "", as.integer(-1) )
 	check_epanet_error( x[[2]])
@@ -77,6 +112,17 @@ ENrunQ <- function(){
 #'          0 if at the end of the simulation period. 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENsolveH()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENopenQ()
+#' ENinitQ(0)
+#' ENrunQ()
+#' ENnextQ()
+#' ENrunQ()
+#' ENcloseQ()
 ENnextQ <- function(){
 	x <- .C("RENnextQ", "", as.integer(-1))
 	check_epanet_error( x[[2]])
@@ -106,6 +152,7 @@ ENstepQ <- function(){
 #' @useDynLib epanet2toolkit RENcloseQ
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @export
 ENcloseQ <- function(){
 	x <- .C("RENcloseQ", as.integer(-1))
 	check_epanet_error(x[[1]])
@@ -119,6 +166,11 @@ ENcloseQ <- function(){
 #' @return list of qualcode and trace node
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetqualtype()
+#' ENclose()
 ENgetqualtype <- function(){
 	x <- .C("RENgetqualtype", as.integer(0), as.integer(0), as.integer(-1))
 	check_epanet_error( x[[3]])
@@ -156,6 +208,13 @@ ENgetqualtype <- function(){
 #'   
 #' @seealso \code{ENgetqualtype}
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetqualtype()
+#' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+#' ENgetqualtype()
+#' ENclose()
 ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
    
    codeTable <- c("EN_NONE","EN_CHEM","EN_AGE","EN_TRACE") 
@@ -180,6 +239,11 @@ ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
 #' chemunits, tracenode 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+#' @examples
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetqualinfo()
+#' ENclose()
 ENgetqualinfo <- function(){
         cn = "                 "
         cu = "                 "

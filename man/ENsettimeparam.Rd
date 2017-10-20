@@ -37,3 +37,12 @@ Time parameter codes consist of the following constants:
   Do not change time parameters after calling ENinitH in a hydraulic analysis or 
   \code{ENinitQ} in a water quality analysis
 }
+\examples{
+# path to Net1.inp example file included with this package 
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp") 
+ENopen(inp, "Net1.rpt")
+ENgettimeparam("EN_HYDSTEP")
+ENsettimeparam("EN_HYDSTEP", 600)
+ENgettimeparam("EN_HYDSTEP")
+ENclose()
+}

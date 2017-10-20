@@ -18,6 +18,13 @@ A character string, the pattern ID label of the specified time pattern.
 \note{
 Pattern indexes are consecutive integers starting from 1.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetpatternid(1)
+ENclose()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___patterns.html}
 }

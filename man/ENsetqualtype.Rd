@@ -35,6 +35,14 @@ Water quality analysis codes are as follows:
   The same holds for the trace node if the analysis is not for source tracing. 
   Note that the trace node is specified by ID and not by index.
 }
+\examples{
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetqualtype()
+ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+ENgetqualtype()
+ENclose()
+}
 \seealso{
 \code{ENgetqualtype}
 \url{http://wateranalytics.org/EPANET/group___quality_functions.html}

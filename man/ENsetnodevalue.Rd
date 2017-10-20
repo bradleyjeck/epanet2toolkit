@@ -49,6 +49,15 @@ Nodes are indexed starting from 1 in the order in which they were entered into t
   Values are supplied in units which depend on the units used for flow rate in the EPANET
   input file (see Units of Measurement).
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetnodevalue(3, "EN_ELEVATION")
+ENsetnodevalue(3, "EN_ELEVATION", 777)
+ENgetnodevalue(3, "EN_ELEVATION")
+ENclose()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___network_info.html}
 }

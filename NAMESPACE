@@ -2,6 +2,7 @@
 
 export(ENclose)
 export(ENcloseH)
+export(ENcloseQ)
 export(ENepanet)
 export(ENgetcontrol)
 export(ENgetcoord)

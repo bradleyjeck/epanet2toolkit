@@ -17,7 +17,7 @@ ENopen(inpFileName, rptFileName, outFileName)
 returns NULL invisibly on success or raises an error or warning.
 }
 \description{
-\code{enOpen} opens the EPANET Toolkit to analyze a particular water distribution system.
+\code{ENopen} opens the EPANET Toolkit to analyze a particular water distribution system.
 }
 \note{
 If there is no need to save an EPANET's binary Output file, then \code{outFileName}
@@ -29,7 +29,13 @@ If there is no need to save an EPANET's binary Output file, then \code{outFileNa
   \code{enOpen} must be called before any of the other toolkit functions are used. The only
   exception is \code{enEpanet}.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENclose()
+}
 \seealso{
-\code{enClose} 
+\code{ENclose}  
 \url{http://wateranalytics.org/EPANET/group___file_management.html}
 }

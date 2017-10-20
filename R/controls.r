@@ -27,6 +27,12 @@
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___controls.html}
 #' \code{\link{ENsetcontrol}} 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetcontrol(1)
+#' ENclose() 
 ENgetcontrol <- function(controlindex) {
   
   if (missing(controlindex)) {
@@ -100,6 +106,14 @@ ENgetcontrol <- function(controlindex) {
 #' @seealso 
 #' \url{http://wateranalytics.org/EPANET/group___controls.html}
 #' \code{ENsetcontrol}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetcontrol(1)
+#' ENsetcontrol(1, ctype=2, lindex=3, setting=1, nindex=0, level=54)		
+#' ENgetcontrol(1)
+#' ENclose() 
 ENsetcontrol <- function(cindex, ctype = NULL, lindex = NULL, setting = NULL, nindex = NULL, level = NULL) {
 
   if (missing(cindex)) {

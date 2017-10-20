@@ -54,6 +54,14 @@ Node indexes are consecutive integers starting from 1.
   Values are returned in units which depend on the units used for flow rate in the EPANET
   input file (see Units of Measurement).
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetnodevalue(1, "EN_ELEVATION")
+ENgetnodevalue(5, "EN_BASEDEMAND")
+ENclose()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___network_info.html}
 }

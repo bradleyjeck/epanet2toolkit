@@ -20,6 +20,15 @@ A numeric or numeric vector, the multiplier factor for the specific time pattern
 \note{
 Pattern indexes and periods are consecutive integers starting from 1.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetpatternvalue(1,1)
+ENgetpatternvalue(1,2)
+ENgetpatternvalue(1,3)
+ENclose()
+}
 \seealso{
 \code{ENgetpatternindex}, \code{ENgetpatternlen}, \code{ENsetpatternvalue}
 \url{http://wateranalytics.org/EPANET/group___patterns.html}

@@ -19,10 +19,12 @@ character ID
 Link indexes are consecutive integers starting from 1.
 }
 \examples{
-\dontrun{
-  # get the ID of the 3rd link
-  linkid <- ENgetlinkid(3)
-}
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetlinkid(1)
+ENgetlinkid(12)
+ENclose()
 }
 \seealso{
 \code{\link{ENgetlinkindex} }

@@ -1,16 +1,39 @@
 Package: epanet2toolkit
 Type: Package
-Title: epanet2toolkit
-Version: 0.0.1
-Date: 2017-10-10
-Author: Ernesto Arandia, Bradley J. Eck
-Maintainer: Brad Eck <brad@bradeck.net>
+Title: Call 'EPANET' Functions to Simulate Pipe Networks
+Version: 0.1.3
+Date: 2017-10-20
+Authors@R: c(
+   person("Ernesto", "Arandia", email="earandia.ie@gmail.com", role='aut'),
+   person("Bradley", "Eck", email="brad@bradeck.net", role = c('aut','cre')),
+   person("Lew", "Rossman", role='aut'), 
+   person("Michael Tryby", role = 'ctb'),
+   person("Feng","Shang", role = 'ctb'),
+   person("James","Uber", role = 'ctb'),
+   person("Tom","Taxon", role = 'ctb'), 
+   person("Sam","Hatchett", role = 'ctb'),
+   person("Hyoungmin","Woo", role = 'ctb'),
+   person("Jinduan","Chen", role = 'ctb'),
+   person("Yunier","Soad", role = 'ctb'),
+   person("Mike","Kane", role = 'ctb'),
+   person("Demetrios","Eliades", role = 'ctb'),
+   person("Will","Furnass", role = 'ctb'),
+   person("Steffen","Macke", role = 'ctb'),
+   person("Mariosmsk", role = 'ctb'),
+   person("Elad","Salomons", role = 'ctb'),
+   person("Maurizio","Cingi", role = 'ctb'),
+   person("Bryant","McDonnell", role = 'ctb'),
+   person("IBM Corp.", role = 'cph'),
+   person("Open Water Analytics", role = 'cph')
+  )
 Suggests:
     testthat
-Description: enables simulation of water networks piping networks using Epanet.
-    The package provides functions from the Epanet programmer's toolkit as R
+Description: Enables simulation of water piping networks using 'EPANET'.
+    The package provides functions from the 'EPANET' programmer's toolkit as R
     functions so that basic or customized simulations can be carried out from R.
-    The package uses Epanet version 2.1 from Open Water Analytics
+    The package uses 'EPANET' version 2.1 from Open Water Analytics
     <https://github.com/OpenWaterAnalytics/EPANET/releases/tag/v2.1>.  
-License: file LICENSE
+License: MIT + file LICENSE
+Copyright: COPYRIGHTS
+URL: https://github.com/bradleyjeck/epanet2toolkit
 RoxygenNote: 6.0.1

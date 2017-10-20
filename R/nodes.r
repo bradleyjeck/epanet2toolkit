@@ -19,7 +19,13 @@
 #' @seealso 
 #' \code{ENgetnodeid} 
 #' \url{http://wateranalytics.org/EPANET/group___network_info.html}
-#' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetnodeindex("10")
+#' ENgetnodeindex("23")
+#' ENclose()
 ENgetnodeindex <- function(nodeid) {
   
   if (missing(nodeid)) {
@@ -58,6 +64,15 @@ ENgetnodeindex <- function(nodeid) {
 #' 
 #' @seealso \code{ENgetnodeindex}
 #' \url{http://wateranalytics.org/EPANET/group___network_info.html}
+#'
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetnodeid(1)
+#' ENgetnodeid(5)
+#' ENgetnodeid(9)
+#' ENclose()
 ENgetnodeid <- function(nodeindex) {
   
   if (missing(nodeindex)) {
@@ -104,6 +119,14 @@ ENgetnodeid <- function(nodeindex) {
 #' 
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___network_info.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetnodetype(1)
+#' ENgetnodetype(10)
+#' ENgetnodetype(11)
+#' ENclose()
 ENgetnodetype <- function(nodeindex) {
   
   if (missing(nodeindex)) {
@@ -176,6 +199,13 @@ ENgetnodetype <- function(nodeindex) {
 #'   input file (see Units of Measurement).
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___network_info.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetnodevalue(1, "EN_ELEVATION")
+#' ENgetnodevalue(5, "EN_BASEDEMAND")
+#' ENclose()
 ENgetnodevalue <- function(nodeindex, paramcode ) {
   
   # check the arguments
@@ -249,6 +279,14 @@ ENgetnodevalue <- function(nodeindex, paramcode ) {
 #'   input file (see Units of Measurement).
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___network_info.html}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetnodevalue(3, "EN_ELEVATION")
+#' ENsetnodevalue(3, "EN_ELEVATION", 777)
+#' ENgetnodevalue(3, "EN_ELEVATION")
+#' ENclose()
 ENsetnodevalue <- function(index, paramcode = NULL, value = NULL) {
   
   if (nargs() == 3) {		

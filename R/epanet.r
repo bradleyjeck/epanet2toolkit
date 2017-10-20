@@ -63,7 +63,8 @@ ENepanet <- function( inpFile, rptFile, binOutFile=""){
 #' 
 #' @note The version number is a 5-digit integer that increases sequentially from
 #'   20001 with each new update of the Toolkit.
-#' 
+#' @examples
+#' ENgetversion()
 ENgetversion <- function() {
 	
 	x <- .C("RENgetversion", as.integer(0), as.integer(-1))

@@ -15,6 +15,14 @@
 #' 
 #' @export
 #' @useDynLib epanet2toolkit RENsolveH
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt","Net1.bin")
+#' ENsolveH()
+#' ENsolveQ()
+#' ENgetnodevalue(2, "EN_PRESSURE")
+#' ENclose() 
  ENsolveH <- function(){
     arg <- .C("RENsolveH", as.integer(-1) )
     err <- arg[[1]]
@@ -54,6 +62,15 @@
 #' 
 #' @seealso \code{ENinitH}, \code{ENrunH}, \code{ENnextH}, \code{ENcloseH}
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENopenH()
+#' ENinitH(0)
+#' ENrunH()
+#' ENcloseH()
+#' ENclose()
 ENopenH <- function() {
 	
   if( getOpenHflag()){
@@ -98,6 +115,15 @@ ENopenH <- function() {
 #' 
 #' @seealso \code{ENopenH}, \code{ENrunH}, \code{ENnextH}, \code{ENcloseH}
 #' 
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENopenH()
+#' ENinitH(0)
+#' ENrunH()
+#' ENcloseH()
+#' ENclose()
 ENinitH <- function(flag) {
 	
 	# check the arguments
@@ -138,6 +164,15 @@ ENinitH <- function(flag) {
 #'   
 #' @seealso \code{ENopenH}, \code{ENinitH}, \code{ENnextH}, \code{ENcloseH}
 #'    
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENopenH()
+#' ENinitH(0)
+#' ENrunH()
+#' ENcloseH()
+#' ENclose()
 ENrunH <- function() {
 	
   result <- .Call("enRunH")					
@@ -172,7 +207,9 @@ ENrunH <- function() {
 #'   }
 #'   
 #' @examples
-#' \dontrun{
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
 #'   # store simulation times
 #'   t = NULL
 #'   ENopenH()
@@ -186,7 +223,7 @@ ENrunH <- function() {
 #'   }
 #'   ENcloseH()
 #'   ENclose()
-#'  } 
+#'   
 #' @seealso \code{ENopenH}, \code{ENinitH}, \code{ENrunH}, \code{ENcloseH}, \code{ENsettimeparam}
 #' 
 ENnextH <- function() {

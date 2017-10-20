@@ -49,6 +49,16 @@ Link indexes are consecutive integers starting from 1.
   Values are returned in units which depend on the units used for flow rate in the EPANET
   input file.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen(inp, "Net1.rpt")
+ENgetlinkvalue(1, "EN_DIAMETER")
+ENgetlinkvalue(1, "EN_LENGTH")
+ENgetlinkvalue(8, "EN_DIAMETER")
+ENgetlinkvalue(8, "EN_LENGTH")
+ENclose()
+}
 \seealso{
 \code{ENgetlinkindex} \code{\link{ENgetflowunits}}
 }

@@ -16,6 +16,16 @@ Computs WQ results at current time .
 used in a loop with ENnextQ() to run
 an extended period WQ simulation.
 }
+\examples{
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENsolveH()
+ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
+ENopenQ()
+ENinitQ(0)
+ENrunQ()
+ENcloseQ()
+}
 \seealso{
 \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

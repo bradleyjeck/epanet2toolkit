@@ -21,6 +21,16 @@ Use \code{ENrunH} along with \code{ENnextH} in a while loop to
   
   See \code{ENnextH} for an example of using this function.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENopenH()
+ENinitH(0)
+ENrunH()
+ENcloseH()
+ENclose()
+}
 \seealso{
 \code{ENopenH}, \code{ENinitH}, \code{ENnextH}, \code{ENcloseH}
 }

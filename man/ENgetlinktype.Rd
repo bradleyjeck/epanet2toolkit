@@ -30,6 +30,14 @@ Link indexes are consecutive integers starting from 1. Link type codes
   \code{EN_GPV}	  \tab 8 \tab General Purpose Valve\cr
   }
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENgetlinktype(1)
+ENgetlinktype(12)
+ENclose()
+}
 \seealso{
 \code{\link{ENgetlinkindex}}
 }

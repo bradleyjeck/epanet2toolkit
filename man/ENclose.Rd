@@ -13,6 +13,12 @@ ENclose()
 \code{ENclose} must be called when all processing has been completed, even if an error
   condition was encountered.
 }
+\examples{
+# path to Net1.inp example file included with this package
+inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+ENopen( inp, "Net1.rpt")
+ENclose()
+}
 \seealso{
 \code{\link{ENopen}}
 \url{http://wateranalytics.org/EPANET/group___file_management.html}

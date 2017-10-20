@@ -23,6 +23,12 @@
 #' @note Link indexes are consecutive integers starting from 1.
 #' 
 #' @seealso \code{\link{ENgetlinkid} }
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetlinkindex("22")
+#' ENclose()
 ENgetlinkindex <- function(linkid) {
   
   if (missing(linkid)) {
@@ -62,10 +68,12 @@ ENgetlinkindex <- function(linkid) {
 #' @seealso \code{\link{ENgetlinkindex} }
 #' 
 #' @examples
-#' \dontrun{
-#'   # get the ID of the 3rd link
-#'   linkid <- ENgetlinkid(3)
-#'}
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetlinkid(1)
+#' ENgetlinkid(12)
+#' ENclose()
 ENgetlinkid <- function(linkindex) {
   
   if (missing(linkindex)) {
@@ -112,6 +120,13 @@ ENgetlinkid <- function(linkindex) {
 #' @seealso \code{\link{ENgetlinkindex}}
 #' @export
 #' @useDynLib epanet2toolkit enGetLinkType
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetlinktype(1)
+#' ENgetlinktype(12)
+#' ENclose()
 ENgetlinktype <- function(linkindex) {
   
   if (missing(linkindex)) {
@@ -148,6 +163,13 @@ ENgetlinktype <- function(linkindex) {
 #' @seealso \code{\link{ENgetlinkindex} }
 #' @export
 #' @useDynLib epanet2toolkit enGetLinkNodes
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen( inp, "Net1.rpt")
+#' ENgetlinknodes(1)
+#' ENgetlinknodes(11)
+#' ENclose()
 ENgetlinknodes <- function(linkindex) {
   
   if (missing(linkindex)) {
@@ -214,6 +236,15 @@ ENgetlinknodes <- function(linkindex) {
 #'   input file.
 #' 
 #' @seealso \code{ENgetlinkindex} \code{\link{ENgetflowunits}}
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen(inp, "Net1.rpt")
+#' ENgetlinkvalue(1, "EN_DIAMETER")
+#' ENgetlinkvalue(1, "EN_LENGTH")
+#' ENgetlinkvalue(8, "EN_DIAMETER")
+#' ENgetlinkvalue(8, "EN_LENGTH")
+#' ENclose()
 ENgetlinkvalue <- function(linkindex, paramcode) {
   
   # check the arguments
@@ -281,6 +312,14 @@ ENgetlinkvalue <- function(linkindex, paramcode) {
 #'   
 #' @export
 #' @useDynLib epanet2toolkit enSetLinkValue
+#' @examples
+#' # path to Net1.inp example file included with this package
+#' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
+#' ENopen(inp, "Net1.rpt")
+#' ENgetlinkvalue(8, "EN_LENGTH")
+#' ENsetlinkvalue(8, "EN_LENGTH", 3333)
+#' ENgetlinkvalue(8, "EN_DIAMETER")
+#' ENclose()
 ENsetlinkvalue <- function(index, paramcode, value) {
   
   if (nargs() == 3) {		

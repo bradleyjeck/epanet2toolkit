@@ -16,3 +16,6 @@ An integer, the Toolkit version number.
 The version number is a 5-digit integer that increases sequentially from
   20001 with each new update of the Toolkit.
 }
+\examples{
+ENgetversion()
+}
