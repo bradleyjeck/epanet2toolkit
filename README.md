@@ -1,3 +1,7 @@
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/epanet2toolkit)](https://cran.r-project.org/package=epanet2toolkit)
+[![CRAN version](http://www.r-pkg.org/badges/version/epanet2toolkit)](https://cran.r-project.org/package=epanet2toolkit)
+
+
 # epanet2toolkit
 epanet2toolkit is an R package for simulating water networks using Epanet. The
 package provides functions from the Epanet programmer's toolkit as R functions so
