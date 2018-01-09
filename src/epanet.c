@@ -126,7 +126,7 @@ execute function x and set the error code equal to its return value.
 #endif
 #include <math.h>
 #include <float.h>                                                             //(2.00.12 - LR)
- 
+#include <unistd.h> 
 #include "text.h"
 #include "types.h"
 #include "enumstxt.h"
@@ -2878,7 +2878,8 @@ char* getTmpName(char* fname)
     #else
       // --- use system function mkstemp() to create a temporary file name
       strcpy(fname, "enXXXXXX");
-      mkstemp(fname);
+      int fd = mkstemp(fname);
+      if ( fd > 0 ) close(fd);
     #endif
     return fname;
 }
