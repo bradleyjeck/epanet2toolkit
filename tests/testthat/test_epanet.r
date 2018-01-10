@@ -34,6 +34,50 @@ test_that("returns error code",{
 			expect_error( ENepanet("Net55.inp", "Net55.rpt"), "302")
 		})
 
+test_that("no leaky file descriptors",{
+
+get_os <- function(){
+sysinf <- Sys.info()
+if (!is.null(sysinf)){
+os <- sysinf['sysname']
+if (os == 'Darwin')
+os <- "osx"
+} else { ## mystery machine
+os <- .Platform$OS.type
+if (grepl("^darwin", R.version$os))
+os <- "osx"
+if (grepl("linux-gnu", R.version$os))
+os <- "linux"
+}
+tolower(os)
+}
+
+get_num_open_files <- function() {
+os <- get_os()
+if (os == "linux") {
+# using the current R process PID, we check the number of entries on /proc//fd folder
+# each entry represents an open file descriptor
+# note that those entries and the parent folder belongs to R process user (no root required)
+return (length(dir(paste("/proc/", Sys.getpid() , "/fd/", sep=""))))
+} else if (os == "osx") {
+# we use lsof and wc commands to count the number of active file descriptors of R process
+return (system(command=paste("lsof -a -d 1-999 -p ", Sys.getpid(), " | wc -l", sep=""), intern = TRUE))
+} else {
+# dont know how to get open file descriptors on Windows or other arch; any constant value here will pass the test
+return (0)
+}
+}
+
+numOpenFilesBefore <- get_num_open_files()
+ENepanet("Net3.inp", "Net3_xxxx.rpt")
+numOpenFilesAfter <- get_num_open_files()
+file.remove("Net3_xxxx.rpt")
+
+expect_equal(numOpenFilesAfter, numOpenFilesBefore)
+
+
+})
+
 
 
 context("save inp file")
