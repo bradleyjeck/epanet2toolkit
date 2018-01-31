@@ -64,6 +64,8 @@ test_that("returns null invisbly on success",{
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
   x <- withVisible( ENopenH() ) 
   ENclose()
+  expect_null( x$value)
+  expect_false( x$visible)
 })
 
 
@@ -86,6 +88,8 @@ test_that("returns null invisbly on success",{
   ENopenH()
   x <- withVisible( ENinitH( as.integer(11) ) ) 
   ENclose()
+  expect_null( x$value)
+  expect_false( x$visible)
 })
 
 

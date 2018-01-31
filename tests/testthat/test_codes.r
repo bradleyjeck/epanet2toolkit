@@ -9,7 +9,8 @@
 context("error codes")
 test_that("verify no error",{
 		
-			check_epanet_error( as.integer(0))
+			x <- check_epanet_error( as.integer(0))
+                       expect_true( is.null(x))
 })
 test_that("verify error",{
 			expect_error(check_epanet_error( as.integer(302)), "302")
