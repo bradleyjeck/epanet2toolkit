@@ -40,5 +40,7 @@ test_that("verify example 2",{
 		#plot( Pressure ~ Demand, las=1, 
 		#	  main = "Example 2 - Hydrant Rating Curve",
 		#	  sub  = paste("Net 2, node", MyNode))
-			
+		
+                # test succeeds if you got here
+                expect_true( TRUE )	
 })

@@ -33,6 +33,3 @@ test_that("returns NULL invisibly on Success",{
 			
 		})
 
-test_that("can return error code",{
-			## ENclose only ever returns 0
-		})

@@ -107,19 +107,3 @@ test_that("works",{
 			
 		})
 
-context("get flow units -- move to test_options")
-test_that("no crash calling on closed toolkit",{
-			expect_error(	x <- ENgetflowunits() )
-		})
-test_that("works",{
-			
-			
-			ENopen("Net1.inp","Net1.rpt")  
-			x <- ENgetflowunits()
-			ENclose()
-			
-			y <- 1 
-			names(y) <- "EN_GPM"
-			expect_equal(x,y )
-		})
-

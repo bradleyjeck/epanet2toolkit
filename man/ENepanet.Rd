@@ -23,4 +23,6 @@ print(inp)
 ENepanet( inp, "Net1.rpt") 
 # try opening Net1.rpt in a text editor or reading it back
 # into R with the read.rpt() function in package epanetReader
+myRpt <- epanetReader::read.rpt("Net1.rpt")
+summary(myRpt)
 }

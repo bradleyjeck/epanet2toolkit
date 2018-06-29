@@ -57,7 +57,6 @@ test_that("ex3",{
    Cdose <- csource[i]
    expect_true( Cdose <= 4 ) 
    expect_true( Cdose > 0 ) 
-   print( paste("Cdose = ", Cdose))
 
    ENclose()
 })
