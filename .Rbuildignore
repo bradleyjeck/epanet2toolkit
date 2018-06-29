@@ -1,4 +1,2 @@
-.travis.yml
-.so
-Dockerfile
-Makefile
+^\.travis\.yml$    
+^\.so$
