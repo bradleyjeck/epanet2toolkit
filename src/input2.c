@@ -753,7 +753,7 @@ int  match(char *str, char *substr)
 **--------------------------------------------------------------
 */
 {
-   int i,j;
+   int i,j,k;
 
 /*** Updated 9/7/00 ***/
 /* Fail if substring is empty */
@@ -764,7 +764,8 @@ int  match(char *str, char *substr)
      if (str[i] != ' ') break;
 
 /* Check if substr matches remainder of str. */
-   for (i=i,j=0; substr[j]; i++,j++)
+   k=i; /* avoid self-assignment */
+   for (i=k,j=0; substr[j]; i++,j++)
       if (!str[i] || UCHAR(str[i]) != UCHAR(substr[j]))
          return(0);
    return(1);
