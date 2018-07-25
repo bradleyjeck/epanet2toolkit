@@ -65,7 +65,7 @@ int ENHashTableInsert(ENHashTable *ht, char *key, int data)
   }
   len = strlen(key) + 1;
   entry->key = calloc(len, sizeof(char));
-  strncpy(entry->key, key, len);
+  strcpy(entry->key, key);
   entry->data = data;
   entry->next = ht[i];
   ht[i] = entry;
