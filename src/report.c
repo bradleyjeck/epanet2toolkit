@@ -183,8 +183,9 @@ void  writesummary()
 **   Purpose: writes summary system information to report file    
 **--------------------------------------------------------------
 */
-{
-   char s[MAXFNAME+1];
+{  
+   const int extraspace = 50;
+   char s[MAXFNAME+1+extraspace];
    int  i;
    int  nres = 0;
 
@@ -605,8 +606,8 @@ void  writeheader(int type, int contin)
 **   Purpose: writes column headings for output report tables             
 **--------------------------------------------------------------
 */
-{
-   char   s[MAXLINE+1],s1[MAXLINE+1],s2[MAXLINE+1],s3[MAXLINE+1];
+{  const int extraspace = 50;
+   char   s[MAXLINE+1+extraspace],s1[MAXLINE+1],s2[MAXLINE+1],s3[MAXLINE+1];
    int    i,n;
 
    /* Move to next page if < 11 lines remain on current page. */

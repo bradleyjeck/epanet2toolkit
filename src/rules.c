@@ -934,6 +934,7 @@ void  ruleerrmsg(int err)
    int    i;
    char   label[81];
    char   fmt[256];
+   char   ruleMsg[260];
    switch (err)
    {
       case 201:   strcpy(fmt,R_ERR201);  break;
@@ -954,10 +955,10 @@ void  ruleerrmsg(int err)
       strcat(label,Rule[Nrules].label);
    }
    else strcpy(label,t_RULES_SECT);
-   sprintf(Msg,"%s",fmt);
-   strcat(Msg,label);
-   strcat(Msg,":");
-   writeline(Msg);
+   sprintf(ruleMsg,"%s",fmt);
+   strcat(ruleMsg,label);
+   strcat(ruleMsg,":");
+   writeline(ruleMsg);
    strcpy(fmt,Tok[0]);
    for (i=1; i<Ntokens; i++)
    {
