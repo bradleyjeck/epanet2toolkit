@@ -466,12 +466,12 @@ SEXP enGetNodeType(SEXP index) {
     int type;
     int errcode = ENgetnodetype(ind, &type);
     
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = int2SEXP(type);
+    SEXP sxerr   = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT( int2SEXP(type));
     
     // store the value and error code in the result list
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2); 
     return resultlist;
 
 }
@@ -487,10 +487,10 @@ SEXP enGetNodeValue(SEXP index, SEXP paramCode) {
     int errcode = ENgetnodevalue(ind, code, &value);
 
     // store the value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = float2SEXP(value);
+    SEXP sxerr = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT( float2SEXP(value));
     SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
@@ -505,10 +505,10 @@ SEXP enSetNodeValue(SEXP index, SEXP paramcode, SEXP value) {
     int errcode = ENsetnodevalue(ind, code, val);
     
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
     
 }
@@ -617,10 +617,10 @@ SEXP enGetLinkType(SEXP index) {
     int errcode = ENgetlinktype(ind, &type);
     
     // convert and store the values in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = int2SEXP(type);
+    SEXP sxerr   = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT( int2SEXP(type));
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
@@ -634,13 +634,13 @@ SEXP enGetLinkNodes(SEXP index) {
 	int errcode = ENgetlinknodes(ind, &node1, &node2);
     
     // convert and store the values in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxnode1 = int2SEXP(node1);
-    SEXP sxnode2 = int2SEXP(node2);
+    SEXP sxerr   = PROTECT( int2SEXP(errcode));
+    SEXP sxnode1 = PROTECT( int2SEXP(node1));
+    SEXP sxnode2 = PROTECT( int2SEXP(node2));
     
     // store the value and error code in the result list
     SEXP resultlist = setlist2int(sxnode1, sxnode2, sxerr);
-    
+    UNPROTECT(3);
     return resultlist;
 
 }
@@ -656,10 +656,10 @@ SEXP enGetLinkValue(SEXP index, SEXP paramCode) {
     int errcode = ENgetlinkvalue(ind, code, &value);
     
     // store the value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = float2SEXP(value);
+    SEXP sxerr   = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT( float2SEXP(value));
     SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
     
 }
@@ -673,10 +673,10 @@ SEXP enSetLinkValue(SEXP index, SEXP paramcode, SEXP value) {
     int errcode = ENsetlinkvalue(ind, code, val);
     
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
     
@@ -792,12 +792,12 @@ SEXP enGetPatternLen(SEXP index) {
   
   // get the value and error code from EPANET
   errcode = ENgetpatternlen(ind, &val);
-  sxerr = int2SEXP(errcode);
-  sxvalue = int2SEXP(val);
+  sxerr = PROTECT( int2SEXP(errcode));
+  sxvalue = PROTECT(int2SEXP(val));
   
   // store the value and error code in the result list
   resultlist = setlistint(sxvalue, sxerr);
-  
+  UNPROTECT(2); 
   return resultlist;
   
 }
@@ -813,10 +813,10 @@ SEXP enGetPatternValue(SEXP index, SEXP period) {
     int errcode = ENgetpatternvalue(ind, per, &value);
     
     // store the value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = float2SEXP(value);
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(float2SEXP(value));
     resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2); 
     return resultlist;
     
 }
@@ -840,10 +840,10 @@ SEXP enSetPattern(SEXP index, SEXP factors, SEXP nfactors) {
     // store error code in the result list
     pFac = fac;
     int errcode = ENsetpattern(ind, pFac, nfac);
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
     
 }
@@ -858,10 +858,10 @@ SEXP enSetPatternValue(SEXP index, SEXP period, SEXP value) {
     int errcode = ENsetpatternvalue(ind, code, val);
     
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
     
 }
@@ -881,14 +881,14 @@ SEXP enGetControl(SEXP cindex) {
 	int errcode = ENgetcontrol(ind, &ctype, &lindex, &setting, &nindex, &level);
     
     // store values and error code in result list
-    SEXP sxctype = int2SEXP(ctype);
-    SEXP sxlindex = int2SEXP(lindex);
-    SEXP sxnindex = int2SEXP(nindex);
-    SEXP sxsetting = float2SEXP(setting);
-    SEXP sxlevel = float2SEXP(level);
-    SEXP sxerrorcode = int2SEXP(errcode);
+    SEXP sxctype = PROTECT(int2SEXP(ctype));
+    SEXP sxlindex = PROTECT(int2SEXP(lindex));
+    SEXP sxnindex = PROTECT(int2SEXP(nindex));
+    SEXP sxsetting = PROTECT(float2SEXP(setting));
+    SEXP sxlevel = PROTECT( float2SEXP(level));
+    SEXP sxerrorcode = PROTECT(int2SEXP(errcode));
     SEXP resultlist = setcontrollist(sxctype, sxlindex, sxsetting, sxnindex, sxlevel, sxerrorcode);
-    
+    UNPROTECT(6); 
     return resultlist;
 
 }
@@ -906,10 +906,10 @@ SEXP enSetControl(SEXP cindex, SEXP ctype, SEXP lindex, SEXP setting, SEXP ninde
     int errcode = ENsetcontrol(cind, ctyp, lind, sett, nind, lev);
 
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
     
 }
@@ -1031,10 +1031,10 @@ SEXP enOpenH() {
 	int errcode = ENopenH();
     
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2); 
     return resultlist;
 
 }
@@ -1047,10 +1047,10 @@ SEXP enInitH(SEXP flag) {
 	int errcode = ENinitH(flg);
     
     // store error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(R_NilValue);
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
@@ -1063,10 +1063,10 @@ SEXP enRunH() {
 	int errcode = ENrunH(&time);
     
     // store value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = int2SEXP((int)time);
+    SEXP sxerr = PROTECT( int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(int2SEXP((int)time));
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
@@ -1079,10 +1079,10 @@ SEXP enNextH() {
 	int errcode = ENnextH(&tst);
     
     // store value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = int2SEXP((int)tst);
+    SEXP sxerr = PROTECT(int2SEXP(errcode));
+    SEXP sxvalue = PROTECT(int2SEXP((int)tst));
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
@@ -1094,10 +1094,10 @@ SEXP enCloseH() {
 	int errcode = ENcloseH();
     
     // store value and error code in the result list
-    SEXP sxerr = int2SEXP(errcode);
-    SEXP sxvalue = R_NilValue;
+    SEXP sxerr = PROTECT( int2SEXP(errcode) );
+    SEXP sxvalue = PROTECT( R_NilValue);
     SEXP resultlist = setlistint(sxvalue, sxerr);
-    
+    UNPROTECT(2);
     return resultlist;
 
 }
