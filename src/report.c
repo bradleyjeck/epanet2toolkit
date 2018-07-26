@@ -606,7 +606,7 @@ void  writeheader(int type, int contin)
 **   Purpose: writes column headings for output report tables             
 **--------------------------------------------------------------
 */
-{  const int extraspace = 50;
+{  const int extraspace = 70;
    char   s[MAXLINE+1+extraspace],s1[MAXLINE+1],s2[MAXLINE+1],s3[MAXLINE+1];
    int    i,n;
 
