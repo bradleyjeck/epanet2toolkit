@@ -98,7 +98,7 @@ ENinitQ <- function( saveFlag){
 #' ENrunQ()
 #' ENcloseQ()
 ENrunQ <- function(){
-	x <- .C("RENrunQ", "", as.integer(-1) )
+	x <- .C("RENrunQ", "                                    ", as.integer(-1) )
 	check_epanet_error( x[[2]])
 	t <- charlong_to_int_or_char( x[[1]])
 	return(t)
@@ -124,7 +124,7 @@ ENrunQ <- function(){
 #' ENrunQ()
 #' ENcloseQ()
 ENnextQ <- function(){
-	x <- .C("RENnextQ", "", as.integer(-1))
+	x <- .C("RENnextQ", "                                   ", as.integer(-1))
 	check_epanet_error( x[[2]])
 	t <- charlong_to_int_or_char( x[[1]])
 	return(t)
@@ -139,7 +139,7 @@ ENnextQ <- function(){
 #' @seealso
 #' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 ENstepQ <- function(){
-	x <- .C("RENstepQ", "", as.integer(-1))
+	x <- .C("RENstepQ", "                                  ", as.integer(-1))
 	check_epanet_error( x[[2]])
 	t <- charlong_to_int_or_char( x[[1]])
 	return(t)

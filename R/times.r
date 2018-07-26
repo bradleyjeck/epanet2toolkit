@@ -63,15 +63,8 @@ ENgettimeparam <- function(paramcode) {
 	if (any(is.na(code))) {
 		stop("The time parameter code specified is incorrect.")
 	}
-#	getOneTimeParam <- function(pcode) {
-#		tp <- enEvalGetFunction("enGetTimeParam", pcode)
-#		tp <- .Call("enGetTimeParam", pcode)
-#		return(tp)
-#	}
-#	timeparam <- sapply(code, getOneTimeParam)
-#	timeparam <- data.frame(PARAMETER = codeTable[code + 1], VALUE = timeparam)
-#	return(timeparam)
-	x <- .C("RENgettimeparam", code, "", as.integer(-1))
+	 
+        x <- .C("RENgettimeparam", code, "                                   ", as.integer(-1))
 	check_epanet_error(x[[3]])
 	param_val <- charlong_to_int_or_char(x[[2]])
 	if( is.character(param_val)) warning("returning character because R does not handle long integers, see ?integer")
