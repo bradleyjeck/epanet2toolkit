@@ -64,7 +64,8 @@ ENgettimeparam <- function(paramcode) {
 		stop("The time parameter code specified is incorrect.")
 	}
 	 
-        x <- .C("RENgettimeparam", code, "                                   ", as.integer(-1))
+        buf40 <- "0123456789012345678901234567890123456789"
+        x <- .C("RENgettimeparam", code, buf40, as.integer(-1))
 	check_epanet_error(x[[3]])
 	param_val <- charlong_to_int_or_char(x[[2]])
 	if( is.character(param_val)) warning("returning character because R does not handle long integers, see ?integer")
