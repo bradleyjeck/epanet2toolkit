@@ -1,7 +1,7 @@
 Package: epanet2toolkit
 Type: Package
 Title: Call 'EPANET' Functions to Simulate Pipe Networks
-Version: 0.3.1
+Version: 0.3.2
 Date: 2018-07-27
 Authors@R: c(
    person("Ernesto", "Arandia", email="earandia.ie@gmail.com", role='aut'),
