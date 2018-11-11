@@ -11,7 +11,7 @@ uses [Epanet version 2.1 from Open Water Analytics](https://github.com/OpenWater
 
 
 In addition to this readme page and the package manual, the paper [An R package for EPANET simulations](https://doi.org/10.1016/j.envsoft.2018.05.016) 
-is published in _Environmental Modelling & Software_ and is also available as a [preprint](http://bradeck.net/docs/ArandiaEck2018epanet2toolkit.pdf).
+is published in _Environmental Modelling & Software_ and is also available as a [preprint](http://bradeck.net/docs/ArandiaEck2018epanet2toolkit.pdf).  The conference paper [Water demand and network modelling with R](https://bradeck.net/docs/iEMSs18.pdf) gives some more in depth examples.
 
 ## Installation
 Install the latest release from CRAN
