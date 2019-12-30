@@ -594,7 +594,7 @@ int  savetimestat(REAL4 *x, char objtype)
          {
 
             /* Get output results for time period & update stats */
-            fread(x+1, sizeof(REAL4), n, TmpOutFile);
+            size_t res = fread(x+1, sizeof(REAL4), n, TmpOutFile);
             for (i=1; i<=n; i++)
             {
                xx = x[i];

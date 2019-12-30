@@ -445,12 +445,12 @@ int  writeresults()
       /* Read in node results & write node table. */
       /* (Remember to offset x[j] by 1 because array is zero-based). */
       for (j=DEMAND; j<=QUALITY; j++)
-         fread((x[j-DEMAND])+1,sizeof(REAL4),Nnodes,OutFile);
+         size_t res = fread((x[j-DEMAND])+1,sizeof(REAL4),Nnodes,OutFile);
       if (nnv > 0 && Nodeflag > 0) writenodetable(x);
 
       /* Read in link results & write link table. */
       for (j=FLOW; j<=FRICTION; j++)
-         fread((x[j-FLOW])+1,sizeof(REAL4),Nlinks,OutFile);
+         size_t res2 = fread((x[j-FLOW])+1,sizeof(REAL4),Nlinks,OutFile);
       if (nlv > 0 && Linkflag > 0) writelinktable(x);
       Htime += Rstep;
    }
