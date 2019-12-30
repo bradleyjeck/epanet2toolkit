@@ -26,6 +26,3 @@ ENinitQ(0)
 ENrunQ()
 ENcloseQ()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
-}

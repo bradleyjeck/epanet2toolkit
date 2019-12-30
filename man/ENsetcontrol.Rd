@@ -4,8 +4,14 @@
 \alias{ENsetcontrol}
 \title{Set the parameters of a simple control statement}
 \usage{
-ENsetcontrol(cindex, ctype = NULL, lindex = NULL, setting = NULL,
-  nindex = NULL, level = NULL)
+ENsetcontrol(
+  cindex,
+  ctype = NULL,
+  lindex = NULL,
+  setting = NULL,
+  nindex = NULL,
+  level = NULL
+)
 }
 \arguments{
 \item{cindex}{Integer, control statement index}
@@ -64,6 +70,5 @@ ENgetcontrol(1)
 ENclose() 
 }
 \seealso{
-\url{http://wateranalytics.org/EPANET/group___controls.html}
 \code{ENsetcontrol}
 }

@@ -12,6 +12,3 @@ time remaining in the overall simulation
 \description{
 Advances WQ simulation one water quality time step.
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
-}

@@ -20,6 +20,3 @@ ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 ENsolveQ()
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
-}

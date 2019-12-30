@@ -35,6 +35,3 @@ ENgetnodetype(10)
 ENgetnodetype(11)
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___network_info.html}
-}

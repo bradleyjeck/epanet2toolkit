@@ -19,6 +19,3 @@ ENopen( inp, "Net1.rpt")
 ENgetqualinfo()
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
-}

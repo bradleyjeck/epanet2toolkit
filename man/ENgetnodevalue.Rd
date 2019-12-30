@@ -62,6 +62,3 @@ ENgetnodevalue(1, "EN_ELEVATION")
 ENgetnodevalue(5, "EN_BASEDEMAND")
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___network_info.html}
-}

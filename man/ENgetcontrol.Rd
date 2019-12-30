@@ -27,6 +27,5 @@ ENgetcontrol(1)
 ENclose() 
 }
 \seealso{
-\url{http://wateranalytics.org/EPANET/group___controls.html}
 \code{\link{ENsetcontrol}}
 }

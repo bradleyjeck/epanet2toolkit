@@ -21,5 +21,4 @@ ENclose()
 }
 \seealso{
 \code{\link{ENopen}}
-\url{http://wateranalytics.org/EPANET/group___file_management.html}
 }

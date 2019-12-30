@@ -18,8 +18,6 @@
 #' 
 #' @note Pattern indexes are consecutive integers starting from 1. 
 #' 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___patterns.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -59,8 +57,6 @@ ENgetpatternid <- function(patternindex) {
 #' @return An integer, the index of the specified time pattern.
 #' 
 #' @note Pattern indexes are consecutive integers starting from 1.
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___patterns.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -143,7 +139,6 @@ ENgetpatternlen <- function(patternindex) {
 #' @note Pattern indexes and periods are consecutive integers starting from 1.
 #' 
 #' @seealso \code{ENgetpatternindex}, \code{ENgetpatternlen}, \code{ENsetpatternvalue}
-#' \url{http://wateranalytics.org/EPANET/group___patterns.html}
 #' 
 #' @examples
 #' # path to Net1.inp example file included with this package

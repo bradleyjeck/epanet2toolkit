@@ -18,7 +18,6 @@
 #' 
 #' @seealso 
 #' \code{ENgetnodeid} 
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -63,7 +62,6 @@ ENgetnodeindex <- function(nodeid) {
 #' @note Node indexes are consecutive integers starting from 1.
 #' 
 #' @seealso \code{ENgetnodeindex}
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #'
 #' @examples
 #' # path to Net1.inp example file included with this package
@@ -117,8 +115,6 @@ ENgetnodeid <- function(nodeindex) {
 #'   \code{EN_TANK}      \tab 2 \tab Tank node
 #'   }
 #' 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -197,8 +193,6 @@ ENgetnodetype <- function(nodeindex) {
 #' 
 #'   Values are returned in units which depend on the units used for flow rate in the EPANET
 #'   input file (see Units of Measurement).
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -277,8 +271,6 @@ ENgetnodevalue <- function(nodeindex, paramcode ) {
 #'  
 #'   Values are supplied in units which depend on the units used for flow rate in the EPANET
 #'   input file (see Units of Measurement).
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  

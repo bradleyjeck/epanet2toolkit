@@ -27,6 +27,5 @@ ENgetnodeindex("23")
 ENclose()
 }
 \seealso{
-\code{ENgetnodeid} 
-\url{http://wateranalytics.org/EPANET/group___network_info.html}
+\code{ENgetnodeid}
 }

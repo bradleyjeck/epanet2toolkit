@@ -39,6 +39,3 @@ ENopen( inp, "Net1.rpt")
 ENgetflowunits()
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
-}

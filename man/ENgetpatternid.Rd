@@ -25,6 +25,3 @@ ENopen( inp, "Net1.rpt")
 ENgetpatternid(1)
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___patterns.html}
-}
