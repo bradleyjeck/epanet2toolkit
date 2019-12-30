@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 //#include "types.h"
-#define EXTERN
+#define EXTERN extern 
 //#include "vars.h"
 #include "epanet2.h"
 
