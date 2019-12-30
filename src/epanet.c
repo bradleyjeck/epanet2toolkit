@@ -131,7 +131,7 @@ execute function x and set the error code equal to its return value.
 #include "types.h"
 #include "enumstxt.h"
 #include "funcs.h"
-#define  EXTERN
+#define  EXTERN extern
 #include "vars.h"
 #include "epanet2.h"
 

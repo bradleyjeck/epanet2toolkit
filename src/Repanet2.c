@@ -8,8 +8,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#define  EXTERN extern 
 #include "types.h"
-#define  EXTERN
 #include "vars.h"
 #include "epanet2.h" 
 
