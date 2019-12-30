@@ -9,17 +9,24 @@
 context("ENepanet")
 test_that("ENepanet all args",{
   expect_silent( ENepanet("Net1.inp", "Net1.rpt", "Net1.bin") ) 
+  # clean-up 
+  file.remove("Net1.rpt") 
+  file.remove("Net1.bin") 
 })
 
 test_that("RENepanet null bin",{
 
   expect_silent( ENepanet("Net1.inp", "Net1.rpt") ) 
+  # clean-up 
+  file.remove("Net1.rpt") 
 })
 
 test_that("retuns null invisibly",{
 	 wv <- withVisible( ENepanet("Net1.inp", "Net1.rpt") ) 
 	 expect_null(wv$value)
 	 expect_false(wv$visible)
+  # clean-up 
+  file.remove("Net1.rpt") 
  }) 
 
 test_that("R func ENepanet bad input",{
