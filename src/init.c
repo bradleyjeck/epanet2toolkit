@@ -75,9 +75,6 @@ static const R_CallMethodDef callMethods[] ={
 	{"enNextH"        , (DL_FUNC) &enNextH        , 0},
 	{"enCloseH"       , (DL_FUNC) &enCloseH       , 0},
 	{"enSetPatternValue",(DL_FUNC) &enSetPatternValue , 3},
-	{"int2SEXP"       , (DL_FUNC) &int2SEXP       , 1},
-	{"char2SEXP"      , (DL_FUNC) &char2SEXP      , 1},
-	{"float2SEXP"     , (DL_FUNC) &float2SEXP     , 1},
 	{"enSetQualType"  , (DL_FUNC) &enSetQualType  , 4},
     NULL
 };
