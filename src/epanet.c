@@ -2469,9 +2469,9 @@ int  openhydfile()
 /* the current network.                                  */
    if (Hydflag == USE)
    {
-      fread(&magic,sizeof(INT4),1,HydFile);
+      size_t res = fread(&magic,sizeof(INT4),1,HydFile);
       if (magic != MAGICNUMBER) return(306);
-      fread(&version,sizeof(INT4),1,HydFile);
+      res = fread(&version,sizeof(INT4),1,HydFile);
       if (version != ENGINE_VERSION) return(306);
       if (fread(nsize,sizeof(INT4),6,HydFile) < 6) return(306);
       if (nsize[0] != Nnodes  || nsize[1] != Nlinks ||
