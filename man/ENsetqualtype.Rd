@@ -42,6 +42,8 @@ ENgetqualtype()
 ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 ENgetqualtype()
 ENclose()
+# clean-up the created files
+file.remove("Net1.rpt") 
 }
 \seealso{
 \code{ENgetqualtype}

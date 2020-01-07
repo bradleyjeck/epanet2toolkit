@@ -24,6 +24,8 @@
 #' # into R with the read.rpt() function in package epanetReader
 #' myRpt <- epanetReader::read.rpt("Net1.rpt")
 #' summary(myRpt)
+#' # clean-up the created file 
+#' file.remove("Net1.rpt")
 ENepanet <- function( inpFile, rptFile, binOutFile=""){
    # arg checking
    if( !is.character(inpFile) ) stop("inpFile must be character")   

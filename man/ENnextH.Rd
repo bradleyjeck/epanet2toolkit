@@ -45,6 +45,8 @@ ENopen( inp, "Net1.rpt")
   }
   ENcloseH()
   ENclose()
+# clean-up the created files
+file.remove("Net1.rpt") 
   
 }
 \seealso{

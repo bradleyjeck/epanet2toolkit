@@ -24,4 +24,6 @@ ENrunQ()
 ENnextQ()
 ENrunQ()
 ENcloseQ()
+# clean-up the created files
+file.remove("Net1.rpt") 
 }

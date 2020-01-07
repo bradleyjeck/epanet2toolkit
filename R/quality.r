@@ -18,6 +18,9 @@
 #' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 #' ENsolveQ()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
+#' file.remove("Net1.bin") 
 ENsolveQ <- function(){
 	
 	x <- .C("RENsolveQ", as.integer(-1))
@@ -40,6 +43,8 @@ ENsolveQ <- function(){
 #' ENrunQ()
 #' ENcloseQ()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENopenQ <- function(){
 	
 	x <- .C("RENopenQ", as.integer(-1))
@@ -65,6 +70,8 @@ ENopenQ <- function(){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENinitQ <- function( saveFlag){
    if( length(saveFlag) != 1) stop("single input required")
    sf <- as.integer(saveFlag)	
@@ -89,6 +96,8 @@ ENinitQ <- function( saveFlag){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENrunQ <- function(){
         buf40 <- "0123456789012345678901234567890123456789"
 	x <- .C("RENrunQ", buf40, as.integer(-1) )
@@ -114,6 +123,8 @@ ENrunQ <- function(){
 #' ENnextQ()
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENnextQ <- function(){
         buf40 <- "0123456789012345678901234567890123456789"
 	x <- .C("RENnextQ", buf40, as.integer(-1))
@@ -159,6 +170,8 @@ ENcloseQ <- function(){
 #' ENopen( inp, "Net1.rpt")
 #' ENgetqualtype()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENgetqualtype <- function(){
 	x <- .C("RENgetqualtype", as.integer(0), as.integer(0), as.integer(-1))
 	check_epanet_error( x[[3]])
@@ -202,6 +215,8 @@ ENgetqualtype <- function(){
 #' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 #' ENgetqualtype()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
    
    codeTable <- c("EN_NONE","EN_CHEM","EN_AGE","EN_TRACE") 
@@ -229,6 +244,8 @@ ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
 #' ENopen( inp, "Net1.rpt")
 #' ENgetqualinfo()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENgetqualinfo <- function(){
         cn = "                 "
         cu = "                 "

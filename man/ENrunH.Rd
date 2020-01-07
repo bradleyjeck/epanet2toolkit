@@ -30,6 +30,8 @@ ENinitH(0)
 ENrunH()
 ENcloseH()
 ENclose()
+# clean-up the created files
+file.remove("Net1.rpt") 
 }
 \seealso{
 \code{ENopenH}, \code{ENinitH}, \code{ENnextH}, \code{ENcloseH}
