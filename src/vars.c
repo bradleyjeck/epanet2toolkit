@@ -147,18 +147,18 @@ double   *NodeDemand,           /* Node actual demand           */
 double   *NodeHead;             /* Node heads                   */
 double *QTankVolumes;
 double *QLinkFlow;
-STmplist *Patlist;              /* Temporary time pattern list  */ 
-STmplist *Curvelist;            /* Temporary list of curves     */
+//STmplist *Patlist;              /* Temporary time pattern list  */ 
+//STmplist *Curvelist;            /* Temporary list of curves     */
 Spattern *Pattern;              /* Time patterns                */
 Scurve   *Curve;                /* Curve data                   */
-Scoord   *Coord;                /* Coordinate data              */
+//Scoord   *Coord;                /* Coordinate data              */
 Snode    *Node;                 /* Node data                    */
 Slink    *Link;                 /* Link data                    */
 Stank    *Tank;                 /* Tank data                    */
 Spump    *Pump;                 /* Pump data                    */
 Svalve   *Valve;                /* Valve data                   */
 Scontrol *Control;              /* Control data                 */
-ENHashTable  *NodeHashTable, *LinkHashTable;            /* Hash tables for ID labels    */
+//ENHashTable  *NodeHashTable, *LinkHashTable;            /* Hash tables for ID labels    */
 Padjlist *Adjlist;              /* Node adjacency lists         */
 double _relativeError;
 int _iterations; /* Info about hydraulic solution */

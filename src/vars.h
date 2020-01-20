@@ -157,18 +157,18 @@ EXTERN double         *NodeDemand,           /* Node actual demand           */
 EXTERN double   *NodeHead;             /* Node heads                   */
 EXTERN double *QTankVolumes;
 EXTERN double *QLinkFlow;
-EXTERN STmplist *Patlist;              /* Temporary time pattern list  */ 
-EXTERN STmplist *Curvelist;            /* Temporary list of curves     */
+//EXTERN STmplist *Patlist;              /* Temporary time pattern list  */ 
+//EXTERN STmplist *Curvelist;            /* Temporary list of curves     */   
 EXTERN Spattern *Pattern;              /* Time patterns                */
 EXTERN Scurve   *Curve;                /* Curve data                   */
-EXTERN Scoord   *Coord;                /* Coordinate data              */
+//EXTERN Scoord   *Coord;                /* Coordinate data              */
 EXTERN Snode    *Node;                 /* Node data                    */
 EXTERN Slink    *Link;                 /* Link data                    */
 EXTERN Stank    *Tank;                 /* Tank data                    */
 EXTERN Spump    *Pump;                 /* Pump data                    */
 EXTERN Svalve   *Valve;                /* Valve data                   */
 EXTERN Scontrol *Control;              /* Control data                 */
-EXTERN ENHashTable  *NodeHashTable, *LinkHashTable;            /* Hash tables for ID labels    */
+//EXTERN ENHashTable  *NodeHashTable, *LinkHashTable;            /* Hash tables for ID labels    */
 EXTERN Padjlist *Adjlist;              /* Node adjacency lists         */
 EXTERN double _relativeError;
 EXTERN int _iterations; /* Info about hydraulic solution */
