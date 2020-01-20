@@ -29,5 +29,4 @@ ENclose()
 }
 \seealso{
 \code{ENgetnodeindex}
-\url{http://wateranalytics.org/EPANET/group___network_info.html}
 }

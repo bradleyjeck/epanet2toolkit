@@ -2,7 +2,6 @@
 % Please edit documentation in R/Rtoolkit.R, R/quality.r
 \name{ENgetqualtype}
 \alias{ENgetqualtype}
-\alias{ENgetqualtype}
 \title{Retrieve the type of water quality analysis called for.}
 \usage{
 ENgetqualtype()
@@ -17,8 +16,6 @@ list of qualcode and trace node
 }
 \description{
 \code{ENgetqualtype} retrieves the type of water quality analysis called for.
-
-get quality type
 }
 \note{
 Water quality analysis codes are as follows: 
@@ -41,10 +38,9 @@ inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")
 ENopen( inp, "Net1.rpt")
 ENgetqualtype()
 ENclose()
+# clean-up the created files
+file.remove("Net1.rpt") 
 }
 \seealso{
 \code{ENsetqualtype}
-\url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
-
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

@@ -37,6 +37,3 @@ ENgetcount(0)
 ENgetcount("EN_NODECOUNT")
 ENclose()
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___network_info.html}
-}

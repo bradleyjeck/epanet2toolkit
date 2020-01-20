@@ -10,8 +10,6 @@
 #' 
 #' @export 
 #' @return Returns NULL invisibly on success or throws an error or warning
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @useDynLib epanet2toolkit RENsolveQ
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -20,6 +18,9 @@
 #' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 #' ENsolveQ()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
+#' file.remove("Net1.bin") 
 ENsolveQ <- function(){
 	
 	x <- .C("RENsolveQ", as.integer(-1))
@@ -31,8 +32,6 @@ ENsolveQ <- function(){
 #' 
 #' @export 
 #' @return Returns NULL invisibly on success or throws an error or warning
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @useDynLib epanet2toolkit RENopenQ
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -44,6 +43,8 @@ ENsolveQ <- function(){
 #' ENrunQ()
 #' ENcloseQ()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENopenQ <- function(){
 	
 	x <- .C("RENopenQ", as.integer(-1))
@@ -55,8 +56,6 @@ ENopenQ <- function(){
 #' 
 #' @export 
 #' @return Returns NULL invisibly on success or throws an error or warning
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @useDynLib epanet2toolkit RENinitQ
 #' @param saveFlag boolean or integer indicating whether to save quality results to a file
 #' @details Call ENinitQ before running quality analysis using ENrunQ with ENnextQ or ENstepQ.  
@@ -71,6 +70,8 @@ ENopenQ <- function(){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENinitQ <- function( saveFlag){
    if( length(saveFlag) != 1) stop("single input required")
    sf <- as.integer(saveFlag)	
@@ -86,8 +87,6 @@ ENinitQ <- function( saveFlag){
 #' @return current simulation time in seconds    
 #' @details used in a loop with ENnextQ() to run
 #' an extended period WQ simulation. 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
 #' ENopen( inp, "Net1.rpt")
@@ -97,6 +96,8 @@ ENinitQ <- function( saveFlag){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENrunQ <- function(){
         buf40 <- "0123456789012345678901234567890123456789"
 	x <- .C("RENrunQ", buf40, as.integer(-1) )
@@ -111,8 +112,6 @@ ENrunQ <- function(){
 #' @useDynLib epanet2toolkit RENnextQ
 #' @return  seconds until next hydraulic event occurs or
 #'          0 if at the end of the simulation period. 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
 #' ENopen( inp, "Net1.rpt")
@@ -124,6 +123,8 @@ ENrunQ <- function(){
 #' ENnextQ()
 #' ENrunQ()
 #' ENcloseQ()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENnextQ <- function(){
         buf40 <- "0123456789012345678901234567890123456789"
 	x <- .C("RENnextQ", buf40, as.integer(-1))
@@ -138,8 +139,6 @@ ENnextQ <- function(){
 #' @return  time remaining in the overall simulation  
 #' @export 
 #' @useDynLib epanet2toolkit RENstepQ
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 ENstepQ <- function(){
 	
         buf40 <- "0123456789012345678901234567890123456789"
@@ -154,8 +153,6 @@ ENstepQ <- function(){
 #' 
 #' @details Do not call this function if ENsolveQ is being used.  
 #' @useDynLib epanet2toolkit RENcloseQ
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @export
 ENcloseQ <- function(){
 	x <- .C("RENcloseQ", as.integer(-1))
@@ -168,13 +165,13 @@ ENcloseQ <- function(){
 #' @export
 #' @useDynLib epanet2toolkit RENgetqualtype
 #' @return list of qualcode and trace node
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
 #' ENopen( inp, "Net1.rpt")
 #' ENgetqualtype()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENgetqualtype <- function(){
 	x <- .C("RENgetqualtype", as.integer(0), as.integer(0), as.integer(-1))
 	check_epanet_error( x[[3]])
@@ -211,7 +208,6 @@ ENgetqualtype <- function(){
 #'   Note that the trace node is specified by ID and not by index.
 #'   
 #' @seealso \code{ENgetqualtype}
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
 #' ENopen( inp, "Net1.rpt")
@@ -219,6 +215,8 @@ ENgetqualtype <- function(){
 #' ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 #' ENgetqualtype()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
    
    codeTable <- c("EN_NONE","EN_CHEM","EN_AGE","EN_TRACE") 
@@ -241,13 +239,13 @@ ENsetqualtype <- function( qualcode, chemname="", chemunits="", tracenode=""){
 #' @useDynLib epanet2toolkit RENgetqualinfo 
 #' @return list with elements: qualcode,  chemname, 
 #' chemunits, tracenode 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 #' @examples
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
 #' ENopen( inp, "Net1.rpt")
 #' ENgetqualinfo()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENgetqualinfo <- function(){
         cn = "                 "
         cu = "                 "

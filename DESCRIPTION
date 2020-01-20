@@ -1,8 +1,8 @@
 Package: epanet2toolkit
 Type: Package
 Title: Call 'EPANET' Functions to Simulate Pipe Networks
-Version: 0.4.2
-Date: 2019-12-30
+Version: 0.4.4
+Date: 2020-01-08
 Authors@R: c(
    person("Ernesto", "Arandia", email="earandia.ie@gmail.com", role='aut'),
    person("Bradley", "Eck", email="brad@bradeck.net", role = c('aut','cre')),
@@ -37,4 +37,4 @@ Description: Enables simulation of water piping networks using 'EPANET'.
 License: MIT + file LICENSE
 Copyright: COPYRIGHTS
 URL: https://github.com/bradleyjeck/epanet2toolkit
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2

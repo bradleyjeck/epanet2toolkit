@@ -42,8 +42,9 @@ ENgetqualtype()
 ENsetqualtype("EN_CHEM", "Chlorine", "mg/L", "")
 ENgetqualtype()
 ENclose()
+# clean-up the created files
+file.remove("Net1.rpt") 
 }
 \seealso{
 \code{ENgetqualtype}
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
 }

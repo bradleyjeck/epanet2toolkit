@@ -23,6 +23,9 @@
 #' ENsolveQ()
 #' ENgetnodevalue(2, "EN_PRESSURE")
 #' ENclose() 
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
+#' file.remove("Net1.bin") 
  ENsolveH <- function(){
     arg <- .C("RENsolveH", as.integer(-1) )
     err <- arg[[1]]
@@ -71,6 +74,8 @@
 #' ENrunH()
 #' ENcloseH()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENopenH <- function() {
 	
   if( getOpenHflag()){
@@ -124,6 +129,8 @@ ENopenH <- function() {
 #' ENrunH()
 #' ENcloseH()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENinitH <- function(flag) {
 	
 	# check the arguments
@@ -173,6 +180,8 @@ ENinitH <- function(flag) {
 #' ENrunH()
 #' ENcloseH()
 #' ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 ENrunH <- function() {
 	
   result <- .Call("enRunH")					
@@ -223,6 +232,8 @@ ENrunH <- function() {
 #'   }
 #'   ENcloseH()
 #'   ENclose()
+#' # clean-up the created files
+#' file.remove("Net1.rpt") 
 #'   
 #' @seealso \code{ENopenH}, \code{ENinitH}, \code{ENrunH}, \code{ENcloseH}, \code{ENsettimeparam}
 #' 

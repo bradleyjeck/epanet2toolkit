@@ -25,4 +25,6 @@ ENepanet( inp, "Net1.rpt")
 # into R with the read.rpt() function in package epanetReader
 myRpt <- epanetReader::read.rpt("Net1.rpt")
 summary(myRpt)
+# clean-up the created file 
+file.remove("Net1.rpt")
 }

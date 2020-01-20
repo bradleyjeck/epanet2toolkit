@@ -17,6 +17,9 @@
 #' ENsolveQ()
 #' ENreport()
 #' ENclose()
+#' # clean up the created files 
+#' file.remove("Net1.rpt") 
+#' file.remove("Net1.bin") 
 ENreport <- function(){
 
     x <- .C("RENreport", as.integer(-1))

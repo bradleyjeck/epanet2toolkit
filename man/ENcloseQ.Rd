@@ -12,6 +12,3 @@ Close water quality analysis and free allocated memory
 \details{
 Do not call this function if ENsolveQ is being used.
 }
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
-}

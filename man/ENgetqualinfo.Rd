@@ -18,7 +18,6 @@ inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")
 ENopen( inp, "Net1.rpt")
 ENgetqualinfo()
 ENclose()
-}
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+# clean-up the created files
+file.remove("Net1.rpt") 
 }

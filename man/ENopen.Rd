@@ -36,6 +36,5 @@ ENopen( inp, "Net1.rpt")
 ENclose()
 }
 \seealso{
-\code{ENclose}  
-\url{http://wateranalytics.org/EPANET/group___file_management.html}
+\code{ENclose}
 }

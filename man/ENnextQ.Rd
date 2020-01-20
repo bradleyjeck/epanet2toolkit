@@ -24,7 +24,6 @@ ENrunQ()
 ENnextQ()
 ENrunQ()
 ENcloseQ()
-}
-\seealso{
-\url{http://wateranalytics.org/EPANET/group___quality_functions.html}
+# clean-up the created files
+file.remove("Net1.rpt") 
 }

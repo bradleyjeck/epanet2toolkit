@@ -31,5 +31,4 @@ ENclose()
 }
 \seealso{
 \code{ENgetpatternindex}, \code{ENgetpatternlen}, \code{ENsetpatternvalue}
-\url{http://wateranalytics.org/EPANET/group___patterns.html}
 }

@@ -25,7 +25,6 @@
 #'   \code{[CONTROLS]} section of the EPANET input file.
 #'   
 #' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___controls.html}
 #' \code{\link{ENsetcontrol}} 
 #' @examples
 #' # path to Net1.inp example file included with this package
@@ -104,7 +103,6 @@ ENgetcontrol <- function(controlindex) {
 #'   other parameters in the function will be ignored.
 #'   
 #' @seealso 
-#' \url{http://wateranalytics.org/EPANET/group___controls.html}
 #' \code{ENsetcontrol}
 #' @examples
 #' # path to Net1.inp example file included with this package

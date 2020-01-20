@@ -28,7 +28,6 @@
 #' 
 #' @seealso 
 #' \code{ENclose}  
-#' \url{http://wateranalytics.org/EPANET/group___file_management.html} 
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -72,7 +71,6 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #'   condition was encountered.
 #' 
 #' @seealso \code{\link{ENopen}}
-#' \url{http://wateranalytics.org/EPANET/group___file_management.html} 
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -103,8 +101,6 @@ ENclose <- function() {
 #'   (see below).
 #' 
 #' @return The number of network components.
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___network_info.html}
 #' @details Component codes consist of the following:
 #'   \tabular{lll}{
 #'   \code{EN_NODECOUNT}    \tab 0 \tab Nodes\cr
@@ -182,8 +178,6 @@ ENgetcount <- function(compcode) {
 #'   Flow units in liters or cubic meters implies that metric units are used for all other quantities in 
 #'   addition to flow. Otherwise US units are employed. (See Units of Measurement).
 #' 
-#' @seealso
-#' \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -223,7 +217,6 @@ ENgetflowunits <- function() {
 #'   The tracenode value will be 0 when the quality code is not \code{EN_TRACE}.
 #' 
 #' @seealso \code{ENsetqualtype}
-#' \url{http://wateranalytics.org/EPANET/group___toolkit_options.html}
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
