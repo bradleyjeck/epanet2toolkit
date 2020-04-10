@@ -122,7 +122,36 @@ test_that("get error on wrong code",{
   ENopen("Net3.inp","Net3.rpt")
   expect_error(ENgetlinkvalue(1,100))
   ENclose()
-})
+}) 
+test_that("headloss matches rpt file",{
+  #ENepanet("Net3_issue27.inp","Net3_issue27.rpt") 
+
+  ENopen("Net3.inp","Net3.rpt") 
+  ENsolveH()  # solves to the end 
+  ENsolveQ()
+  
+  # link 20  
+  idx <- ENgetlinkindex("20") 
+  hl <- ENgetlinkvalue(idx,"EN_HEADLOSS") 
+  expect_equal(hl, 0.0, tolerance=1e-3) 
+
+  # link 60  
+  idx <- ENgetlinkindex("60") 
+  Q <- ENgetlinkvalue(idx,"EN_FLOW") 
+  expect_equal(Q, 13087.22, tolerance=1e-3) 
+  V <- ENgetlinkvalue(idx,"EN_VELOCITY") 
+  expect_equal(V, 9.28, tolerance=1e-3) 
+  hl <- ENgetlinkvalue(idx,"EN_HEADLOSS") 
+  expect_equal(hl, 8.84, tolerance=1e-3) 
+  
+  # link 121  
+  idx <- ENgetlinkindex("121") 
+  hl <- ENgetlinkvalue(idx,"EN_HEADLOSS") 
+  expect_equal(hl, 2.72, tolerance=1e-3) 
+ 
+  ENclose() 
+
+}) 
 
 
 context("set link value")
