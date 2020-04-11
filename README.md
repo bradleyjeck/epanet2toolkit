@@ -1,5 +1,3 @@
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/epanet2toolkit)](https://cran.r-project.org/package=epanet2toolkit)
-[![CRAN version](http://www.r-pkg.org/badges/version/epanet2toolkit)](https://cran.r-project.org/package=epanet2toolkit)
 [![Build Status](https://travis-ci.org/bradleyjeck/epanet2toolkit.svg?branch=master)](https://travis-ci.org/bradleyjeck/epanet2toolkit)
 [![Coverage Status](https://codecov.io/gh/bradleyjeck/epanet2toolkit/branch/master/graph/badge.svg)](https://codecov.io/gh/bradleyjeck/epanet2toolkit)
 
@@ -14,9 +12,9 @@ In addition to this readme page and the package manual, the paper [An R package 
 is published in _Environmental Modelling & Software_ and is also available as a [preprint](http://bradeck.net/docs/ArandiaEck2018epanet2toolkit.pdf).  The conference paper [Water demand and network modelling with R](http://bradeck.net/docs/iEMSs18.pdf) gives some more in depth examples.
 
 ## Installation
-Install the latest release from CRAN
+The package is not currently available on CRAN. The last CRAN version was 0.3.2 and is still easy to install from MRAN.
 ```
-install.packages("epanet2toolkit")
+install.packages("epanet2toolkit", repos="http://mran.revolutionanalytics.com/snapshot/2020-01-09") 
 ```
 Or, install the development version from github.com
 ```
@@ -69,7 +67,8 @@ are included with the package as tests:
 
 
 
-## Programming Notes for Package Developers
+## Programming Notes for Package Developers 
+
 Epanet provides a collection of functions known as the programmer's toolkit or
 API for building customized simulations.  epanet2toolkit makes these functions
 callable from R. 
