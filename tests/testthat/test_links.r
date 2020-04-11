@@ -142,12 +142,12 @@ test_that("headloss matches rpt file",{
   V <- ENgetlinkvalue(idx,"EN_VELOCITY") 
   expect_equal(V, 9.28, tolerance=1e-3) 
   hl <- ENgetlinkvalue(idx,"EN_HEADLOSS") 
-  expect_equal(hl, 8.84, tolerance=1e-3) 
+  expect_equal(hl, 8.84 *1.231 , tolerance=1e-3) 
   
   # link 121  
   idx <- ENgetlinkindex("121") 
   hl <- ENgetlinkvalue(idx,"EN_HEADLOSS") 
-  expect_equal(hl, 2.72, tolerance=1e-3) 
+  expect_equal(hl, 2.72 * 1.87, tolerance=1e-2) 
  
   ENclose() 
 
