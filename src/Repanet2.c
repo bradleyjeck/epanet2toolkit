@@ -10,7 +10,6 @@
 #include <string.h>
 #define  EXTERN extern 
 #include "types.h"
-#include "vars.h"
 #include "epanet2.h" 
 
 void RgetOpenflag(int* flagval ){
