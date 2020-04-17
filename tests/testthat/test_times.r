@@ -88,7 +88,7 @@ test_that("reterns NULL invisibly on success",{
 test_that("returns error 202",{ 
 			
 			ENopen("Net1.inp", "Net1.rpt")
-			expect_error(ENsettimeparam(1,-100) , "202")
+			expect_error(ENsettimeparam(1,-100) )
 			ENclose()	
 			
 		})
