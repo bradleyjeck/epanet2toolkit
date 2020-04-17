@@ -7,7 +7,6 @@
 
 context("report")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENreport() ) 
 })
 test_that("works",{

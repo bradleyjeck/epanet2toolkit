@@ -9,7 +9,6 @@
 context("Get time param")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgettimeparam(1) ) 
 		})
 
@@ -51,7 +50,6 @@ test_that("warns if time param is too large for integers in R",{
 context("Set time param")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 		expect_error( x <- ENsettimeparam(1,1800) ) 
 		})
 

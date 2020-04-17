@@ -7,7 +7,6 @@
 
 context("get control")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetcontrol(1) ) 
 })
 test_that("works for single input (1)",{
@@ -36,7 +35,6 @@ test_that("get error 241 on no ID",{
 
 context("set control")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( ENsetcontrol(1, ctype=2, lindex=118, setting=1, nindex=0, level=5400) )
 })
 test_that("works on single input",{

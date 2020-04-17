@@ -10,7 +10,6 @@
 context("Get option")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgetoption(0) ) 
 		})
 
@@ -54,7 +53,6 @@ test_that("returns error 251",{
 context("Set option")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENsetoption(0,33) ) 
 		})
 

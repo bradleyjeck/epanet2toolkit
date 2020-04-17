@@ -7,7 +7,6 @@
 
 context("get link index")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetlinkindex("10") ) 
 })
 test_that("works for single input",{
@@ -30,7 +29,6 @@ test_that("get error 204 on no index",{
 
 context("get link ID")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetlinkid(1) ) 
 })
 test_that("works for single input",{
@@ -53,7 +51,6 @@ test_that("get error 204 on no ID",{
 
 context("get link type")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetlinktype(1) ) 
 })
 test_that("works for single input",{
@@ -76,7 +73,6 @@ test_that("get error 204 on no index",{
 
 context("get link nodes")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetlinknodes(1) ) 
 })
 test_that("works for single input",{
@@ -99,7 +95,6 @@ test_that("get error 204 on no index",{
 
 context("get link value")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error(x <- ENgetlinkvalue(1,1) )
 })
 test_that("works for single input",{
@@ -127,7 +122,6 @@ test_that("get error on wrong code",{
 
 context("set link value")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( ENsetlinkvalue(1,0,100) )
 })
 test_that("works on single input",{

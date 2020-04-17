@@ -54,11 +54,9 @@ test_that("func works",{
 test_that("warn if it's already open",{
   ENopen("Net1.inp", "Net1.rpt", "")	
     expect_silent(ENopenH())
-    expect_true(getOpenHflag())
     expect_warning(ENopenH())
     expect_silent(ENcloseH())
   ENclose()
-  expect_false(getOpenHflag())
 })
 test_that("returns null invisbly on success",{
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")

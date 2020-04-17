@@ -8,27 +8,6 @@
 
 
 
-context("Openflag")
-test_that("func loads",{
-			expect_true( is.loaded("RgetOpenflag"))
-		})
-test_that("func works w good context",{
-			
-			ENopen("Net1.inp", "Net1.rpt", "")
-			expect_true(getOpenflag())
-			ENclose()
-		})
-
-test_that("verify false",{
-			expect_false(getOpenflag())
-		})
-
-test_that("verify true",{
-			
-			ENopen("Net1.inp", "Net1.rpt", "")
-			expect_true(getOpenflag())
-			ENclose()
-		})
 
 context("long stored as char to int or char")
 

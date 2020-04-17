@@ -7,7 +7,6 @@
 
 context("get coord")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetcoord(1) ) 
 })
 test_that("works for single input",{
@@ -32,7 +31,6 @@ test_that("get error 203 on no index",{
 
 context("set coord")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENsetcoord(1) ) 
 })
 test_that("works for single input",{
