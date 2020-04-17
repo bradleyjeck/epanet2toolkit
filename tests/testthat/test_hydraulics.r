@@ -51,10 +51,10 @@ test_that("func works",{
   ENclose()
 })
 
-test_that("warn if it's already open",{
+test_that("no crash calling twice",{
   ENopen("Net1.inp", "Net1.rpt", "")	
     expect_silent(ENopenH())
-    expect_warning(ENopenH())
+    expect_silent(ENopenH())
     expect_silent(ENcloseH())
   ENclose()
 })
@@ -152,6 +152,6 @@ test_that("func works normally with loop", {
 context("ENcloseH")
 test_that("func gives an error when hydraulics are not open", {
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
-    expect_warning(ENcloseH())
+  expect_silent(ENcloseH())
   ENclose()
 })

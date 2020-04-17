@@ -1104,20 +1104,3 @@ SEXP enCloseH() {
 
 
 
-//============================
-//  New functions in 2.2 
-//============================
-
-SEXP engetflowunits() {
-
-    int flowunits;
-    int errcode = ENgetflowunits(&flowunits);
-    
-    // store value and error code in result list 
-    SEXP sxerr = PROTECT( int2SEXP(errcode)); 
-    SEXP sxvalue = PROTECT( int2SEXP( flowunits ) ); 
-    SEXP resultlist = setlistint(sxvalue, sxerr); 
-    UNPROTECT(2);
-    return resultlist; 
-
-} 

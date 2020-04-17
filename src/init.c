@@ -76,7 +76,6 @@ static const R_CallMethodDef callMethods[] ={
 	{"enCloseH"       , (DL_FUNC) &enCloseH       , 0},
 	{"enSetPatternValue",(DL_FUNC) &enSetPatternValue , 3},
 	{"enSetQualType"  , (DL_FUNC) &enSetQualType  , 4},
-        {"engetflowunits" , (DL_FUNC) &engetflowunits , 0},
     NULL
 };
 
