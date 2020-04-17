@@ -49,12 +49,12 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 		stop("The input arguments must be character strings.")
 	}	
 	
-	if( getOpenflag()){
-		warning("Epanet toolkit was already open")
-	} else { 
+#	if( getOpenflag()){
+#		warning("Epanet toolkit was already open")
+#	} else { 
 		errcode <- .Call("enOpen", c(inpFileName, rptFileName, outFileName))					
 		check_epanet_error(errcode)
-	}
+#	}
 	
 	return( invisible() )
 	
@@ -78,12 +78,12 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' ENclose()
 ENclose <- function() {
 
-	if( !getOpenflag()){
-		warning("Epanet toolkit already closed")
-	} else { 
+#	if( !getOpenflag()){
+#		warning("Epanet toolkit already closed")
+#	} else { 
 		errcode <- .Call("enClose")					
 		check_epanet_error(errcode)
-	}
+	#}
 	return( invisible() )
 }
 

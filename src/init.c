@@ -16,8 +16,8 @@
 * Register methods with R
 *********************************************/
 static const R_CMethodDef cMethods[] = {
-	{"RgetOpenflag"   , (DL_FUNC) &RgetOpenflag, 1},
-    {"RgetOpenHflag"  , (DL_FUNC) &RgetOpenHflag, 1},
+/*	{"RgetOpenflag"   , (DL_FUNC) &RgetOpenflag, 1},
+    {"RgetOpenHflag"  , (DL_FUNC) &RgetOpenHflag, 1},  */
     {"RENepanet"      , (DL_FUNC) &RENepanet, 4},
     {"RENsaveinpfile" ,(DL_FUNC)  &RENsaveinpfile ,2},
     {"RENsolveH"      , (DL_FUNC) &RENsolveH      ,1},

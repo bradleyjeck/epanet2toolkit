@@ -78,13 +78,13 @@
 #' file.remove("Net1.rpt") 
 ENopenH <- function() {
 	
-  if( getOpenHflag()){
-    warning("Epanet hydraulic solver was already open")
-  } 
-  else { 
+#  if( getOpenHflag()){
+#    warning("Epanet hydraulic solver was already open")
+#  } 
+#  else { 
     result <- .Call("enOpenH")					
     check_epanet_error(result$errorcode)
-  }
+#  }
   
   return( invisible() )
   
@@ -261,12 +261,12 @@ ENnextH <- function() {
 #' 
 ENcloseH <- function() {
   
-    if( !getOpenHflag()){
-      warning("Epanet hydraulics already closed")
-    } 
-    else { 
+#    if( !getOpenHflag()){
+#      warning("Epanet hydraulics already closed")
+#    } 
+#    else { 
       result <- .Call("enCloseH")					
       check_epanet_error(result$errorcode)
-    }
+#    }
     return( invisible() )
 } 

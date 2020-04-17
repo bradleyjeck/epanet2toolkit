@@ -12,13 +12,15 @@
 #include "types.h"
 #include "epanet2.h" 
 
+/**
 void RgetOpenflag(int* flagval ){
-	*flagval = Openflag;
+	*flagval = __defaultProject.Openflag;
 }
 
 void RgetOpenHflag(int* flagval) {
-    *flagval = OpenHflag;
+    *flagval = 0; //OpenHflag;
 }
+**/
 
 void RENepanet( char** inp, char** rpt, char** bin, int* ENreturn_value) {
 
