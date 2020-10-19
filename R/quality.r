@@ -70,6 +70,7 @@ ENopenQ <- function(){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENinitQ <- function( saveFlag){
@@ -96,6 +97,7 @@ ENinitQ <- function( saveFlag){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENrunQ <- function(){
@@ -123,6 +125,7 @@ ENrunQ <- function(){
 #' ENnextQ()
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENnextQ <- function(){
