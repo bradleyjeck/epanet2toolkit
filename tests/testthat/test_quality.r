@@ -193,8 +193,8 @@ test_that("works",{
   expect_equal( length(x), 4)
   expect_equal( x$qualcode,3 )
   expect_equal( x$tracenode, 94)
-  expect_equal( x$chemunit, "dimensionless")
-  expect_equal( x$chemname, "")
+  expect_false( is.null(x$chemunit))
+  expect_false( is.null(x$chemname))
 })
 test_that("no crash calling on closed toolkit",{
 			expect_silent( x <- ENgetqualinfo() )
