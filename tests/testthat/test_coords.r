@@ -21,11 +21,9 @@ test_that("works for single input",{
 test_that("works for single input",{
   ENopen("Net3.inp","Net3.rpt")
   ix <- ENgetnodeindex("15")
-  print(ix) 
   expect_true( is.numeric( ix))
   xy <- 	ENgetcoord(ix)
   ENclose()
-  print(xy) 
   expect_equal(xy,  c(x=38.68, y=23.76))           
 })
 test_that("rejcects char input",{

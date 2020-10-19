@@ -235,29 +235,29 @@ void RENgetqualinfo(int *code, char **chemname, char **chemunit, int *tracenode,
 
 void RENgetcoord( int* index, double *xx, double *yy, int *ENreturn_value){
     int nodeindex = *index;
-	EN_API_FLOAT_TYPE x;
-	EN_API_FLOAT_TYPE y;
-	EN_API_FLOAT_TYPE* px;
-	EN_API_FLOAT_TYPE* py;
-	px = &x;
-	py = &y;
-	int rv;
-
-	rv = ENgetcoord( nodeindex, px, py);
-	*ENreturn_value = rv;
-	*xx = (double) x;
-	*yy = (double) y;
+    double x = 0.0;
+    double y = 0.0;
+    double* px;
+    double* py;
+    px = &x;
+    py = &y;
+    int rv;
+    
+    rv = ENgetcoord( nodeindex, px, py);
+    *ENreturn_value = rv;
+    *xx = x;
+    *yy = y;
 
 }
 
 void RENsetcoord( int *index, double *xx, double *yy, int *ENreturn_value){
     int nodeindex = *index;
-	EN_API_FLOAT_TYPE x = (EN_API_FLOAT_TYPE) *xx;
-	EN_API_FLOAT_TYPE y = (EN_API_FLOAT_TYPE) *yy;
-	int rv;
+    double x =  *xx;
+    double y =  *yy;
+    int rv;
 
-	rv = ENsetcoord( nodeindex, x, y);
-	*ENreturn_value = rv;
+    rv = ENsetcoord( nodeindex, x, y);
+    *ENreturn_value = rv;
 }
 
 void RENreport(int *ENreturn_value){
