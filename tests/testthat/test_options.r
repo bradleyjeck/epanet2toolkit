@@ -34,6 +34,12 @@ test_that("works for numeric input",{
 			expect_equal( 40, opt)
 			ENclose()	
 		})
+test_that("returns a numeric ok",{
+			ENopen("Net1.inp", "Net1.rpt")
+			opt <- ENgetoption(1) 
+			expect_equal( 0.001, opt)
+			ENclose()	
+		})
 
 test_that("gives error on multiple input",{
 			ENopen("Net1.inp", "Net1.rpt")
@@ -102,20 +108,4 @@ test_that("returns NULL invisibly on success",{
 			expect_false(x$visible)
 		})
 
-
-context("get flow units")
-test_that("no crash calling on closed toolkit",{
-			expect_error(	x <- ENgetflowunits() )
-		})
-test_that("works",{
-			
-			
-			ENopen("Net1.inp","Net1.rpt")  
-			x <- ENgetflowunits()
-			ENclose()
-			
-			y <- 1 
-			names(y) <- "EN_GPM"
-			expect_equal(x,y )
-		})
 
