@@ -10,11 +10,22 @@ test_that("no crash calling on closed toolkit",{
   expect_error( x <- ENgetcoord(1) ) 
 })
 test_that("works for single input",{
+
+  ENopen("Net1.inp","Net1.rpt") 
+  xy <- ENgetcoord(1) 
+  ENclose() 
+  expect_equal(xy, c(x=20.0, y=70.0)) 
+  
+
+}) 
+test_that("works for single input",{
   ENopen("Net3.inp","Net3.rpt")
   ix <- ENgetnodeindex("15")
+  print(ix) 
   expect_true( is.numeric( ix))
   xy <- 	ENgetcoord(ix)
   ENclose()
+  print(xy) 
   expect_equal(xy,  c(x=38.68, y=23.76))           
 })
 test_that("rejcects char input",{
