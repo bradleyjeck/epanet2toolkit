@@ -143,9 +143,10 @@ int openhydfile(Project *pr)
     // the current network
     if (pr->outfile.Hydflag == USE)
     {
-        fread(&magic, sizeof(INT4), 1, pr->outfile.HydFile);
+        size_t res;
+        res = fread(&magic, sizeof(INT4), 1, pr->outfile.HydFile);
         if (magic != MAGICNUMBER) return 306;
-        fread(&version, sizeof(INT4), 1, pr->outfile.HydFile);
+        res = fread(&version, sizeof(INT4), 1, pr->outfile.HydFile);
         if (version != ENGINE_VERSION) return 306;
         if (fread(nsize, sizeof(INT4), 6, pr->outfile.HydFile) < 6) return 306;
         if (nsize[0] != Nnodes || nsize[1] != Nlinks || nsize[2] != Ntanks ||
