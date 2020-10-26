@@ -41,7 +41,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENgetcoord"    , (DL_FUNC) &RENgetcoord    ,4},
 	{"RENsetcoord"    , (DL_FUNC) &RENsetcoord    ,4},
         {"RENreport"      , (DL_FUNC) &RENreport      ,1},
-    NULL
+    {NULL}
 };
 
 static const R_CallMethodDef callMethods[] ={
@@ -76,7 +76,7 @@ static const R_CallMethodDef callMethods[] ={
 	{"enCloseH"       , (DL_FUNC) &enCloseH       , 0},
 	{"enSetPatternValue",(DL_FUNC) &enSetPatternValue , 3},
 	{"enSetQualType"  , (DL_FUNC) &enSetQualType  , 4},
-    NULL
+    {NULL}
 };
 
 void R_init_epanet2toolkit(DllInfo *dll)
