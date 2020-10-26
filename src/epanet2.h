@@ -33,7 +33,7 @@ function in epanet2_2.h.
 // EN_API_FLOAT_TYPE as double both here and in any client code that uses the
 // API.
 #ifndef EN_API_FLOAT_TYPE
-  #define EN_API_FLOAT_TYPE float
+  #define EN_API_FLOAT_TYPE double
 #endif
 
 #ifndef DLLEXPORT
