@@ -133,7 +133,8 @@ int printf_file(file_handle_t *file_handle, const char *format, ... )
 
 int gets_file(char *str, int num, file_handle_t *file_handle)
 {
-    fgets(str, num, file_handle->file);
+    char* res;
+    res = fgets(str, num, file_handle->file);
     return 0;
 }
 
