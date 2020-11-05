@@ -65,7 +65,7 @@ int openfiles(Project *pr, const char *f1, const char *f2, const char *f3)
     }
 //  
 //  writing to stdout not allowed in by R
-    if (strlen(f2) == 0) pr->report.RptFile = stdout;
+    if (strlen(f2) == 0) return 303;
     else
     {
         pr->report.RptFile = fopen(f2, "wt");

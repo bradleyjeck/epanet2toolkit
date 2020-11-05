@@ -372,9 +372,8 @@ int DLLEXPORT EN_close(EN_Project p)
 
     // Close report file
 //
-//  writing to stdout not allowed by R 
-
-    if (p->report.RptFile != NULL && p->report.RptFile != stdout)
+//                                 writing to stdout not allowed by R 
+    if (p->report.RptFile != NULL) // && p->report.RptFile != stdout)
     {
         fclose(p->report.RptFile);
         p->report.RptFile = NULL;
