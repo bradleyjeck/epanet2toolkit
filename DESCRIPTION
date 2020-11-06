@@ -29,6 +29,7 @@ Authors@R: c(
    person("IBM Corp.", role = 'cph'),
    person("Open Water Analytics", role = 'cph')
   )
+Maintainer: Bradley Eck <brad@bradeck.net>
 Suggests:
     testthat,
     epanetReader
