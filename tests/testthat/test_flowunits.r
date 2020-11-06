@@ -1,3 +1,11 @@
+#*****************************************
+#
+# (C) Copyright IBM Corp. 2020
+# Author: Bradley J Eck 
+#
+#*****************************************/
+
+
 context("flow units") 
 
 test_that("behavior calling on closed toolkit",{
