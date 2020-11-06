@@ -2,16 +2,16 @@ Package: epanet2toolkit
 Type: Package
 Title: Call 'EPANET' Functions to Simulate Pipe Networks
 Version: 0.5.0
-Date: 2020-04-17
+Date: 2020-11-06
 Authors@R: c(
    person("Ernesto", "Arandia", email="earandia.ie@gmail.com", role='aut'),
    person("Bradley", "Eck", email="brad@bradeck.net", role = c('aut','cre')),
    person("Lew", "Rossman", role='aut'), 
    person("Michael Tryby", role = 'ctb'),
+   person("Sam","Hatchett", role = 'ctb'),
    person("Feng","Shang", role = 'ctb'),
    person("James","Uber", role = 'ctb'),
    person("Tom","Taxon", role = 'ctb'), 
-   person("Sam","Hatchett", role = 'ctb'),
    person("Hyoungmin","Woo", role = 'ctb'),
    person("Jinduan","Chen", role = 'ctb'),
    person("Yunier","Soad", role = 'ctb'),
@@ -19,10 +19,13 @@ Authors@R: c(
    person("Demetrios","Eliades", role = 'ctb'),
    person("Will","Furnass", role = 'ctb'),
    person("Steffen","Macke", role = 'ctb'),
-   person("Mariosmsk", role = 'ctb'),
+   person("Marios", "Kyriakou", role = 'ctb'),
    person("Elad","Salomons", role = 'ctb'),
    person("Maurizio","Cingi", role = 'ctb'),
    person("Bryant","McDonnell", role = 'ctb'),
+   person("Angela","Marchi",role='ctb'),
+   person("Markus","Sunela",role='ctb'),
+   person("Milad","Ghiami",role='ctb'),
    person("IBM Corp.", role = 'cph'),
    person("Open Water Analytics", role = 'cph')
   )
