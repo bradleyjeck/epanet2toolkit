@@ -36,6 +36,8 @@ function in epanet2_2.h.
   #define EN_API_FLOAT_TYPE float
 #endif
 
+#define DLLEXPORT // for R package
+/**
 #ifndef DLLEXPORT
   #ifdef _WIN32
     #ifdef epanet2_EXPORTS
@@ -49,6 +51,7 @@ function in epanet2_2.h.
     #define DLLEXPORT
   #endif
 #endif
+**/
 
 #include "epanet2_enums.h"
 

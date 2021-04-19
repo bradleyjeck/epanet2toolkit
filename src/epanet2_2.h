@@ -18,6 +18,9 @@
 #ifndef EPANET2_2_H
 #define EPANET2_2_H
 
+
+#define DLLEXPORT // for R package
+/**
 #ifdef epanet_py_EXPORTS
   #define DLLEXPORT
 #else
@@ -35,6 +38,7 @@
     #endif
   #endif
 #endif
+**/
 
 #include "epanet2_enums.h"
 
