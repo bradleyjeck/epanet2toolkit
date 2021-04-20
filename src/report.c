@@ -791,7 +791,11 @@ void writeheader(Project *pr, int type, int contin)
         writeline(pr, s);
         sprintf(s, FMT72);
         writeline(pr, s);
-        sprintf(s, FMT73, s1);
+        // truncate s1 for gcc
+        char trunc_s1[967];
+        strncpy(trunc_s1, s1, sizeof trunc_s1);
+        trunc_s1[sizeof trunc_s1 - 1] = '\0';
+        sprintf(s, FMT73, trunc_s1);
         writeline(pr, s);
         fillstr(s, '-', 63);
         writeline(pr, s);
