@@ -245,9 +245,12 @@ int DLLEXPORT EN_gettitle(EN_Project p, char *line1, char *line2, char *line3)
 */
 {
     if (!p->Openflag) return 102;
-    strncpy(line1, p->Title[0], TITLELEN);
-    strncpy(line2, p->Title[1], TITLELEN);
-    strncpy(line3, p->Title[2], TITLELEN);
+//    strncpy(line1, p->Title[0], TITLELEN);
+//    strncpy(line2, p->Title[1], TITLELEN);
+//    strncpy(line3, p->Title[2], TITLELEN);
+    strcpy(line1, p->Title[0]);
+    strcpy(line2, p->Title[1]);
+    strcpy(line3, p->Title[2]);
     return 0;
 }
 
@@ -1615,8 +1618,10 @@ int DLLEXPORT EN_getqualinfo(EN_Project p, int *qualType, char *chemName,
     EN_getqualtype(p, qualType, traceNode);
     if (p->quality.Qualflag == CHEM)
     {
-        strncpy(chemName, p->quality.ChemName, MAXID);
-        strncpy(chemUnits, p->quality.ChemUnits, MAXID);
+//        strncpy(chemName, p->quality.ChemName, MAXID);
+//        strncpy(chemUnits, p->quality.ChemUnits, MAXID);
+        strcpy(chemName, p->quality.ChemName);
+        strcpy(chemUnits, p->quality.ChemUnits);
     }
     else if (p->quality.Qualflag == TRACE)
     {
@@ -1691,8 +1696,10 @@ int DLLEXPORT EN_setqualtype(EN_Project p, int qualType, char *chemName,
     {
         strncpy(qual->ChemName, chemName, MAXID);
         strncpy(qual->ChemUnits, chemUnits, MAXID);
-        strncpy(rpt->Field[QUALITY].Units, qual->ChemUnits, MAXID);
-        strncpy(rpt->Field[REACTRATE].Units, qual->ChemUnits, MAXID);
+//        strncpy(rpt->Field[QUALITY].Units, qual->ChemUnits, MAXID);
+//        strncpy(rpt->Field[REACTRATE].Units, qual->ChemUnits, MAXID);
+        strcpy(rpt->Field[QUALITY].Units, qual->ChemUnits);
+        strcpy(rpt->Field[REACTRATE].Units, qual->ChemUnits);
         strcat(rpt->Field[REACTRATE].Units, t_PERDAY);
         ccf = 1.0 / LperFT3;
     }
@@ -4798,7 +4805,8 @@ int DLLEXPORT EN_getcurve(EN_Project p, int index, char *id, int *nPoints,
     if (index <= 0 || index > p->network.Ncurves) return 206;
     if (xValues == NULL || yValues == NULL) return 206;
     curve = &p->network.Curve[index];
-    strncpy(id, curve->ID, MAXID);
+//    strncpy(id, curve->ID, MAXID);
+    strcpy(id, curve->ID);
     *nPoints = curve->Npts;
     for (i = 0; i < curve->Npts; i++)
     {

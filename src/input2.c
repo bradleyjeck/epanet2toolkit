@@ -198,7 +198,8 @@ int readdata(Project *pr)
             // Store full line comment for Patterns and Curves
             if (sect == _PATTERNS || sect == _CURVES)
             {
-                strncpy(parser->LineComment, parser->Comment, MAXMSG);
+              //  strncpy(parser->LineComment, parser->Comment, MAXMSG);
+                strcpy(parser->LineComment, parser->Comment);
             }
             continue;
         }

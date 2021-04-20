@@ -482,8 +482,10 @@ void initunits(Project *pr)
     if (qual->Qualflag == CHEM)
     {
         ccf = 1.0 / LperFT3;
-        strncpy(rpt->Field[QUALITY].Units, qual->ChemUnits, MAXID);
-        strncpy(rpt->Field[REACTRATE].Units, qual->ChemUnits, MAXID);
+//        strncpy(rpt->Field[QUALITY].Units, qual->ChemUnits, MAXID);
+//        strncpy(rpt->Field[REACTRATE].Units, qual->ChemUnits, MAXID);
+        strcpy(rpt->Field[QUALITY].Units, qual->ChemUnits);
+        strcpy(rpt->Field[REACTRATE].Units, qual->ChemUnits);
         strcat(rpt->Field[REACTRATE].Units, t_PERDAY);
     }
     else if (qual->Qualflag == AGE) strcpy(rpt->Field[QUALITY].Units, u_HOURS);

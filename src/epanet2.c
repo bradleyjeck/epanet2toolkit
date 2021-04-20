@@ -688,7 +688,8 @@ int DLLEXPORT ENgetcurve(int index, char *id, int *nPoints,
     if (index <= 0 || index > net->Ncurves) return 206;
     if (xValues == NULL || yValues == NULL) return 206;
     curve = &net->Curve[index];
-    strncpy(id, curve->ID, MAXID);
+//    strncpy(id, curve->ID, MAXID);
+    strcpy(id, curve->ID);
     *nPoints = curve->Npts;
     for (i = 0; i < curve->Npts; i++)
     {

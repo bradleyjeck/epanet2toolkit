@@ -324,7 +324,13 @@ void ruleerrmsg(Project *pr)
 
     // Write rule label and error message to status report
     snprintf(pr->Msg, MAXMSG, "%s", msg);
-    strncat(pr->Msg, label, MAXMSG);
+//  strncat(pr->Msg, label, MAXMSG);
+    size_t msg_len = strlen(pr->Msg);
+    size_t lab_len = strlen(label);
+    size_t avail = MAXMSG - msg_len - lab_len;
+    char trunc_lab[avail];
+    strcpy(trunc_lab, label); 
+    strncat(pr->Msg, trunc_lab, MAXMSG - strlen(pr->Msg) - 1);
     strncat(pr->Msg, ":", MAXMSG);
     writeline(pr, pr->Msg);
 
