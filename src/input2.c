@@ -858,9 +858,14 @@ void inperrmsg(Project *pr, int err, int sect, char *line)
     if (parser->ErrTok >= 0) strcpy(tok, parser->Tok[parser->ErrTok]);
     else strcpy(tok, "");
 
+    // for gcc - truncate tok to avoid Wformat-overflow
+    char trunc_tok[MAXMSG - 29];
+    strncpy(trunc_tok, tok, sizeof trunc_tok);
+    trunc_tok[sizeof trunc_tok - 1] = '\0'; 
+
     // write error message to report file
     sprintf(pr->Msg, "Error %d: %s %s in %s section:",
-            err, geterrmsg(err, errStr), tok, SectTxt[sect]);
+            err, geterrmsg(err, errStr), trunc_tok, SectTxt[sect]);
     writeline(pr, pr->Msg);
 
     // Echo input line
