@@ -298,7 +298,10 @@ int newline(Project *pr, int sect, char *line)
               n = (int)strlen(line);
               if (line[n - 1] == 10)
               line[n - 1] = '\0';
-              strncpy(pr->Title[parser->Ntitle], line, TITLELEN);
+              char trunc_line[TITLELEN];
+              strncpy(trunc_line, line, sizeof trunc_line);
+              trunc_line[sizeof trunc_line - 1] = '\0';
+              strcpy(pr->Title[parser->Ntitle], trunc_line);
               parser->Ntitle++;
           }
           return 0;
