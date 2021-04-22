@@ -155,6 +155,7 @@ ENstepQ <- function(){
 #' Close water quality analysis and free allocated memory
 #' 
 #' @details Do not call this function if ENsolveQ is being used.  
+#' @return Returns NULL invisibly; called for side effect
 #' @useDynLib epanet2toolkit RENcloseQ
 #' @export
 ENcloseQ <- function(){

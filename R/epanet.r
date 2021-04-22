@@ -14,6 +14,7 @@
 #' @param inpFile name of input file
 #' @param rptFile name of report file (to be created)
 #' @param binOutFile name of optional binary output file 
+#' @return Returns NULL invisibly; called for side effect
 #' @useDynLib epanet2toolkit RENepanet
 #' @examples 
 #' # path to Net1.inp example file included with this package
@@ -45,6 +46,7 @@ ENepanet <- function( inpFile, rptFile, binOutFile=""){
 #'   
 #' Saves current data to "INP" formatted text file.
 #' 
+#' @return Returns NULL invisibly; called for side effect
 #' @param filename The file path to create
 #' @export
 #' @useDynLib epanet2toolkit RENsaveinpfile

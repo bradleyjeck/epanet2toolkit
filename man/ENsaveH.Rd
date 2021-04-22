@@ -8,6 +8,9 @@ Saves hydraulic results to binary file}
 \usage{
 ENsaveH()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 ENsaveH
  

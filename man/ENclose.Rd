@@ -6,6 +6,9 @@
 \usage{
 ENclose()
 }
+\value{
+Returns NULL invisibly; called for the side effect of closing EPANET.
+}
 \description{
 \code{ENclose} closes the EPANET Toolkit system (including all files being processed).
 }
