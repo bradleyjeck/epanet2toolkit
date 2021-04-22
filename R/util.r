@@ -1,49 +1,10 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Bradley J Eck
 #
 #  
 #****************************************/
-
-#' getOpenflag
-#' 
-#' gets current value of EPANET global variable Openflag
-#' 
-#' @details primary use of this function is to allow
-#' package functions to check status of toolkit before 
-#' calling a function
-#' @export 
-#' @useDynLib epanet2toolkit RgetOpenflag
-#' @return boolean
-#' @examples 
-#' getOpenflag()
-getOpenflag <- function(){
-	
-		x <- .C("RgetOpenflag", as.integer(-1))
-		return( as.logical( x[[1]] ) ) 
-	
-}
-
-#' getOpenHflag
-#' 
-#' gets current value of EPANET global variable OpenHflag
-#' 
-#' @details primary use of this function is to allow
-#' package functions to check open/closed status of the 
-#' toolkit's hydraulic solver before 
-#' calling a hydraulic function
-#' @export 
-#' @useDynLib epanet2toolkit RgetOpenHflag
-#' @return boolean
-#' @examples 
-#' getOpenHflag()
-getOpenHflag <- function() {
-  
-  x <- .C("RgetOpenHflag", as.integer(-1))
-  return( as.logical( x[[1]] ) ) 
-  
-}
 
 # take an integer from a character vector
 # and return an integer if possible

@@ -1,13 +1,12 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #****************************************/
 
 context("report")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENreport() ) 
 })
 test_that("works",{

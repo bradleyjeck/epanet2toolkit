@@ -6,6 +6,9 @@
 \usage{
 ENrunH()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 \code{ENrunH} Runs a single period hydraulic analysis, retrieving the 
 current simulation clock time \code{t}.

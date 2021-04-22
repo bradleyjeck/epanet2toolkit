@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -49,8 +49,11 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 		stop("The input arguments must be character strings.")
 	}	
 	
-	if( getOpenflag()){
-		warning("Epanet toolkit was already open")
+        # rely on flow units to see if epanet is already open
+        epanet_is_closed <- suppressWarnings( is.null(ENgetflowunits() ) ) 
+
+	if( !epanet_is_closed ){
+		stop("Epanet toolkit is already open.")
 	} else { 
 		errcode <- .Call("enOpen", c(inpFileName, rptFileName, outFileName))					
 		check_epanet_error(errcode)
@@ -64,6 +67,8 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' 
 #' \code{ENclose} closes the EPANET Toolkit system (including all files being processed).
 #' 
+#' @return Returns NULL invisibly; called for the side effect of closing EPANET.
+#'
 #' @export
 #' @useDynLib epanet2toolkit enClose
 #' 
@@ -78,7 +83,10 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' ENclose()
 ENclose <- function() {
 
-	if( !getOpenflag()){
+        # rely on flow units to see if epanet is already open
+        epanet_is_closed <- suppressWarnings( is.null(ENgetflowunits() ) ) 
+
+	if( epanet_is_closed ){
 		warning("Epanet toolkit already closed")
 	} else { 
 		errcode <- .Call("enClose")					
@@ -186,13 +194,24 @@ ENgetcount <- function(compcode) {
 #' ENclose()
 ENgetflowunits <- function() {
 	
-	codetable <- c("EN_CFS", "EN_GPM", "EN_MGD", "EN_IMGD",	"EN_AFD", "EN_LPS", "EN_LPM",
-			"EN_MLD", "EN_CMH", "EN_CMD") 
-	#flowunits <- enEvalGetFunction("enGetFlowUnits")
 	flowunits <- .Call("enGetFlowUnits")
-	names(flowunits) = codetable[flowunits + 1]
+        
+        if( is.null(flowunits) ){
+ 
+            warning("EPANET did not return any flow units. This probably means a network analysis has not been started with ENinit or ENopen.") 
+
+        } else {  
+	   codetable <- c("EN_CFS", "EN_GPM", "EN_MGD", 
+                          "EN_IMGD","EN_AFD", "EN_LPS", 
+                          "EN_LPM", "EN_MLD", "EN_CMH", 
+                          "EN_CMD") 
+           
+           # return the name of the flow unit 
+	   names(flowunits) = codetable[flowunits + 1]
+
+        } 
+
 	return(flowunits)
-	
 } 
 
 

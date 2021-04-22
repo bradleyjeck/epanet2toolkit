@@ -8,6 +8,7 @@
 #' Write simulation report to the report file
 #'
 #' @export
+#' @return Returns NULL invisibly; called for side effect
 #' @useDynLib epanet2toolkit RENreport
 #' @examples
 #' # path to Net1.inp example file included with this package

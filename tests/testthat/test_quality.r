@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -14,7 +14,6 @@ test_that("works",{
 		})
 
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENsolveQ()) 
 		})
 
@@ -27,7 +26,6 @@ test_that("works",{
 			ENclose()
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENopenQ()) 
 		})
 test_that("throws error ",{
@@ -43,7 +41,6 @@ test_that("works",{
 			ENclose()
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENinitQ(0)) 
 		})
 test_that("throws error ",{
@@ -62,7 +59,6 @@ test_that("works",{
 			ENclose()
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENrunQ()) 
 		})
 test_that("throws error ",{
@@ -82,7 +78,6 @@ test_that("works",{
 			expect_false( t == 0 )
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENnextQ()) 
 		})
 test_that("throws error ",{
@@ -102,7 +97,6 @@ test_that("works",{
 			expect_true( t > 3600 )
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENstepQ()) 
 		})
 test_that("throws error ",{
@@ -121,7 +115,6 @@ test_that("works",{
 			ENclose()
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENcloseQ()) 
 		})
 test_that("throws error ",{
@@ -139,7 +132,6 @@ test_that("works",{
 			expect_equal(qt$tracenode, x)
 		})
 test_that("no crash calling closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENgetqualtypeQ()) 
 		})
 test_that("throws error ",{
@@ -201,10 +193,9 @@ test_that("works",{
   expect_equal( length(x), 4)
   expect_equal( x$qualcode,3 )
   expect_equal( x$tracenode, 94)
-  expect_equal( x$chemunit, "dimensionless")
-  expect_equal( x$chemname, "")
+  expect_false( is.null(x$chemunit))
+  expect_false( is.null(x$chemname))
 })
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_silent( x <- ENgetqualinfo() )
 		})

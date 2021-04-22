@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -11,7 +11,6 @@
 
 context("get pattern id")
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgetpatternid(1) ) 
 		})
 test_that("works for single input",{
@@ -33,7 +32,6 @@ test_that("get error 205 on no pattern",{
 
 context("get pattern index")
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgetpatternindex("1") ) 
 		})
 test_that("works for single input",{
@@ -55,7 +53,6 @@ test_that("get error 205 on no pattern",{
 
 context("get pattern length")
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgetpatternlen(1) ) 
 		})
 test_that("works for single input",{
@@ -78,7 +75,6 @@ test_that("get error 205 on no pattern",{
 
 context("get pattern value")
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error(x <- ENgetpatternvalue(1,1) )
 		})
 test_that("works for single input",{
@@ -106,7 +102,6 @@ test_that("get error 251 on wrong period",{
 
 context("set pattern")
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( ENsetpattern(1,1) )
 		})
 test_that("works on simple input",{
@@ -139,7 +134,6 @@ test_that("returns NULL invisibly on success",{
 
 context("set pattern value")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( ENsetpatternvalue(1,1, 1.5) )
 })
 

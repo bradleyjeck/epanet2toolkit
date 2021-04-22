@@ -6,6 +6,9 @@
 \usage{
 ENopenH()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 \code{ENopenH} opens the EPANET hydraulics analysis system.
 }

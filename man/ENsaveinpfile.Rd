@@ -11,6 +11,9 @@ ENsaveinpfile(filename)
 \arguments{
 \item{filename}{The file path to create}
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 ENaveinpfile
   

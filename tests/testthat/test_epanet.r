@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Bradley J Eck and Ernesto Arandia
 #
 #*****************************************/
@@ -61,7 +61,7 @@ test_that("func works",{
 context("get count")
 
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
+ # expect_false( getOpenflag() )
   expect_error( x <- ENgetcount(0) ) 
 })
 test_that("works with character input",{
@@ -110,7 +110,7 @@ context("get version")
 test_that("works",{
 			
 			v <- ENgetversion()
-			expect_equal(v, as.integer(20100))
+			expect_equal(v, as.integer(20200))
 			
 		})
 

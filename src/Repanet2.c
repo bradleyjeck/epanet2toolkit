@@ -1,6 +1,6 @@
 /*****************************************
 *
-* (C) Copyright IBM Corp. 2017
+* (C) Copyright IBM Corp. 2017, 2020
 * Author: Bradley J Eck
 *
 * C Functions for calling EPANET from R 
@@ -10,16 +10,17 @@
 #include <string.h>
 #define  EXTERN extern 
 #include "types.h"
-#include "vars.h"
 #include "epanet2.h" 
 
+/**
 void RgetOpenflag(int* flagval ){
-	*flagval = Openflag;
+	*flagval = __defaultProject.Openflag;
 }
 
 void RgetOpenHflag(int* flagval) {
-    *flagval = OpenHflag;
+    *flagval = 0; //OpenHflag;
 }
+**/
 
 void RENepanet( char** inp, char** rpt, char** bin, int* ENreturn_value) {
 
@@ -234,29 +235,29 @@ void RENgetqualinfo(int *code, char **chemname, char **chemunit, int *tracenode,
 
 void RENgetcoord( int* index, double *xx, double *yy, int *ENreturn_value){
     int nodeindex = *index;
-	EN_API_FLOAT_TYPE x;
-	EN_API_FLOAT_TYPE y;
-	EN_API_FLOAT_TYPE* px;
-	EN_API_FLOAT_TYPE* py;
-	px = &x;
-	py = &y;
-	int rv;
-
-	rv = ENgetcoord( nodeindex, px, py);
-	*ENreturn_value = rv;
-	*xx = (double) x;
-	*yy = (double) y;
+    double x = 0.0;
+    double y = 0.0;
+    double* px;
+    double* py;
+    px = &x;
+    py = &y;
+    int rv;
+    
+    rv = ENgetcoord( nodeindex, px, py);
+    *ENreturn_value = rv;
+    *xx = x;
+    *yy = y;
 
 }
 
 void RENsetcoord( int *index, double *xx, double *yy, int *ENreturn_value){
     int nodeindex = *index;
-	EN_API_FLOAT_TYPE x = (EN_API_FLOAT_TYPE) *xx;
-	EN_API_FLOAT_TYPE y = (EN_API_FLOAT_TYPE) *yy;
-	int rv;
+    double x =  *xx;
+    double y =  *yy;
+    int rv;
 
-	rv = ENsetcoord( nodeindex, x, y);
-	*ENreturn_value = rv;
+    rv = ENsetcoord( nodeindex, x, y);
+    *ENreturn_value = rv;
 }
 
 void RENreport(int *ENreturn_value){

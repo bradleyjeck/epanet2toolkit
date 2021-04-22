@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -12,14 +12,13 @@ test_that("open w good inputs",{
 		ENclose()
 })
 
-test_that("warn if it's already open",{
+test_that("error if it's already open",{
 			
 		ENopen("Net1.inp", "Net1.rpt", "")	
-		expect_true(getOpenflag())
-		expect_warning(ENopen("Net3.inp", "Net3.rpt", "")	)
-		expect_true(getOpenflag())
+		expect_false( suppressWarnings( is.null(ENgetflowunits() ) ) ) 
+		expect_error(ENopen("Net3.inp", "Net3.rpt", "")	)
 		ENclose()
-		expect_false(getOpenflag())
+		expect_true( suppressWarnings( is.null(ENgetflowunits() ) ) ) 
 			
 		})
 

@@ -1,6 +1,6 @@
 /*****************************************
 *
-* (C) Copyright IBM Corp. 2017
+* (C) Copyright IBM Corp. 2017, 2020
 * Author: Bradley J Eck
 *
 * Registering functions for calling EPANET from R 
@@ -16,8 +16,8 @@
 * Register methods with R
 *********************************************/
 static const R_CMethodDef cMethods[] = {
-	{"RgetOpenflag"   , (DL_FUNC) &RgetOpenflag, 1},
-    {"RgetOpenHflag"  , (DL_FUNC) &RgetOpenHflag, 1},
+/*	{"RgetOpenflag"   , (DL_FUNC) &RgetOpenflag, 1},
+    {"RgetOpenHflag"  , (DL_FUNC) &RgetOpenHflag, 1},  */
     {"RENepanet"      , (DL_FUNC) &RENepanet, 4},
     {"RENsaveinpfile" ,(DL_FUNC)  &RENsaveinpfile ,2},
     {"RENsolveH"      , (DL_FUNC) &RENsolveH      ,1},
@@ -41,7 +41,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENgetcoord"    , (DL_FUNC) &RENgetcoord    ,4},
 	{"RENsetcoord"    , (DL_FUNC) &RENsetcoord    ,4},
         {"RENreport"      , (DL_FUNC) &RENreport      ,1},
-    NULL
+    {NULL}
 };
 
 static const R_CallMethodDef callMethods[] ={
@@ -76,7 +76,7 @@ static const R_CallMethodDef callMethods[] ={
 	{"enCloseH"       , (DL_FUNC) &enCloseH       , 0},
 	{"enSetPatternValue",(DL_FUNC) &enSetPatternValue , 3},
 	{"enSetQualType"  , (DL_FUNC) &enSetQualType  , 4},
-    NULL
+    {NULL}
 };
 
 void R_init_epanet2toolkit(DllInfo *dll)

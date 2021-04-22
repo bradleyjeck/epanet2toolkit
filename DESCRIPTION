@@ -1,17 +1,17 @@
 Package: epanet2toolkit
 Type: Package
 Title: Call 'EPANET' Functions to Simulate Pipe Networks
-Version: 0.4.4
-Date: 2020-01-08
+Version: 0.5.1
+Date: 2021-04-21
 Authors@R: c(
    person("Ernesto", "Arandia", email="earandia.ie@gmail.com", role='aut'),
    person("Bradley", "Eck", email="brad@bradeck.net", role = c('aut','cre')),
    person("Lew", "Rossman", role='aut'), 
    person("Michael Tryby", role = 'ctb'),
+   person("Sam","Hatchett", role = 'ctb'),
    person("Feng","Shang", role = 'ctb'),
    person("James","Uber", role = 'ctb'),
    person("Tom","Taxon", role = 'ctb'), 
-   person("Sam","Hatchett", role = 'ctb'),
    person("Hyoungmin","Woo", role = 'ctb'),
    person("Jinduan","Chen", role = 'ctb'),
    person("Yunier","Soad", role = 'ctb'),
@@ -19,22 +19,26 @@ Authors@R: c(
    person("Demetrios","Eliades", role = 'ctb'),
    person("Will","Furnass", role = 'ctb'),
    person("Steffen","Macke", role = 'ctb'),
-   person("Mariosmsk", role = 'ctb'),
+   person("Marios", "Kyriakou", role = 'ctb'),
    person("Elad","Salomons", role = 'ctb'),
    person("Maurizio","Cingi", role = 'ctb'),
    person("Bryant","McDonnell", role = 'ctb'),
+   person("Angela","Marchi",role='ctb'),
+   person("Markus","Sunela",role='ctb'),
+   person("Milad","Ghiami",role='ctb'),
    person("IBM Corp.", role = 'cph'),
    person("Open Water Analytics", role = 'cph')
   )
+Maintainer: Bradley Eck <brad@bradeck.net>
 Suggests:
     testthat,
     epanetReader
 Description: Enables simulation of water piping networks using 'EPANET'.
     The package provides functions from the 'EPANET' programmer's toolkit as R
     functions so that basic or customized simulations can be carried out from R.
-    The package uses 'EPANET' version 2.1 from Open Water Analytics
-    <https://github.com/OpenWaterAnalytics/EPANET/releases/tag/v2.1>.  
+    The package uses 'EPANET' version 2.2 from Open Water Analytics
+    <https://github.com/OpenWaterAnalytics/EPANET/releases/tag/v2.2>.  
 License: MIT + file LICENSE
 Copyright: COPYRIGHTS
 URL: https://github.com/bradleyjeck/epanet2toolkit
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1

@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -10,7 +10,6 @@
 
 context("get node index")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetnodeindex("10") ) 
 })
 test_that("works for single input",{
@@ -33,7 +32,6 @@ test_that("get error 203 on no index",{
 
 context("get node ID")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetnodeid(1) ) 
 })
 test_that("works for single input",{
@@ -56,7 +54,6 @@ test_that("get error 203 on no ID",{
 
 context("get node type")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( x <- ENgetnodetype(1) ) 
 })
 test_that("works for single input",{
@@ -79,7 +76,6 @@ test_that("get error 203 on no index",{
 
 context("get node value")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error(x <- ENgetnodevalue(1,1) )
 })
 test_that("works for single input",{
@@ -107,7 +103,6 @@ test_that("get error 251 on wrong code",{
 
 context("set node value")
 test_that("no crash calling on closed toolkit",{
-  expect_false( getOpenflag() )
   expect_error( ENsetnodevalue(1,0,120) )
 })
 test_that("works on single input",{

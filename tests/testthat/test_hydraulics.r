@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Bradley J Eck and Ernesto Arandia
 #
 #*****************************************/
@@ -51,14 +51,12 @@ test_that("func works",{
   ENclose()
 })
 
-test_that("warn if it's already open",{
+test_that("no crash calling twice",{
   ENopen("Net1.inp", "Net1.rpt", "")	
     expect_silent(ENopenH())
-    expect_true(getOpenHflag())
-    expect_warning(ENopenH())
+    expect_silent(ENopenH())
     expect_silent(ENcloseH())
   ENclose()
-  expect_false(getOpenHflag())
 })
 test_that("returns null invisbly on success",{
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
@@ -154,6 +152,6 @@ test_that("func works normally with loop", {
 context("ENcloseH")
 test_that("func gives an error when hydraulics are not open", {
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
-    expect_warning(ENcloseH())
+  expect_silent(ENcloseH())
   ENclose()
 })

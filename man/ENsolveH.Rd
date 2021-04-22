@@ -6,6 +6,9 @@
 \usage{
 ENsolveH()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 Solves the network hydraulics for all time periods
 }

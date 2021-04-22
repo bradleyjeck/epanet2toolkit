@@ -13,6 +13,9 @@ ENepanet(inpFile, rptFile, binOutFile = "")
 
 \item{binOutFile}{name of optional binary output file}
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 runs a complete EPANET simulation
 }

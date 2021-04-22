@@ -1,7 +1,7 @@
 
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -70,6 +70,7 @@ ENopenQ <- function(){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENinitQ <- function( saveFlag){
@@ -96,6 +97,7 @@ ENinitQ <- function( saveFlag){
 #' ENinitQ(0)
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENrunQ <- function(){
@@ -123,6 +125,7 @@ ENrunQ <- function(){
 #' ENnextQ()
 #' ENrunQ()
 #' ENcloseQ()
+#' ENclose()
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENnextQ <- function(){
@@ -152,6 +155,7 @@ ENstepQ <- function(){
 #' Close water quality analysis and free allocated memory
 #' 
 #' @details Do not call this function if ENsolveQ is being used.  
+#' @return Returns NULL invisibly; called for side effect
 #' @useDynLib epanet2toolkit RENcloseQ
 #' @export
 ENcloseQ <- function(){

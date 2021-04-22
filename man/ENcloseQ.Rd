@@ -6,6 +6,9 @@
 \usage{
 ENcloseQ()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 Close water quality analysis and free allocated memory
 }

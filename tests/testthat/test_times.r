@@ -1,6 +1,6 @@
 #*****************************************
 #
-# (C) Copyright IBM Corp. 2017
+# (C) Copyright IBM Corp. 2017, 2020
 # Author: Ernesto Arandia & Bradley J Eck
 #
 #*****************************************
@@ -9,7 +9,6 @@
 context("Get time param")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 			expect_error( x <- ENgettimeparam(1) ) 
 		})
 
@@ -51,7 +50,6 @@ test_that("warns if time param is too large for integers in R",{
 context("Set time param")
 
 test_that("no crash calling on closed toolkit",{
-			expect_false( getOpenflag() )
 		expect_error( x <- ENsettimeparam(1,1800) ) 
 		})
 
@@ -90,7 +88,7 @@ test_that("reterns NULL invisibly on success",{
 test_that("returns error 202",{ 
 			
 			ENopen("Net1.inp", "Net1.rpt")
-			expect_error(ENsettimeparam(1,-100) , "202")
+			expect_error(ENsettimeparam(1,-100) )
 			ENclose()	
 			
 		})

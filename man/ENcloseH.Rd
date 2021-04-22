@@ -6,6 +6,9 @@
 \usage{
 ENcloseH()
 }
+\value{
+Returns NULL invisibly; called for side effect
+}
 \description{
 \code{ENcloseH} closes the hydraulic analysis system, freeing all 
   allocated memory

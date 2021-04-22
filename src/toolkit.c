@@ -1100,4 +1100,7 @@ SEXP enCloseH() {
     UNPROTECT(2);
     return resultlist;
 
-}
+} 
+
+
+
