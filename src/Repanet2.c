@@ -79,7 +79,8 @@ void RENgettimeparam(int *code, char** value, int* ENreturn_value){
 	long* plval;
 	plval = &lval;
 	rv = ENgettimeparam(*code, plval);
-	sprintf(*value, "%-38ld", *plval);
+	size_t bufsize=50;
+	snprintf(*value, bufsize, "%-38ld", *plval);
 	*ENreturn_value=rv;
 }
 
@@ -157,7 +158,8 @@ void RENrunQ(char **time, int *ENreturn_value){
 	long* plval;
 	plval = &lval;
 	rv = ENrunQ(plval);
-	sprintf(*time, "%-38ld", *plval);
+	size_t bufsize=50;
+	snprintf(*time, bufsize, "%-38ld", *plval);
 	*ENreturn_value=rv;
 }
 
@@ -167,7 +169,8 @@ void RENnextQ(char **time, int *ENreturn_value){
 	long* plval;
 	plval = &lval;
 	rv = ENnextQ(plval);
-	sprintf(*time, "%-38ld", *plval);
+	size_t bufsize=50;
+	snprintf(*time, bufsize, "%-38ld", *plval);
 	*ENreturn_value=rv;
 }
 
@@ -177,7 +180,8 @@ void RENstepQ(char **time, int *ENreturn_value){
 	long* plval;
 	plval = &lval;
 	rv = ENstepQ(plval);
-	sprintf(*time, "%-38ld", *plval);
+	size_t bufsize=50;
+	snprintf(*time, bufsize, "%-38ld", *plval);
 	*ENreturn_value=rv;
 }
 
