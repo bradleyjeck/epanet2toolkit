@@ -427,9 +427,10 @@ int DLLEXPORT EN_solveH(EN_Project p)
         if (!errcode) do
         {
             // Display progress message
-            sprintf(p->Msg, "%-10s",
+            size_t bufsize= EN_MAXMSG;
+            snprintf(p->Msg, bufsize, "%-10s",
                     clocktime(p->report.Atime, p->times.Htime));
-            sprintf(p->Msg, FMT101, p->report.Atime);
+            snprintf(p->Msg, bufsize, FMT101, p->report.Atime);
             writewin(p->viewprog, p->Msg);
 
             // Solve for hydraulics & advance to next time period
@@ -690,11 +691,12 @@ int DLLEXPORT EN_solveQ(EN_Project p)
         if (!errcode) do
         {
             // Display progress message
-            sprintf(p->Msg, "%-10s",
+            size_t bufsize=EN_MAXMSG;
+            snprintf(p->Msg, bufsize, "%-10s",
                     clocktime(p->report.Atime, p->times.Htime));
             if (p->quality.Qualflag)
             {
-                sprintf(p->Msg, FMT102, p->report.Atime);
+                snprintf(p->Msg, bufsize, FMT102, p->report.Atime);
                 writewin(p->viewprog, p->Msg);
             }
 
@@ -1021,7 +1023,7 @@ int DLLEXPORT EN_geterror(int errcode, char *errmsg, int maxLen)
         strncpy(errmsg, WARN6, maxLen);
         break;
     default:
-        sprintf(msg1, "Error %d: ", errcode);
+        snprintf(msg1, sizeof(msg1), "Error %d: ", errcode);
         if ((errcode >= 202 && errcode <= 222) ||
             (errcode >= 240 && errcode <= 261)) strcat(msg1, "function call contains ");
         snprintf(errmsg, maxLen, "%s%s", msg1, geterrmsg(errcode, msg2));
