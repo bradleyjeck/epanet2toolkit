@@ -167,8 +167,8 @@ int saveinpfile(Project *pr, const char *fname)
         if (tank->A == 0.0)
         {
             node = &net->Node[tank->Node];
-            sprintf(s, " %-31s %12.4f", node->ID, node->El * pr->Ucf[ELEV]);
-            if ((j = tank->Pat) > 0) sprintf(s1, " %s", net->Pattern[j].ID);
+            snprintf(s, sizeof(s), " %-31s %12.4f", node->ID, node->El * pr->Ucf[ELEV]);
+            if ((j = tank->Pat) > 0) snprintf(s1, sizeof(s1), " %s", net->Pattern[j].ID);
             else strcpy(s1, " ");
             fprintf(f, "\n%s %-31s", s, s1);
             if (node->Comment) fprintf(f, " ;%s", node->Comment);
@@ -184,14 +184,14 @@ int saveinpfile(Project *pr, const char *fname)
         if (tank->A > 0.0)
         {
             node = &net->Node[tank->Node];
-            sprintf(s, " %-31s %12.4f %12.4f %12.4f %12.4f %12.4f %12.4f",
+            snprintf(s, sizeof(s), " %-31s %12.4f %12.4f %12.4f %12.4f %12.4f %12.4f",
                     node->ID, node->El * pr->Ucf[ELEV],
                     (tank->H0 - node->El) * pr->Ucf[ELEV],
                     (tank->Hmin - node->El) * pr->Ucf[ELEV],
                     (tank->Hmax - node->El) * pr->Ucf[ELEV],
                     sqrt(4.0 * tank->A / PI) * pr->Ucf[ELEV],
                     tank->Vmin * SQR(pr->Ucf[ELEV]) * pr->Ucf[ELEV]);
-            if ((j = tank->Vcurve) > 0) sprintf(s1, "%s", net->Curve[j].ID);
+            if ((j = tank->Vcurve) > 0) snprintf(s1, sizeof(s1), "%s", net->Curve[j].ID);
             else if (tank->CanOverflow) strcpy(s1, "*");
             else strcpy(s1, " ");
             fprintf(f, "\n%s %-31s", s, s1);
@@ -213,12 +213,12 @@ int saveinpfile(Project *pr, const char *fname)
             if (hyd->Formflag == DW)  kc = kc * pr->Ucf[ELEV] * 1000.0;
             km = link->Km * SQR(d) * SQR(d) / 0.02517;
 
-            sprintf(s, " %-31s %-31s %-31s %12.4f %12.4f %12.4f %12.4f",
+            snprintf(s,sizeof(s), " %-31s %-31s %-31s %12.4f %12.4f %12.4f %12.4f",
                     link->ID, net->Node[link->N1].ID, net->Node[link->N2].ID,
                     link->Len * pr->Ucf[LENGTH], d * pr->Ucf[DIAM], kc, km);
 
-            if (link->Type == CVPIPE) sprintf(s2, "CV");
-            else if (link->Status == CLOSED) sprintf(s2, "CLOSED");
+            if (link->Type == CVPIPE) snprintf(s2,sizeof(s2), "CV");
+            else if (link->Status == CLOSED) snprintf(s2, sizeof(s2), "CLOSED");
             else strcpy(s2, " ");
             fprintf(f, "\n%s %-6s", s, s2);
             if (link->Comment) fprintf(f, " ;%s", link->Comment);
@@ -233,16 +233,16 @@ int saveinpfile(Project *pr, const char *fname)
         n = net->Pump[i].Link;
         link = &net->Link[n];
         pump = &net->Pump[i];
-        sprintf(s, " %-31s %-31s %-31s", link->ID, net->Node[link->N1].ID,
+        snprintf(s, sizeof(s), " %-31s %-31s %-31s", link->ID, net->Node[link->N1].ID,
                 net->Node[link->N2].ID);
 
         // Pump has constant power
-        if (pump->Ptype == CONST_HP) sprintf(s1, "  POWER %.4f", link->Km);
+        if (pump->Ptype == CONST_HP) snprintf(s1,sizeof(s1), "  POWER %.4f", link->Km);
 
         // Pump has a head curve
         else if ((j = pump->Hcurve) > 0)
         {
-            sprintf(s1, "  HEAD %s", net->Curve[j].ID);
+            snprintf(s1,sizeof(s1), "  HEAD %s", net->Curve[j].ID);
         }
 
         // Old format used for pump curve
@@ -259,14 +259,14 @@ int saveinpfile(Project *pr, const char *fname)
         // Optional speed pattern
         if ((j = pump->Upat) > 0)
         {
-            sprintf(s1, "  PATTERN  %s", net->Pattern[j].ID);
+            snprintf(s1, sizeof(s1), "  PATTERN  %s", net->Pattern[j].ID);
             strcat(s, s1);
         }
 
         // Optional speed setting
         if (link->Kc != 1.0)
         {
-            sprintf(s1, "  SPEED %.4f", link->Kc);
+            snprintf(s1,sizeof(s1), "  SPEED %.4f", link->Kc);
             strcat(s, s1);
         }
 
@@ -302,7 +302,7 @@ int saveinpfile(Project *pr, const char *fname)
         }
         km = link->Km * SQR(d) * SQR(d) / 0.02517;
 
-        sprintf(s, " %-31s %-31s %-31s %12.4f %5s",
+        snprintf(s,sizeof(s), " %-31s %-31s %-31s %12.4f %5s",
                 link->ID, net->Node[link->N1].ID,
                 net->Node[link->N2].ID, d * pr->Ucf[DIAM],
                 LinkTxt[link->Type]);
@@ -310,9 +310,9 @@ int saveinpfile(Project *pr, const char *fname)
         // For GPV, setting = head curve index
         if (link->Type == GPV && (j = ROUND(link->Kc)) > 0)
         {
-            sprintf(s1, "%-31s %12.4f", net->Curve[j].ID, km);
+            snprintf(s1,sizeof(s1), "%-31s %12.4f", net->Curve[j].ID, km);
         }
-        else sprintf(s1, "%12.4f %12.4f", kc, km);
+        else snprintf(s1,sizeof(s1), "%12.4f %12.4f", kc, km);
         fprintf(f, "\n%s %s", s, s1);
         if (link->Comment) fprintf(f, " ;%s", link->Comment);
     }
@@ -327,8 +327,8 @@ int saveinpfile(Project *pr, const char *fname)
         node = &net->Node[i];
         for (demand = node->D; demand != NULL; demand = demand->next)
         {
-            sprintf(s, " %-31s %14.6f", node->ID, ucf * demand->Base);
-            if ((j = demand->Pat) > 0) sprintf(s1, " %-31s", net->Pattern[j].ID);
+            snprintf(s,sizeof(s), " %-31s %14.6f", node->ID, ucf * demand->Base);
+            if ((j = demand->Pat) > 0) snprintf(s1,sizeof(s1), " %-31s", net->Pattern[j].ID);
             else strcpy(s1, " ");
             fprintf(f, "\n%s %-31s", s, s1);
             if (demand->Name) fprintf(f, " ;%s", demand->Name);
@@ -427,7 +427,7 @@ int saveinpfile(Project *pr, const char *fname)
         // Get text of control's link status/setting
         if (control->Setting == MISSING)
         {
-            sprintf(s, " LINK %s %s ", link->ID, StatTxt[control->Status]);
+            snprintf(s, sizeof(s), " LINK %s %s ", link->ID, StatTxt[control->Status]);
         }
         else
         {
@@ -445,7 +445,7 @@ int saveinpfile(Project *pr, const char *fname)
               default:
                 break;
             }
-            sprintf(s, " LINK %s %.4f", link->ID, kc);
+            snprintf(s, sizeof(s), " LINK %s %.4f", link->ID, kc);
         }
 
         switch (control->Type)
@@ -505,11 +505,11 @@ int saveinpfile(Project *pr, const char *fname)
         node = &net->Node[i];
         source = node->S;
         if (source == NULL) continue;
-        sprintf(s, " %-31s %-8s %14.6f", node->ID, SourceTxt[source->Type],
+        snprintf(s,sizeof(s)," %-31s %-8s %14.6f", node->ID, SourceTxt[source->Type],
                 source->C0);
         if ((j = source->Pat) > 0)
         {
-            sprintf(s1, "%s", net->Pattern[j].ID);
+            snprintf(s1, sizeof(s1), "%s", net->Pattern[j].ID);
         }
         else strcpy(s1, "");
         fprintf(f, "\n%s %s", s, s1);
