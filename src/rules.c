@@ -1363,6 +1363,10 @@ void gettimetxt(double secs, char *timetxt)
     {
         minutes = (int)((secs - 3600 * hours) / 60);
         seconds = (int)(secs - 3600 * hours - minutes * 60);
-        snprintf(timetxt, sizeof(timetxt), "%d:%02d:%02d", hours, minutes, seconds);
+        int ret = snprintf(timetxt, sizeof(timetxt), "%d:%02d:%02d", hours, minutes, seconds);
+        if (ret < 0) {
+            printf("failed to write time stamp in allowed buffer size, aborting \n");
+            abort();
+        }
     }
 }
