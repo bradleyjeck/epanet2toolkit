@@ -1465,8 +1465,7 @@ char *clocktime(char *atime, long seconds)
     s = seconds - 3600 * h - 60 * m;
     int ret = snprintf(atime, sizeof(atime), "%01d:%02d:%02d", (int)h, (int)m, (int)s);
     if (ret < 0) {
-        printf("failed to write time stamp in allowed buffer size, aborting \n");
-        abort();
+        return("1");
     }
     return atime;
 }
