@@ -1464,9 +1464,6 @@ char *clocktime(char *atime, long seconds)
     m = seconds % 3600 / 60;
     s = seconds - 3600 * h - 60 * m;
     int ret = snprintf(atime, sizeof(atime), "%01d:%02d:%02d", (int)h, (int)m, (int)s);
-    if (ret < 0) {
-        return("1");
-    }
     return atime;
 }
 
