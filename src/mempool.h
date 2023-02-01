@@ -16,7 +16,7 @@
 
 struct Mempool;
 
-struct Mempool * mempool_create();
+struct Mempool * mempool_create(void);
 void   mempool_delete(struct Mempool *mempool);
 void   mempool_reset(struct Mempool *mempool);
 char * mempool_alloc(struct Mempool *mempool, size_t size);
