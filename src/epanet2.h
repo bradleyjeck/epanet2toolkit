@@ -88,7 +88,7 @@ extern "C" {
 
   int  DLLEXPORT ENsaveinpfile(const char *filename);
 
-  int  DLLEXPORT ENclose();
+  int  DLLEXPORT ENclose(void);
 
 /********************************************************************
 
@@ -96,11 +96,11 @@ extern "C" {
 
 ********************************************************************/
 
-  int  DLLEXPORT ENsolveH();
+  int  DLLEXPORT ENsolveH(void);
 
-  int  DLLEXPORT ENsaveH();
+  int  DLLEXPORT ENsaveH(void);
 
-  int  DLLEXPORT ENopenH();
+  int  DLLEXPORT ENopenH(void);
 
   int  DLLEXPORT ENinitH(int initFlag);
 
@@ -108,7 +108,7 @@ extern "C" {
 
   int  DLLEXPORT ENnextH(long *tStep);
 
-  int  DLLEXPORT ENcloseH();
+  int  DLLEXPORT ENcloseH(void);
 
   int  DLLEXPORT ENsavehydfile(char *filename);
 
@@ -120,9 +120,9 @@ extern "C" {
 
 ********************************************************************/
 
-  int  DLLEXPORT ENsolveQ();
+  int  DLLEXPORT ENsolveQ(void);
 
-  int  DLLEXPORT ENopenQ();
+  int  DLLEXPORT ENopenQ(void);
 
   int  DLLEXPORT ENinitQ(int saveFlag);
 
@@ -132,7 +132,7 @@ extern "C" {
 
   int  DLLEXPORT ENstepQ(long *timeLeft);
 
-  int  DLLEXPORT ENcloseQ();
+  int  DLLEXPORT ENcloseQ(void);
 
 /********************************************************************
 
@@ -142,13 +142,13 @@ extern "C" {
 
   int  DLLEXPORT ENwriteline(char *line);
 
-  int  DLLEXPORT ENreport();
+  int  DLLEXPORT ENreport(void);
 
   int  DLLEXPORT ENcopyreport(char *filename);
 
-  int  DLLEXPORT ENclearreport();
+  int  DLLEXPORT ENclearreport(void);
 
-  int  DLLEXPORT ENresetreport();
+  int  DLLEXPORT ENresetreport(void);
 
   int  DLLEXPORT ENsetreport(char *format);
 

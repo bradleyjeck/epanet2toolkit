@@ -39,7 +39,7 @@ struct Mempool
     struct MemBlock *current;
 };
 
-static struct MemBlock* createMemBlock()
+static struct MemBlock* createMemBlock(void)
 {
     struct MemBlock* memBlock = malloc(sizeof(struct MemBlock));
     if (memBlock)
@@ -65,7 +65,7 @@ static void deleteMemBlock(struct MemBlock* memBlock)
 }
 
 
-struct Mempool * mempool_create()
+struct Mempool * mempool_create(void)
 {
     struct Mempool *mempool;
     mempool = (struct Mempool *)malloc(sizeof(struct Mempool));

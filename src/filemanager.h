@@ -39,7 +39,7 @@ extern "C" {
 typedef struct file_s file_handle_t;
 
 
-file_handle_t *create_file_manager();
+file_handle_t *create_file_manager(void);
 
 void delete_file_manager(file_handle_t *file_handle);
 

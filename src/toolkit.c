@@ -351,7 +351,7 @@ SEXP enOpen(SEXP files) {
 
  }
 
-SEXP enClose() {
+SEXP enClose(void) {
 
     // close the INP file
     int errcode = ENclose();
@@ -934,7 +934,7 @@ SEXP enSetControl(SEXP cindex, SEXP ctype, SEXP lindex, SEXP setting, SEXP ninde
 //}
 
 
-SEXP enGetFlowUnits() {
+SEXP enGetFlowUnits(void) {
 
 	SEXP result;
 	int unitscode;
@@ -966,7 +966,7 @@ SEXP enGetTimeParam(SEXP paramcode) {
 
 }
 
-SEXP enGetQualType() {
+SEXP enGetQualType(void) {
 
 	int qualcode, tracenode;
 	int errcode = ENgetqualtype(&qualcode, &tracenode);
@@ -985,7 +985,7 @@ SEXP enGetQualType() {
 }
 
 
-SEXP enGetVersion() {
+SEXP enGetVersion(void) {
 
 	SEXP result;
 	int version;
@@ -1025,7 +1025,7 @@ SEXP enSetQualType(SEXP qualcode, SEXP chemname, SEXP chemunits, SEXP tracenode)
 //============================
 
 
-SEXP enOpenH() {
+SEXP enOpenH(void) {
 
     // run toolkit function and return error code
 	int errcode = ENopenH();
@@ -1056,7 +1056,7 @@ SEXP enInitH(SEXP flag) {
 }
 
 
-SEXP enRunH() {
+SEXP enRunH(void) {
 
 	// run toolkit function and return error code
     long time;
@@ -1072,7 +1072,7 @@ SEXP enRunH() {
 }
 
 
-SEXP enNextH() {
+SEXP enNextH(void) {
 
     // run toolkit function and return error code
 	long tst;
@@ -1088,7 +1088,7 @@ SEXP enNextH() {
 }
 
 
-SEXP enCloseH() {
+SEXP enCloseH(void) {
 
     // run toolkit function and return error code
 	int errcode = ENcloseH();

@@ -49,7 +49,7 @@ char *dupstr(const char *s)
 }
 
 // Create a hash table
-HashTable *hashtable_create()
+HashTable *hashtable_create(void)
 {
     int i;
     HashTable *ht = (HashTable *) calloc(HASHTABLEMAXSIZE, sizeof(HashTable));
