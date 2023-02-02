@@ -121,7 +121,7 @@ test_that("get error on wrong code",{
 test_that("headloss matches rpt file",{
   #ENepanet("Net3_issue27.inp","Net3_issue27.rpt") 
 
-  ENopen("Net3.inp","Net3.rpt") 
+  ENopen("Net3.inp","Net3.rpt","Net3.bin") 
   ENsolveH()  # solves to the end 
   ENsolveQ()
   

@@ -214,7 +214,7 @@ int readdata(Project *pr)
         // Check if max. line length exceeded
         if (strlen(line) >= MAXLINE)
         {
-            sprintf(pr->Msg, "%s section: %s", geterrmsg(214, pr->Msg), SectTxt[sect]);
+            snprintf(pr->Msg,sizeof(pr->Msg), "%s section: %s", geterrmsg(214, pr->Msg), SectTxt[sect]);
             writeline(pr, pr->Msg);
             writeline(pr, line);
             errsum++;
@@ -364,7 +364,7 @@ int getpumpparams(Project *pr)
         if (errcode)
         {
             k = net->Pump[i].Link;
-            sprintf(pr->Msg, "Error %d: %s %s",
+            snprintf(pr->Msg,sizeof(pr->Msg), "Error %d: %s %s",
                     errcode, geterrmsg(errcode, errmsg), net->Link[k].ID);
             writeline(pr, pr->Msg);
             return 200;
@@ -614,7 +614,7 @@ int unlinked(Project *pr)
         if (marked[i] == 0)
         {
             err++;
-            sprintf(pr->Msg, "Error 233: %s %s", geterrmsg(233, pr->Msg), net->Node[i].ID);
+            snprintf(pr->Msg, sizeof(pr->Msg), "Error 233: %s %s", geterrmsg(233, pr->Msg), net->Node[i].ID);
             writeline(pr, pr->Msg);
         }
         if (err >= MAXERRS) break;
@@ -864,7 +864,7 @@ void inperrmsg(Project *pr, int err, int sect, char *line)
     trunc_tok[sizeof trunc_tok - 1] = '\0'; 
 
     // write error message to report file
-    sprintf(pr->Msg, "Error %d: %s %s in %s section:",
+    snprintf(pr->Msg, sizeof(pr->Msg), "Error %d: %s %s in %s section:",
             err, geterrmsg(err, errStr), trunc_tok, SectTxt[sect]);
     writeline(pr, pr->Msg);
 

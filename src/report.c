@@ -209,7 +209,7 @@ void writelogo(Project *pr)
     writeline(pr, LOGO2);
     writeline(pr, LOGO3);
     writeline(pr, LOGO4);
-    sprintf(s, LOGO5, major, minor);
+    snprintf(s, sizeof(s), LOGO5, major, minor);
     writeline(pr, s);
     writeline(pr, LOGO6);
     writeline(pr, "");
@@ -239,82 +239,82 @@ void writesummary(Project *pr)
   {
     if (strlen(pr->Title[i]) > 0)
     {
-      sprintf(s, "%-.70s", pr->Title[i]);
+      snprintf(s,sizeof(s), "%-.70s", pr->Title[i]);
       writeline(pr, s);
     }
   }
   writeline(pr, " ");
-  sprintf(s, FMT19, parser->InpFname);
+  snprintf(s,sizeof(s), FMT19, parser->InpFname);
   writeline(pr, s);
-  sprintf(s, FMT20, net->Njuncs);
+  snprintf(s,sizeof(s), FMT20, net->Njuncs);
   writeline(pr, s);
   for (i = 1; i <= net->Ntanks; i++) if (net->Tank[i].A == 0.0) nres++;
-  sprintf(s, FMT21a, nres);
+  snprintf(s,sizeof(s), FMT21a, nres);
   writeline(pr, s);
-  sprintf(s, FMT21b, net->Ntanks - nres);
+  snprintf(s,sizeof(s), FMT21b, net->Ntanks - nres);
   writeline(pr, s);
-  sprintf(s, FMT22, net->Npipes);
+  snprintf(s,sizeof(s), FMT22, net->Npipes);
   writeline(pr, s);
-  sprintf(s, FMT23, net->Npumps);
+  snprintf(s,sizeof(s), FMT23, net->Npumps);
   writeline(pr, s);
-  sprintf(s, FMT24, net->Nvalves);
+  snprintf(s,sizeof(s), FMT24, net->Nvalves);
   writeline(pr, s);
-  sprintf(s, FMT25, RptFormTxt[hyd->Formflag]);
+  snprintf(s,sizeof(s), FMT25, RptFormTxt[hyd->Formflag]);
   writeline(pr, s);
-  sprintf(s, FMT25a, DemandModelTxt[hyd->DemandModel]);
+  snprintf(s,sizeof(s), FMT25a, DemandModelTxt[hyd->DemandModel]);
   writeline(pr, s);
-  sprintf(s, FMT26, time->Hstep * pr->Ucf[TIME], rpt->Field[TIME].Units);
+  snprintf(s,sizeof(s), FMT26, time->Hstep * pr->Ucf[TIME], rpt->Field[TIME].Units);
   writeline(pr, s);
-  sprintf(s, FMT27, hyd->Hacc);
+  snprintf(s,sizeof(s), FMT27, hyd->Hacc);
   writeline(pr, s);
 
   if (hyd->HeadErrorLimit > 0.0)
   {
-    sprintf(s, FMT27d, hyd->HeadErrorLimit*pr->Ucf[HEAD], rpt->Field[HEAD].Units);
+    snprintf(s,sizeof(s), FMT27d, hyd->HeadErrorLimit*pr->Ucf[HEAD], rpt->Field[HEAD].Units);
     writeline(pr, s);
   }
   if (hyd->FlowChangeLimit > 0.0)
   {
-    sprintf(s, FMT27e, hyd->FlowChangeLimit*pr->Ucf[FLOW], rpt->Field[FLOW].Units);
+    snprintf(s,sizeof(s), FMT27e, hyd->FlowChangeLimit*pr->Ucf[FLOW], rpt->Field[FLOW].Units);
     writeline(pr, s);
   }
 
-  sprintf(s, FMT27a, hyd->CheckFreq);
+  snprintf(s,sizeof(s), FMT27a, hyd->CheckFreq);
   writeline(pr, s);
-  sprintf(s, FMT27b, hyd->MaxCheck);
+  snprintf(s, sizeof(s), FMT27b, hyd->MaxCheck);
   writeline(pr, s);
-  sprintf(s, FMT27c, hyd->DampLimit);
+  snprintf(s, sizeof(s), FMT27c, hyd->DampLimit);
   writeline(pr, s);
-  sprintf(s, FMT28, hyd->MaxIter);
+  snprintf(s, sizeof(s), FMT28, hyd->MaxIter);
   writeline(pr, s);
 
-  if (qual->Qualflag == NONE || time->Dur == 0.0) sprintf(s, FMT29);
-  else if (qual->Qualflag == CHEM)  sprintf(s, FMT30, qual->ChemName);
-  else if (qual->Qualflag == TRACE) sprintf(s, FMT31, net->Node[qual->TraceNode].ID);
-  else if (qual->Qualflag == AGE)   sprintf(s, FMT32);
+  if (qual->Qualflag == NONE || time->Dur == 0.0) snprintf(s,sizeof(s), FMT29);
+  else if (qual->Qualflag == CHEM)  snprintf(s,sizeof(s), FMT30, qual->ChemName);
+  else if (qual->Qualflag == TRACE) snprintf(s,sizeof(s), FMT31, net->Node[qual->TraceNode].ID);
+  else if (qual->Qualflag == AGE)   snprintf(s,sizeof(s), FMT32);
   writeline(pr, s);
   if (qual->Qualflag != NONE && time->Dur > 0)
   {
-    sprintf(s, FMT33, (float)time->Qstep / 60.0);
+    snprintf(s,sizeof(s), FMT33, (float)time->Qstep / 60.0);
     writeline(pr, s);
-    sprintf(s, FMT34, qual->Ctol * pr->Ucf[QUALITY], rpt->Field[QUALITY].Units);
+    snprintf(s,sizeof(s), FMT34, qual->Ctol * pr->Ucf[QUALITY], rpt->Field[QUALITY].Units);
     writeline(pr, s);
   }
 
-  sprintf(s, FMT36, hyd->SpGrav);
+  snprintf(s,sizeof(s), FMT36, hyd->SpGrav);
   writeline(pr, s);
-  sprintf(s, FMT37a, hyd->Viscos / VISCOS);
+  snprintf(s,sizeof(s), FMT37a, hyd->Viscos / VISCOS);
   writeline(pr, s);
-  sprintf(s, FMT37b, qual->Diffus / DIFFUS);
+  snprintf(s,sizeof(s), FMT37b, qual->Diffus / DIFFUS);
   writeline(pr, s);
-  sprintf(s, FMT38, hyd->Dmult);
+  snprintf(s,sizeof(s), FMT38, hyd->Dmult);
   writeline(pr, s);
-  sprintf(s, FMT39, time->Dur * pr->Ucf[TIME], rpt->Field[TIME].Units);
+  snprintf(s,sizeof(s), FMT39, time->Dur * pr->Ucf[TIME], rpt->Field[TIME].Units);
   writeline(pr, s);
 
   if (rpt->Rptflag)
   {
-    sprintf(s, FMT40);
+    snprintf(s,sizeof(s), FMT40);
     writeline(pr, s);
     if (rpt->Nodeflag == 0)  writeline(pr, FMT41);
     if (rpt->Nodeflag == 1)  writeline(pr, FMT42);
@@ -356,15 +356,15 @@ void writehydstat(Project *pr, int iter, double relerr)
   strcpy(atime, clocktime(rpt->Atime, time->Htime));
   if (iter > 0)
   {
-    if (relerr <= hyd->Hacc) sprintf(s1, FMT58, atime, iter);
-    else sprintf(s1, FMT59, atime, iter, relerr);
+    if (relerr <= hyd->Hacc) snprintf(s1,sizeof(s1), FMT58, atime, iter);
+    else snprintf(s1,sizeof(s1), FMT59, atime, iter, relerr);
     writeline(pr, s1); 
     if (hyd->DemandModel == PDA && hyd->DeficientNodes > 0)
     {
         if (hyd->DeficientNodes == 1)
-          sprintf(s1, FMT69a, hyd->DemandReduction);
+          snprintf(s1,sizeof(s1), FMT69a, hyd->DemandReduction);
         else
-          sprintf(s1, FMT69b, hyd->DeficientNodes, hyd->DemandReduction);
+          snprintf(s1,sizeof(s1), FMT69b, hyd->DeficientNodes, hyd->DemandReduction);
         writeline(pr, s1);        
     }    
   }
@@ -410,10 +410,10 @@ void writehydstat(Project *pr, int iter, double relerr)
     {
       if (time->Htime == 0)
       {
-        sprintf(s1, FMT52, atime, LinkTxt[(int)net->Link[i].Type],
+        snprintf(s1,sizeof(s1), FMT52, atime, LinkTxt[(int)net->Link[i].Type],
                 net->Link[i].ID, StatTxt[(int)hyd->LinkStatus[i]]);
       }
-      else sprintf(s1, FMT53, atime, LinkTxt[Link[i].Type], net->Link[i].ID,
+      else snprintf(s1,sizeof(s1), FMT53, atime, LinkTxt[Link[i].Type], net->Link[i].ID,
                    StatTxt[hyd->OldStatus[i]], StatTxt[hyd->LinkStatus[i]]);
       writeline(pr, s1);
       hyd->OldStatus[i] = hyd->LinkStatus[i];
@@ -496,7 +496,7 @@ void writeenergy(Project *pr)
         csum += pump->Energy.TotalCost;
         if (rpt->LineNum == (long)rpt->PageSize) writeheader(pr, ENERHDR, 1);
 
-        sprintf(s, "%-8s  %6.2f %6.2f %9.2f %9.2f %9.2f %9.2f",
+        snprintf(s,sizeof(s), "%-8s  %6.2f %6.2f %9.2f %9.2f %9.2f %9.2f",
             net->Link[pump->Link].ID, pump->Energy.TimeOnLine,
             pump->Energy.Efficiency,  pump->Energy.KwHrsPerFlow,
             pump->Energy.KwHrs,       pump->Energy.MaxKwatts,
@@ -506,9 +506,9 @@ void writeenergy(Project *pr)
 
     fillstr(s, '-', 63);
     writeline(pr, s);
-    sprintf(s, FMT74, "", hyd->Emax * hyd->Dcost);
+    snprintf(s,sizeof(s), FMT74, "", hyd->Emax * hyd->Dcost);
     writeline(pr, s);
-    sprintf(s, FMT75, "", csum + hyd->Emax * hyd->Dcost);
+    snprintf(s,sizeof(s), FMT75, "", csum + hyd->Emax * hyd->Dcost);
     writeline(pr, s);
     writeline(pr, " ");
 }
@@ -648,13 +648,13 @@ void writenodetable(Project *pr, Pfloat *x)
             if (rpt->LineNum == (long)rpt->PageSize) writeheader(pr, NODEHDR, 1);
 
             // Add node ID and each reported field to string s
-            sprintf(s, "%-15s", node->ID);
+            snprintf(s,sizeof(s), "%-15s", node->ID);
             for (j = ELEV; j <= QUALITY; j++)
             {
                 if (rpt->Field[j].Enabled == TRUE)
                 {
-                    if (fabs(y[j]) > 1.e6) sprintf(s1, "%10.2e", y[j]);
-                    else sprintf(s1, "%10.*f", rpt->Field[j].Precision, y[j]);
+                    if (fabs(y[j]) > 1.e6) snprintf(s1,sizeof(s1), "%10.2e", y[j]);
+                    else snprintf(s1,sizeof(s1), "%10.*f", rpt->Field[j].Precision, y[j]);
                     strcat(s, s1);
                 }
             }
@@ -709,7 +709,7 @@ void writelinktable(Project *pr, Pfloat *x)
             if (rpt->LineNum == (long)rpt->PageSize) writeheader(pr, LINKHDR, 1);
 
             // Add link ID and each reported field to string s
-            sprintf(s, "%-15s", Link[i].ID);
+            snprintf(s,sizeof(s), "%-15s", Link[i].ID);
             for (j = LENGTH; j <= FRICTION; j++)
             {
                 if (rpt->Field[j].Enabled == TRUE)
@@ -719,12 +719,12 @@ void writelinktable(Project *pr, Pfloat *x)
                         if      (y[j] <= CLOSED) k = CLOSED;
                         else if (y[j] == ACTIVE) k = ACTIVE;
                         else                     k = OPEN;
-                        sprintf(s1, "%10s", StatTxt[k]);
+                        snprintf(s1,sizeof(s1), "%10s", StatTxt[k]);
                     }
                     else
                     {
-                        if (fabs(y[j]) > 1.e6) sprintf(s1, "%10.2e", y[j]);
-                        else sprintf(s1, "%10.*f", rpt->Field[j].Precision, y[j]);
+                        if (fabs(y[j]) > 1.e6) snprintf(s1,sizeof(s1), "%10.2e", y[j]);
+                        else snprintf(s1,sizeof(s1), "%10.*f", rpt->Field[j].Precision, y[j]);
                     }
                     strcat(s, s1);
                 }
@@ -772,7 +772,7 @@ void writeheader(Project *pr, int type, int contin)
     // Hydraulic Status Table
     if (type == STATHDR)
     {
-        sprintf(s, FMT49);
+        snprintf(s,sizeof(s), FMT49);
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
         fillstr(s, '-', 70);
@@ -784,18 +784,18 @@ void writeheader(Project *pr, int type, int contin)
     {
         if (parser->Unitsflag == SI) strcpy(s1, t_perM3);
         else                         strcpy(s1, t_perMGAL);
-        sprintf(s, FMT71);
+        snprintf(s,sizeof(s), FMT71);
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
         fillstr(s, '-', 63);
         writeline(pr, s);
-        sprintf(s, FMT72);
+        snprintf(s,sizeof(s), FMT72);
         writeline(pr, s);
         // truncate s1 for gcc
         char trunc_s1[967];
         strncpy(trunc_s1, s1, sizeof trunc_s1);
         trunc_s1[sizeof trunc_s1 - 1] = '\0';
-        sprintf(s, FMT73, trunc_s1);
+        snprintf(s,sizeof(s), FMT73, trunc_s1);
         writeline(pr, s);
         fillstr(s, '-', 63);
         writeline(pr, s);
@@ -804,29 +804,29 @@ void writeheader(Project *pr, int type, int contin)
     // Node Results Table
     if (type == NODEHDR)
     {
-        if (rpt->Tstatflag == RANGE) sprintf(s, FMT76, t_DIFFER);
+        if (rpt->Tstatflag == RANGE) snprintf(s,sizeof(s), FMT76, t_DIFFER);
         else if (rpt->Tstatflag != SERIES)
         {
-            sprintf(s, FMT76, TstatTxt[rpt->Tstatflag]);
+            snprintf(s,sizeof(s), FMT76, TstatTxt[rpt->Tstatflag]);
         }
-        else if (time->Dur == 0) sprintf(s, FMT77);
-        else sprintf(s, FMT78, clocktime(rpt->Atime, time->Htime));
+        else if (time->Dur == 0) snprintf(s,sizeof(s), FMT77);
+        else snprintf(s,sizeof(s), FMT78, clocktime(rpt->Atime, time->Htime));
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
 
         n = 15;
-        sprintf(s2, "%15s", "");
+        snprintf(s2,sizeof(s2), "%15s", "");
         strcpy(s, t_NODEID);
-        sprintf(s3, "%-15s", s);
+        snprintf(s3,sizeof(s3), "%-15s", s);
 
         for (i = ELEV; i < QUALITY; i++)
         {
             if (rpt->Field[i].Enabled == TRUE)
             {
                 n += 10;
-                sprintf(s, "%10s", rpt->Field[i].Name);
+                snprintf(s,sizeof(s), "%10s", rpt->Field[i].Name);
                 strcat(s2, s);
-                sprintf(s, "%10s", rpt->Field[i].Units);
+                snprintf(s,sizeof(s), "%10s", rpt->Field[i].Units);
                 strcat(s3, s);
             }
         }
@@ -834,9 +834,9 @@ void writeheader(Project *pr, int type, int contin)
         if (rpt->Field[QUALITY].Enabled == TRUE)
         {
             n += 10;
-            sprintf(s, "%10s", qual->ChemName);
+            snprintf(s,sizeof(s), "%10s", qual->ChemName);
             strcat(s2, s);
-            sprintf(s, "%10s", qual->ChemUnits);
+            snprintf(s,sizeof(s), "%10s", qual->ChemUnits);
             strcat(s3, s);
         }
         fillstr(s1, '-', n);
@@ -849,28 +849,28 @@ void writeheader(Project *pr, int type, int contin)
     // Link Results Table
     if (type == LINKHDR)
     {
-        if (rpt->Tstatflag == RANGE) sprintf(s, FMT79, t_DIFFER);
+        if (rpt->Tstatflag == RANGE) snprintf(s,sizeof(s), FMT79, t_DIFFER);
         else if (rpt->Tstatflag != SERIES)
         {
-            sprintf(s, FMT79, TstatTxt[rpt->Tstatflag]);
+            snprintf(s,sizeof(s), FMT79, TstatTxt[rpt->Tstatflag]);
         }
-        else if (time->Dur == 0) sprintf(s, FMT80);
-        else  sprintf(s, FMT81, clocktime(rpt->Atime, time->Htime));
+        else if (time->Dur == 0) snprintf(s,sizeof(s), FMT80);
+        else  snprintf(s,sizeof(s), FMT81, clocktime(rpt->Atime, time->Htime));
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
 
         n = 15;
-        sprintf(s2, "%15s", "");
+        snprintf(s2,sizeof(s2), "%15s", "");
         strcpy(s, t_LINKID);
-        sprintf(s3, "%-15s", s);
+        snprintf(s3,sizeof(s3), "%-15s", s);
         for (i = LENGTH; i <= FRICTION; i++)
         {
             if (rpt->Field[i].Enabled == TRUE)
             {
                 n += 10;
-                sprintf(s, "%10s", rpt->Field[i].Name);
+                snprintf(s,sizeof(s), "%10s", rpt->Field[i].Name);
                 strcat(s2, s);
-                sprintf(s, "%10s", rpt->Field[i].Units);
+                snprintf(s,sizeof(s), "%10s", rpt->Field[i].Units);
                 strcat(s3, s);
             }
         }
@@ -925,12 +925,12 @@ void writerelerr(Project *pr, int iter, double relerr)
 
     if (iter == 0)
     {
-        sprintf(pr->Msg, FMT64, clocktime(rpt->Atime, time->Htime));
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT64, clocktime(rpt->Atime, time->Htime));
         writeline(pr, pr->Msg);
     }
     else
     {
-        sprintf(pr->Msg, FMT65, iter, relerr);
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT65, iter, relerr);
         writeline(pr, pr->Msg);
     }
 }
@@ -972,7 +972,7 @@ void writestatchange(Project *pr, int k, char s1, char s2)
           default:
             break;
         }
-        sprintf(pr->Msg, FMT56, LinkTxt[Link[k].Type], Link[k].ID, setting);
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT56, LinkTxt[Link[k].Type], Link[k].ID, setting);
         writeline(pr, pr->Msg);
         return;
     }
@@ -986,7 +986,7 @@ void writestatchange(Project *pr, int k, char s1, char s2)
     else                   j2 = OPEN;
     if (j1 != j2)
     {
-        sprintf(pr->Msg, FMT57, LinkTxt[Link[k].Type], Link[k].ID, StatTxt[j1],
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT57, LinkTxt[Link[k].Type], Link[k].ID, StatTxt[j1],
                 StatTxt[j2]);
         writeline(pr, pr->Msg);
     }
@@ -1016,14 +1016,14 @@ void writecontrolaction(Project *pr, int k, int i)
       case LOWLEVEL:
       case HILEVEL:
         n = Control[i].Node;
-        sprintf(pr->Msg, FMT54, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT54, clocktime(rpt->Atime, time->Htime),
                 LinkTxt[Link[k].Type], Link[k].ID,
                 NodeTxt[getnodetype(net, n)], Node[n].ID);
         break;
 
       case TIMER:
       case TIMEOFDAY:
-        sprintf(pr->Msg, FMT55, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT55, clocktime(rpt->Atime, time->Htime),
                 LinkTxt[Link[k].Type], Link[k].ID);
         break;
       default:
@@ -1048,7 +1048,7 @@ void writeruleaction(Project *pr, int k, char *ruleID)
 
     Slink *Link = net->Link;
 
-    sprintf(pr->Msg, FMT63, clocktime(rpt->Atime, time->Htime),
+    snprintf(pr->Msg, sizeof(pr->Msg), FMT63, clocktime(rpt->Atime, time->Htime),
             LinkTxt[Link[k].Type], Link[k].ID, ruleID);
     writeline(pr, pr->Msg);
 }
@@ -1085,7 +1085,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
     // Check if system unstable
     if (iter > hyd->MaxIter && relerr <= hyd->Hacc)
     {
-        sprintf(pr->Msg, WARN02, clocktime(rpt->Atime, time->Htime));
+        snprintf(pr->Msg, sizeof(pr->Msg), WARN02, clocktime(rpt->Atime, time->Htime));
         if (rpt->Messageflag) writeline(pr, pr->Msg);
         flag = 2;
     }
@@ -1104,7 +1104,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
         {
             if (rpt->Messageflag)
             {
-                sprintf(pr->Msg, WARN06, clocktime(rpt->Atime, time->Htime));
+                snprintf(pr->Msg, sizeof(pr->Msg), WARN06, clocktime(rpt->Atime, time->Htime));
                 writeline(pr, pr->Msg);
             }
             flag = 6;
@@ -1120,7 +1120,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
         {
             if (rpt->Messageflag)
             {
-                sprintf(pr->Msg, WARN05, LinkTxt[link->Type], link->ID,
+                snprintf(pr->Msg, sizeof(pr->Msg), WARN05, LinkTxt[link->Type], link->ID,
                         StatTxt[hyd->LinkStatus[j]],
                         clocktime(rpt->Atime, time->Htime));
                 writeline(pr, pr->Msg);
@@ -1144,7 +1144,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
         {
             if (rpt->Messageflag)
             {
-                sprintf(pr->Msg, WARN04, net->Link[j].ID, StatTxt[s],
+                snprintf(pr->Msg, sizeof(pr->Msg), WARN04, net->Link[j].ID, StatTxt[s],
                         clocktime(rpt->Atime, time->Htime));
                 writeline(pr, pr->Msg);
             }
@@ -1157,7 +1157,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
     {
         if (rpt->Messageflag)
         {
-            sprintf(pr->Msg, WARN01, clocktime(rpt->Atime, time->Htime));
+            snprintf(pr->Msg, sizeof(pr->Msg), WARN01, clocktime(rpt->Atime, time->Htime));
             if (hyd->ExtraIter == -1) strcat(pr->Msg, t_HALTED);
             writeline(pr, pr->Msg);
         }
@@ -1192,7 +1192,7 @@ void writehyderr(Project *pr, int errnode)
 
     if (rpt->Messageflag)
     {
-        sprintf(pr->Msg, FMT62, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT62, clocktime(rpt->Atime, time->Htime),
                 Node[errnode].ID);
         writeline(pr, pr->Msg);
     }
@@ -1269,7 +1269,7 @@ int disconnected(Project *pr)
             count++;
             if (count <= MAXCOUNT && rpt->Messageflag)
             {
-                sprintf(pr->Msg, WARN03a, node->ID,
+                snprintf(pr->Msg, sizeof(pr->Msg), WARN03a, node->ID,
                         clocktime(rpt->Atime, time->Htime));
                 writeline(pr, pr->Msg);
             }
@@ -1283,7 +1283,7 @@ int disconnected(Project *pr)
     {
         if (count > MAXCOUNT)
         {
-            sprintf(pr->Msg, WARN03b, count - MAXCOUNT,
+            snprintf(pr->Msg, sizeof(pr->Msg), WARN03b, count - MAXCOUNT,
                     clocktime(rpt->Atime, time->Htime));
             writeline(pr, pr->Msg);
         }
@@ -1373,7 +1373,7 @@ void getclosedlink(Project *pr, int i, char *marked)
         if (marked[j] == 2) continue;
         if (marked[j] == 1)
         {
-            sprintf(pr->Msg, WARN03c, net->Link[k].ID);
+            snprintf(pr->Msg, sizeof(pr->Msg), WARN03c, net->Link[k].ID);
             writeline(pr, pr->Msg);
             return;
         }
@@ -1398,14 +1398,14 @@ void writelimits(Project *pr, int j1, int j2)
     {
         if (rpt->Field[j].RptLim[LOW] < BIG)
         {
-            sprintf(pr->Msg, FMT47, rpt->Field[j].Name,
+            snprintf(pr->Msg, sizeof(pr->Msg), FMT47, rpt->Field[j].Name,
                     rpt->Field[j].RptLim[LOW],
                     rpt->Field[j].Units);
             writeline(pr, pr->Msg);
         }
         if (rpt->Field[j].RptLim[HI] > -BIG)
         {
-            sprintf(pr->Msg, FMT48, rpt->Field[j].Name,
+            snprintf(pr->Msg, sizeof(pr->Msg), FMT48, rpt->Field[j].Name,
             rpt->Field[j].RptLim[HI],
             rpt->Field[j].Units);
             writeline(pr, pr->Msg);
@@ -1445,7 +1445,7 @@ void writetime(Project *pr, char *fmt)
 {
     time_t timer;
     time(&timer);
-    sprintf(pr->Msg, fmt, ctime(&timer));
+    snprintf(pr->Msg, sizeof(pr->Msg), fmt, ctime(&timer));
     writeline(pr, pr->Msg);
 }
 
@@ -1463,7 +1463,7 @@ char *clocktime(char *atime, long seconds)
     h = seconds / 3600;
     m = seconds % 3600 / 60;
     s = seconds - 3600 * h - 60 * m;
-    sprintf(atime, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
+    int ret = snprintf(atime, sizeof(atime), "%01d:%02d:%02d", (int)h, (int)m, (int)s);
     return atime;
 }
 

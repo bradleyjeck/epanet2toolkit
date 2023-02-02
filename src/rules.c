@@ -99,7 +99,7 @@ static void clearrule(Project *, int);
 static void writepremise(Spremise *, FILE *, Network *);
 static void writeaction(Saction *, FILE *, Network *);
 static void getobjtxt(int, int, char *);
-static void gettimetxt(double, char *);
+static int  gettimetxt(double, char *);
 
 
 void initrules(Project *pr)
@@ -1287,7 +1287,7 @@ void writepremise(Spremise *p, FILE *f, Network *net)
         case r_TIME:
             gettimetxt(p->value, s_value);
             break;
-        default: sprintf(s_value, "%.4f", p->value);
+        default: snprintf(s_value,sizeof(s_value), "%.4f", p->value);
         }
     }
 
@@ -1318,7 +1318,7 @@ void writeaction(Saction *a, FILE *f, Network *net)
     else
     {
         strcpy(s_var, "SETTING");
-        sprintf(s_value, "%.4f", a->setting);
+        snprintf(s_value,sizeof(s_value), "%.4f", a->setting);
     }
     fprintf(f, "%s %s %s = %s", s_obj, s_id, s_var, s_value);
 }
@@ -1351,18 +1351,27 @@ void getobjtxt(int objtype, int subtype, char *objtxt)
     else strcpy(objtxt, "SYSTEM");
 }
 
-void gettimetxt(double secs, char *timetxt)
+int gettimetxt(double secs, char *timetxt)
 //-----------------------------------------------------------------------------
 //  Convert number of seconds to a text string in hrs:min:sec format.
 //-----------------------------------------------------------------------------
 {
+    int val=0;
     int hours = 0, minutes = 0, seconds = 0;
     hours = (int)secs / 3600;
-    if (hours > 24 * 7) sprintf(timetxt, "%.4f", secs / 3600.0);
+    if (hours > 24 * 7){
+
+     int ret = snprintf(timetxt, sizeof(timetxt), "%.4f", secs / 3600.0);
+     val = ret;
+    }
     else
     {
         minutes = (int)((secs - 3600 * hours) / 60);
         seconds = (int)(secs - 3600 * hours - minutes * 60);
-        sprintf(timetxt, "%d:%02d:%02d", hours, minutes, seconds);
+        int ret = snprintf(timetxt, sizeof(timetxt), "%d:%02d:%02d", hours, minutes, seconds);
+        if (ret < 0) {
+            val = ret;
+        }
     }
+    return val;
 }

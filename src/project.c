@@ -1415,7 +1415,7 @@ void errmsg(Project *pr, int errcode)
     }
     else if (pr->report.RptFile != NULL && pr->report.Messageflag && errcode > 100)
     {
-        sprintf(pr->Msg, "Error %d: %s", errcode, geterrmsg(errcode, errmsg));
+        snprintf(pr->Msg, sizeof(pr->Msg), "Error %d: %s", errcode, geterrmsg(errcode, errmsg));
         writeline(pr, pr->Msg);
     }
 }

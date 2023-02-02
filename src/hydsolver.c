@@ -249,7 +249,7 @@ int  badvalve(Project *pr, int n)
                 {
                     if (rpt->Statflag == FULL)
                     {
-                        sprintf(pr->Msg, FMT61,
+                        snprintf(pr->Msg, sizeof(pr->Msg), FMT61,
                                 clocktime(rpt->Atime, time->Htime), link->ID);
                         writeline(pr, pr->Msg);
                     }
@@ -704,17 +704,17 @@ void  reporthydbal(Project *pr, Hydbalance *hbal)
     int    hlink = hbal->maxheadlink;
     if (qlink >= 1)
     {
-        sprintf(pr->Msg, FMT66, qchange, pr->network.Link[qlink].ID);
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT66, qchange, pr->network.Link[qlink].ID);
         writeline(pr, pr->Msg);
     }
     else if (qnode >= 1)
     {
-        sprintf(pr->Msg, FMT67, qchange, pr->network.Node[qnode].ID);
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT67, qchange, pr->network.Node[qnode].ID);
         writeline(pr, pr->Msg);
     }
     if (hlink >= 1)
     {
-        sprintf(pr->Msg, FMT68, herror, pr->network.Link[hlink].ID);
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT68, herror, pr->network.Link[hlink].ID);
         writeline(pr, pr->Msg);
     }
 }

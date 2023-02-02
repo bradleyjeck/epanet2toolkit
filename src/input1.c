@@ -394,7 +394,7 @@ int inittanks(Project *pr)
         // Report error in levels if found
         if (levelerr)
         {
-            sprintf(pr->Msg, "Error 225: %s node %s", geterrmsg(225, errmsg),
+            snprintf(pr->Msg, sizeof(pr->Msg), "Error 225: %s node %s", geterrmsg(225, errmsg),
                     net->Node[tank->Node].ID);
             writeline(pr, pr->Msg);
             errcode = 200;

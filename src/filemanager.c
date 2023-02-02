@@ -37,7 +37,7 @@ int _fopen(FILE **f, const char *name, const char *mode);
 int _get_temp_filename(char **tempname);
 
 
-file_handle_t *create_file_manager() {
+file_handle_t *create_file_manager(void) {
 
     file_handle_t *file_handle;
     file_handle = (file_handle_t *)calloc(1, sizeof(file_handle_t));

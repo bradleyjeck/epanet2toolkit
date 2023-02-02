@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/bradleyjeck/epanet2toolkit.svg?branch=master)](https://travis-ci.org/bradleyjeck/epanet2toolkit)
-[![Coverage Status](https://codecov.io/gh/bradleyjeck/epanet2toolkit/branch/master/graph/badge.svg)](https://codecov.io/gh/bradleyjeck/epanet2toolkit)
+[![Coverage Status](https://codecov.io/gh/bradleyjeck/epanet2toolkit/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bradleyjeck/epanet2toolkit)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/epanet2toolkit)](https://cran.r-project.org/package=epanet2toolkit)
 [![CRAN

@@ -27,14 +27,14 @@ Project __defaultProject;
 Project *_defaultProject = &__defaultProject;
 
 // Functions for creating and removing default temporary files
-void createtmpfiles()
+void createtmpfiles(void)
 {
     getTmpName(_defaultProject->TmpHydFname);
     getTmpName(_defaultProject->TmpOutFname);
     getTmpName(_defaultProject->TmpStatFname);
 }
 
-void removetmpfiles()
+void removetmpfiles(void)
 {
     remove(_defaultProject->TmpHydFname);
     remove(_defaultProject->TmpOutFname);
@@ -129,7 +129,7 @@ int DLLEXPORT ENsaveinpfile(const char *filename)
     return EN_saveinpfile(_defaultProject, filename);
 }
 
-int DLLEXPORT ENclose()
+int DLLEXPORT ENclose(void)
 {
     EN_close(_defaultProject);
     removetmpfiles();
@@ -142,11 +142,11 @@ int DLLEXPORT ENclose()
 
 ********************************************************************/
 
-int DLLEXPORT ENsolveH() { return EN_solveH(_defaultProject); }
+int DLLEXPORT ENsolveH(void) { return EN_solveH(_defaultProject); }
 
-int DLLEXPORT ENsaveH() { return EN_saveH(_defaultProject); }
+int DLLEXPORT ENsaveH(void) { return EN_saveH(_defaultProject); }
 
-int DLLEXPORT ENopenH() { return EN_openH(_defaultProject); }
+int DLLEXPORT ENopenH(void) { return EN_openH(_defaultProject); }
 
 int DLLEXPORT ENinitH(int initFlag) { return EN_initH(_defaultProject, initFlag); }
 
@@ -154,7 +154,7 @@ int DLLEXPORT ENrunH(long *currentTime) { return EN_runH(_defaultProject, curren
 
 int DLLEXPORT ENnextH(long *tStep) { return EN_nextH(_defaultProject, tStep); }
 
-int DLLEXPORT ENcloseH() { return EN_closeH(_defaultProject); }
+int DLLEXPORT ENcloseH(void) { return EN_closeH(_defaultProject); }
 
 int DLLEXPORT ENsavehydfile(char *filename)
 {
@@ -172,9 +172,9 @@ int DLLEXPORT ENusehydfile(char *filename)
 
 ********************************************************************/
 
-int DLLEXPORT ENsolveQ() { return EN_solveQ(_defaultProject); }
+int DLLEXPORT ENsolveQ(void) { return EN_solveQ(_defaultProject); }
 
-int DLLEXPORT ENopenQ() { return EN_openQ(_defaultProject); }
+int DLLEXPORT ENopenQ(void) { return EN_openQ(_defaultProject); }
 
 int DLLEXPORT ENinitQ(int saveFlag) { return EN_initQ(_defaultProject, saveFlag); }
 
@@ -184,7 +184,7 @@ int DLLEXPORT ENnextQ(long *tStep) { return EN_nextQ(_defaultProject, tStep); }
 
 int DLLEXPORT ENstepQ(long *timeLeft) { return EN_stepQ(_defaultProject, timeLeft); }
 
-int DLLEXPORT ENcloseQ() { return EN_closeQ(_defaultProject); }
+int DLLEXPORT ENcloseQ(void) { return EN_closeQ(_defaultProject); }
 
 /********************************************************************
 
@@ -194,16 +194,16 @@ int DLLEXPORT ENcloseQ() { return EN_closeQ(_defaultProject); }
 
 int DLLEXPORT ENwriteline(char *line) { return EN_writeline(_defaultProject, line); }
 
-int DLLEXPORT ENreport() { return EN_report(_defaultProject); }
+int DLLEXPORT ENreport(void) { return EN_report(_defaultProject); }
 
 int DLLEXPORT ENcopyreport(char *filename)
 {
     return EN_copyreport(_defaultProject, filename);
 }
 
-int DLLEXPORT ENclearreport() { return EN_clearreport(_defaultProject); }
+int DLLEXPORT ENclearreport(void) { return EN_clearreport(_defaultProject); }
 
-int DLLEXPORT ENresetreport() { return EN_resetreport(_defaultProject); }
+int DLLEXPORT ENresetreport(void) { return EN_resetreport(_defaultProject); }
 
 int DLLEXPORT ENsetreport(char *format) { return EN_setreport(_defaultProject, format); }
 
