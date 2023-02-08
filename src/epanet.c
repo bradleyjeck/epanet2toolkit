@@ -429,7 +429,7 @@ int DLLEXPORT EN_solveH(EN_Project p)
             // Display progress message
             size_t bufsize= EN_MAXMSG;
             snprintf(p->Msg, bufsize, "%-10s",
-                    clocktime(p->report.Atime, p->times.Htime));
+                    clocktime(p->report.Atime, p->times.Htime, sizeof(p->report.Atime)));
             snprintf(p->Msg, bufsize, FMT101, p->report.Atime);
             writewin(p->viewprog, p->Msg);
 
@@ -693,7 +693,7 @@ int DLLEXPORT EN_solveQ(EN_Project p)
             // Display progress message
             size_t bufsize=EN_MAXMSG;
             snprintf(p->Msg, bufsize, "%-10s",
-                    clocktime(p->report.Atime, p->times.Htime));
+                    clocktime(p->report.Atime, p->times.Htime, sizeof(p->report.Atime)));
             if (p->quality.Qualflag)
             {
                 snprintf(p->Msg, bufsize, FMT102, p->report.Atime);
