@@ -99,7 +99,7 @@ static void clearrule(Project *, int);
 static void writepremise(Spremise *, FILE *, Network *);
 static void writeaction(Saction *, FILE *, Network *);
 static void getobjtxt(int, int, char *);
-static int  gettimetxt(double, char *);
+static int  gettimetxt(double, char *, long);
 
 
 void initrules(Project *pr)
@@ -1285,7 +1285,7 @@ void writepremise(Spremise *p, FILE *f, Network *net)
         case r_DRAINTIME:
         case r_FILLTIME:
         case r_TIME:
-            gettimetxt(p->value, s_value);
+            gettimetxt(p->value, s_value, sizeof(s_value));
             break;
         default: snprintf(s_value,sizeof(s_value), "%.4f", p->value);
         }
@@ -1351,7 +1351,7 @@ void getobjtxt(int objtype, int subtype, char *objtxt)
     else strcpy(objtxt, "SYSTEM");
 }
 
-int gettimetxt(double secs, char *timetxt)
+int gettimetxt(double secs, char *timetxt, long timetxtlen)
 //-----------------------------------------------------------------------------
 //  Convert number of seconds to a text string in hrs:min:sec format.
 //-----------------------------------------------------------------------------
@@ -1361,14 +1361,14 @@ int gettimetxt(double secs, char *timetxt)
     hours = (int)secs / 3600;
     if (hours > 24 * 7){
 
-     int ret = snprintf(timetxt, sizeof(timetxt), "%.4f", secs / 3600.0);
+     int ret = snprintf(timetxt, timetxtlen, "%.4f", secs / 3600.0);
      val = ret;
     }
     else
     {
         minutes = (int)((secs - 3600 * hours) / 60);
         seconds = (int)(secs - 3600 * hours - minutes * 60);
-        int ret = snprintf(timetxt, sizeof(timetxt), "%d:%02d:%02d", hours, minutes, seconds);
+        int ret = snprintf(timetxt, timetxtlen, "%d:%02d:%02d", hours, minutes, seconds);
         if (ret < 0) {
             val = ret;
         }

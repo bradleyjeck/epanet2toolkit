@@ -250,7 +250,7 @@ int  badvalve(Project *pr, int n)
                     if (rpt->Statflag == FULL)
                     {
                         snprintf(pr->Msg, sizeof(pr->Msg), FMT61,
-                                clocktime(rpt->Atime, time->Htime), link->ID);
+                                clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)), link->ID);
                         writeline(pr, pr->Msg);
                     }
                     if (link->Type == FCV) hyd->LinkStatus[k] = XFCV;

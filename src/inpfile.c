@@ -471,7 +471,7 @@ int saveinpfile(Project *pr, const char *fname)
           // Print time-of-day control
           case TIMEOFDAY:
             fprintf(f, "\n%s AT %s %s", s, ControlTxt[TIMEOFDAY],
-                    clocktime(rpt->Atime, control->Time));
+                    clocktime(rpt->Atime, control->Time, sizeof(rpt->Atime)));
             break;
         }
     }
@@ -613,15 +613,15 @@ int saveinpfile(Project *pr, const char *fname)
     // Write [TIMES] section
     fprintf(f, "\n\n");
     fprintf(f, s_TIMES);
-    fprintf(f, "\n DURATION            %s", clocktime(rpt->Atime, time->Dur));
-    fprintf(f, "\n HYDRAULIC TIMESTEP  %s", clocktime(rpt->Atime, time->Hstep));
-    fprintf(f, "\n QUALITY TIMESTEP    %s", clocktime(rpt->Atime, time->Qstep));
-    fprintf(f, "\n REPORT TIMESTEP     %s", clocktime(rpt->Atime, time->Rstep));
-    fprintf(f, "\n REPORT START        %s", clocktime(rpt->Atime, time->Rstart));
-    fprintf(f, "\n PATTERN TIMESTEP    %s", clocktime(rpt->Atime, time->Pstep));
-    fprintf(f, "\n PATTERN START       %s", clocktime(rpt->Atime, time->Pstart));
-    fprintf(f, "\n RULE TIMESTEP       %s", clocktime(rpt->Atime, time->Rulestep));
-    fprintf(f, "\n START CLOCKTIME     %s", clocktime(rpt->Atime, time->Tstart));
+    fprintf(f, "\n DURATION            %s", clocktime(rpt->Atime, time->Dur, sizeof(rpt->Atime)));
+    fprintf(f, "\n HYDRAULIC TIMESTEP  %s", clocktime(rpt->Atime, time->Hstep, sizeof(rpt->Atime)));
+    fprintf(f, "\n QUALITY TIMESTEP    %s", clocktime(rpt->Atime, time->Qstep, sizeof(rpt->Atime)));
+    fprintf(f, "\n REPORT TIMESTEP     %s", clocktime(rpt->Atime, time->Rstep, sizeof(rpt->Atime)));
+    fprintf(f, "\n REPORT START        %s", clocktime(rpt->Atime, time->Rstart, sizeof(rpt->Atime)));
+    fprintf(f, "\n PATTERN TIMESTEP    %s", clocktime(rpt->Atime, time->Pstep, sizeof(rpt->Atime)));
+    fprintf(f, "\n PATTERN START       %s", clocktime(rpt->Atime, time->Pstart, sizeof(rpt->Atime)));
+    fprintf(f, "\n RULE TIMESTEP       %s", clocktime(rpt->Atime, time->Rulestep, sizeof(rpt->Atime)));
+    fprintf(f, "\n START CLOCKTIME     %s", clocktime(rpt->Atime, time->Tstart, sizeof(rpt->Atime)));
     fprintf(f, "\n STATISTIC           %s", TstatTxt[rpt->Tstatflag]);
 
     // Write [OPTIONS] section

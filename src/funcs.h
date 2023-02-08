@@ -141,7 +141,7 @@ int     writehydwarn(Project *, int,double);
 void    writehyderr(Project *, int);
 void    writemassbalance(Project *);
 void    writetime(Project *, char *);
-char    *clocktime(char *, long);
+char    *clocktime(char *, long, long);
 
 // ------- HYDRAUL.C -----------------
 

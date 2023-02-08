@@ -353,7 +353,7 @@ void writehydstat(Project *pr, int iter, double relerr)
   Slink *Link = net->Link;
 
   // Display system status
-  strcpy(atime, clocktime(rpt->Atime, time->Htime));
+  strcpy(atime, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
   if (iter > 0)
   {
     if (relerr <= hyd->Hacc) snprintf(s1,sizeof(s1), FMT58, atime, iter);
@@ -810,7 +810,7 @@ void writeheader(Project *pr, int type, int contin)
             snprintf(s,sizeof(s), FMT76, TstatTxt[rpt->Tstatflag]);
         }
         else if (time->Dur == 0) snprintf(s,sizeof(s), FMT77);
-        else snprintf(s,sizeof(s), FMT78, clocktime(rpt->Atime, time->Htime));
+        else snprintf(s,sizeof(s), FMT78, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
 
@@ -855,7 +855,7 @@ void writeheader(Project *pr, int type, int contin)
             snprintf(s,sizeof(s), FMT79, TstatTxt[rpt->Tstatflag]);
         }
         else if (time->Dur == 0) snprintf(s,sizeof(s), FMT80);
-        else  snprintf(s,sizeof(s), FMT81, clocktime(rpt->Atime, time->Htime));
+        else  snprintf(s,sizeof(s), FMT81, clocktime(rpt->Atime, time->Htime,sizeof(rpt->Atime)));
         if (contin) strcat(s, t_CONTINUED);
         writeline(pr, s);
 
@@ -925,7 +925,7 @@ void writerelerr(Project *pr, int iter, double relerr)
 
     if (iter == 0)
     {
-        snprintf(pr->Msg, sizeof(pr->Msg), FMT64, clocktime(rpt->Atime, time->Htime));
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT64, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
         writeline(pr, pr->Msg);
     }
     else
@@ -1016,14 +1016,14 @@ void writecontrolaction(Project *pr, int k, int i)
       case LOWLEVEL:
       case HILEVEL:
         n = Control[i].Node;
-        snprintf(pr->Msg, sizeof(pr->Msg), FMT54, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT54, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)),
                 LinkTxt[Link[k].Type], Link[k].ID,
                 NodeTxt[getnodetype(net, n)], Node[n].ID);
         break;
 
       case TIMER:
       case TIMEOFDAY:
-        snprintf(pr->Msg, sizeof(pr->Msg), FMT55, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT55, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)),
                 LinkTxt[Link[k].Type], Link[k].ID);
         break;
       default:
@@ -1048,7 +1048,7 @@ void writeruleaction(Project *pr, int k, char *ruleID)
 
     Slink *Link = net->Link;
 
-    snprintf(pr->Msg, sizeof(pr->Msg), FMT63, clocktime(rpt->Atime, time->Htime),
+    snprintf(pr->Msg, sizeof(pr->Msg), FMT63, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)),
             LinkTxt[Link[k].Type], Link[k].ID, ruleID);
     writeline(pr, pr->Msg);
 }
@@ -1085,7 +1085,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
     // Check if system unstable
     if (iter > hyd->MaxIter && relerr <= hyd->Hacc)
     {
-        snprintf(pr->Msg, sizeof(pr->Msg), WARN02, clocktime(rpt->Atime, time->Htime));
+        snprintf(pr->Msg, sizeof(pr->Msg), WARN02, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
         if (rpt->Messageflag) writeline(pr, pr->Msg);
         flag = 2;
     }
@@ -1104,7 +1104,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
         {
             if (rpt->Messageflag)
             {
-                snprintf(pr->Msg, sizeof(pr->Msg), WARN06, clocktime(rpt->Atime, time->Htime));
+                snprintf(pr->Msg, sizeof(pr->Msg), WARN06, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
                 writeline(pr, pr->Msg);
             }
             flag = 6;
@@ -1122,7 +1122,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
             {
                 snprintf(pr->Msg, sizeof(pr->Msg), WARN05, LinkTxt[link->Type], link->ID,
                         StatTxt[hyd->LinkStatus[j]],
-                        clocktime(rpt->Atime, time->Htime));
+                        clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
                 writeline(pr, pr->Msg);
             }
             flag = 5;
@@ -1145,7 +1145,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
             if (rpt->Messageflag)
             {
                 snprintf(pr->Msg, sizeof(pr->Msg), WARN04, net->Link[j].ID, StatTxt[s],
-                        clocktime(rpt->Atime, time->Htime));
+                        clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
                 writeline(pr, pr->Msg);
             }
             flag = 4;
@@ -1157,7 +1157,7 @@ int writehydwarn(Project *pr, int iter, double relerr)
     {
         if (rpt->Messageflag)
         {
-            snprintf(pr->Msg, sizeof(pr->Msg), WARN01, clocktime(rpt->Atime, time->Htime));
+            snprintf(pr->Msg, sizeof(pr->Msg), WARN01, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
             if (hyd->ExtraIter == -1) strcat(pr->Msg, t_HALTED);
             writeline(pr, pr->Msg);
         }
@@ -1192,7 +1192,7 @@ void writehyderr(Project *pr, int errnode)
 
     if (rpt->Messageflag)
     {
-        snprintf(pr->Msg, sizeof(pr->Msg), FMT62, clocktime(rpt->Atime, time->Htime),
+        snprintf(pr->Msg, sizeof(pr->Msg), FMT62, clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)),
                 Node[errnode].ID);
         writeline(pr, pr->Msg);
     }
@@ -1270,7 +1270,7 @@ int disconnected(Project *pr)
             if (count <= MAXCOUNT && rpt->Messageflag)
             {
                 snprintf(pr->Msg, sizeof(pr->Msg), WARN03a, node->ID,
-                        clocktime(rpt->Atime, time->Htime));
+                        clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
                 writeline(pr, pr->Msg);
             }
             j = i; // Last unmarked node
@@ -1284,7 +1284,7 @@ int disconnected(Project *pr)
         if (count > MAXCOUNT)
         {
             snprintf(pr->Msg, sizeof(pr->Msg), WARN03b, count - MAXCOUNT,
-                    clocktime(rpt->Atime, time->Htime));
+                    clocktime(rpt->Atime, time->Htime, sizeof(rpt->Atime)));
             writeline(pr, pr->Msg);
         }
         getclosedlink(pr, j, marked);
@@ -1449,7 +1449,7 @@ void writetime(Project *pr, char *fmt)
     writeline(pr, pr->Msg);
 }
 
-char *clocktime(char *atime, long seconds)
+char *clocktime(char *atime, long seconds, long atimelen)
 /*
 **--------------------------------------------------------------
 **   Input:   seconds = time in seconds
@@ -1463,7 +1463,7 @@ char *clocktime(char *atime, long seconds)
     h = seconds / 3600;
     m = seconds % 3600 / 60;
     s = seconds - 3600 * h - 60 * m;
-    int ret = snprintf(atime, sizeof(atime), "%01d:%02d:%02d", (int)h, (int)m, (int)s);
+    int ret = snprintf(atime, atimelen, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
     return atime;
 }
 
