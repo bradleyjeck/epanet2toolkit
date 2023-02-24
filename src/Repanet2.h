@@ -1,6 +1,6 @@
 /*****************************************
 *
-* (C) Copyright IBM Corp. 2017
+* (C) Copyright IBM Corp. 2017, 2023
 * Author: Bradley J Eck
 *
 * Function prototypes for calling EPANET from R 
@@ -13,6 +13,8 @@ void RgetOpenflag(int* flagval );
 void RgetOpenHflag(int* flagval);
 
 void RENepanet( char** inp, char** rpt, char** bin, int* ENreturn_value);
+
+void RENinit(char **rptFile, char **outFile, int *unitsType, int *headlossType, int *ENreturn_value);
  
 void RENopen(char **inpFile, char **rptFile, char **binOutFile, int* ENreturn_value);
 

@@ -114,3 +114,14 @@ test_that("works",{
 			
 		})
 
+
+context("ENinit")
+
+test_that("func exists",{
+  expect_true( is.loaded("RENinit"))
+})
+
+test_that("func works",{
+	ENinit(rptFile="xxx.rpt", outFile="yyy.out", unitsType=1, headLossType=1 )
+	expect_silent(ENclose())
+})

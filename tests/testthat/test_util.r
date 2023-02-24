@@ -32,3 +32,4 @@ test_that("lookup works",{
   intval <- lookup_enum_value(option_enums, "EN_ACCURACY")
   expect_equal(intval,1)
 })
+

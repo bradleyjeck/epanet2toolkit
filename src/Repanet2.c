@@ -30,6 +30,14 @@ void RENepanet( char** inp, char** rpt, char** bin, int* ENreturn_value) {
 
 }
 
+void RENinit(char **rptFile, char **binOutFile, int *unitsType, int *headlossType, int *ENreturn_value){
+
+  int rv;
+  rv = ENinit( *rptFile, *binOutFile, *unitsType, *headlossType );
+  *ENreturn_value = rv;
+}
+
+
 void RENopen(char **inpFile, char **rptFile, char **binOutFile, int* ENreturn_value){
   int rv;
   rv = ENopen( *inpFile, *rptFile, *binOutFile);
