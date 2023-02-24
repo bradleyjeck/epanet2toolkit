@@ -20,6 +20,7 @@ static const R_CMethodDef cMethods[] = {
     {"RgetOpenHflag"  , (DL_FUNC) &RgetOpenHflag, 1},  */
     {"RENepanet"      , (DL_FUNC) &RENepanet, 4},
 	{"RENinit"        , (DL_FUNC) &RENinit, 5},
+	{"RENgettitle"    , (DL_FUNC) &RENgettitle, 4},
     {"RENsaveinpfile" ,(DL_FUNC)  &RENsaveinpfile ,2},
     {"RENsolveH"      , (DL_FUNC) &RENsolveH      ,1},
     {"RENsaveH"       , (DL_FUNC) &RENsaveH       ,1},

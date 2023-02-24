@@ -44,6 +44,37 @@ void RENopen(char **inpFile, char **rptFile, char **binOutFile, int* ENreturn_va
   *ENreturn_value = rv;
 }
 
+void RENgettitle(char **line1, char **line2, char **line3, int *ENreturn_value){
+	int rv;
+
+	char l1[255];
+	l1[0]='a';
+	char *pl1;
+	pl1 = &l1[0];
+
+	char l2[255];
+	l2[0] = 'b';
+	char *pl2;
+	pl2 = &l2[0];
+
+	char l3[255];
+	l3[0] ='c';
+	char *pl3;
+	pl3 = &l3[0];
+
+	rv = ENgettitle( pl1, pl2, pl3);
+	*ENreturn_value = rv;
+	strcpy(line1[0],l1);
+	strcpy(line2[0],l2);
+	strcpy(line3[0],l3);
+}
+
+void RENsettitle(char **line1, char **line2, char **line3, int *ENreturn_value){
+	int rv;
+	rv = ENsettitle(*line1, *line2, *line3);
+	*ENreturn_value = rv;
+}
+
 void  RENsaveinpfile(char **filename, int* ENreturn_value){
   int rv;
   rv = ENsaveinpfile( *filename) ;

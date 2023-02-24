@@ -18,6 +18,10 @@ void RENinit(char **rptFile, char **outFile, int *unitsType, int *headlossType, 
  
 void RENopen(char **inpFile, char **rptFile, char **binOutFile, int* ENreturn_value);
 
+void RENgettitle(char **line1, char **line2, char **line3, int *ENreturn_value);
+
+void RENsettitle(char **line1, char **line2, char **line3, int *ENreturn_value);
+
 void RENsaveinpfile(char **filename, int* ENreturn_value);
 
 void RENclose(int* ENreturn_value);
