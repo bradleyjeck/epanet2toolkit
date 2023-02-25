@@ -302,3 +302,23 @@ ENsavehydfile <- function(hydfile){
     check_epanet_error( err )
 	  return( invisible() )
 }
+
+
+#' Uses previously saved binary hydraulics file to supply a project's hydraulics.
+#' 
+#' @param hydfile name of file containing hydraulic results
+#' @export   
+#' @useDynLib epaent2toolkit RENusehydfile
+#' @details Call this function to re-use a set of hydraulic analysis results saved previously. This
+#'  can save computational time if water quality analyses are being made under the same set
+#'  of hydraulic conditions.
+#'
+#'  Do not call this function while the hydraulics solver is open.
+ENusehydfile <- function(hydfile){
+
+    if( !is.character(hydfile) ) stop("hydfile must be character")   
+    arg <- .C("RENusehydfile", hydfile, as.integer(-1))
+    err <- arg[[2]]
+    check_epanet_error( err )
+	  return( invisible() )
+}

@@ -171,3 +171,25 @@ test_that("file saves",{
   # clean-up from the test
   file.remove(hydfile)
 })
+context("ENusehydfile")
+test_that("func exists",{
+   expect_true(is.loaded("RENusehydfile"))
+})
+test_that("file loads",{
+  # create hydraulics file
+  ENopen("Net1.inp", "Net1.rpt", "")
+  ENsolveH()
+  hydfile <- "net1.hyd"
+  ENsavehydfile(hydfile)
+  ENclose()
+  expect_true( file.exists(hydfile))
+
+  # now open the network again and load the file
+  ENopen("Net1.inp", "Net1.rpt", "")
+  expect_silent( ENusehydfile(hydfile))
+  ENclose()
+
+
+  # clean-up from the test
+  file.remove(hydfile)
+})

@@ -36,6 +36,8 @@ void RENinitH(int initFlag, int* ENreturn_value);
 
 void RENsavehydfile(char **filename, int *ENreturn_value);
 
+void RENusehydfile(char **filename, int *ENreturn_value);
+
 
 void RENgettimeparam(int *code, char** value, int* ENreturn_value);
 
