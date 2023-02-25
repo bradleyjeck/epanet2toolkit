@@ -24,6 +24,7 @@ static const R_CMethodDef cMethods[] = {
     {"RENsaveinpfile" ,(DL_FUNC)  &RENsaveinpfile ,2},
     {"RENsolveH"      , (DL_FUNC) &RENsolveH      ,1},
     {"RENsaveH"       , (DL_FUNC) &RENsaveH       ,1},
+    {"RENsavehydfile" , (DL_FUNC) &RENsavehydfile  ,2},
 	{"RENgettimeparam", (DL_FUNC) &RENgettimeparam,3},
 	{"RENsettimeparam", (DL_FUNC) &RENsettimeparam,3},
 	{"RENgetcount"    , (DL_FUNC) &RENgetcount    ,3},

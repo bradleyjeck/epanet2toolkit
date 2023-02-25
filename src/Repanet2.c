@@ -112,6 +112,11 @@ void RENinitH(int initFlag, int* ENreturn_value){
   *ENreturn_value = rv;
 }
 
+void RENsavehydfile(char **filename, int *ENreturn_value){
+	int rv;
+	rv = ENsavehydfile(*filename);
+	*ENreturn_value = rv;
+}
 void RENgettimeparam(int *code, char** value, int* ENreturn_value){
 	int rv;
 	long lval=0;
