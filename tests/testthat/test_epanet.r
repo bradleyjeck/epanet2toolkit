@@ -124,4 +124,5 @@ test_that("func exists",{
 test_that("func works",{
 	ENinit(rptFile="xxx.rpt", outFile="yyy.out", unitsType=1, headLossType=1 )
 	expect_silent(ENclose())
+	file.remove("xxx.rpt")
 })

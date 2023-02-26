@@ -44,7 +44,8 @@ static const R_CMethodDef cMethods[] = {
 	{"RENgetqualinfo" , (DL_FUNC) &RENgetqualinfo ,5},
 	{"RENgetcoord"    , (DL_FUNC) &RENgetcoord    ,4},
 	{"RENsetcoord"    , (DL_FUNC) &RENsetcoord    ,4},
-        {"RENreport"      , (DL_FUNC) &RENreport      ,1},
+    {"RENreport"      , (DL_FUNC) &RENreport      ,1},
+    {"RENcopyreport"  , (DL_FUNC) &RENcopyreport  ,2},
     {NULL}
 };
 

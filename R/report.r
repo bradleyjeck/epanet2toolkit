@@ -27,3 +27,21 @@ ENreport <- function(){
     check_epanet_error(x[[1]])
     return( invisible() ) 
 }
+
+#' Copies the current contents of a project's report file to another file
+#' 
+#' @param rptFile destination file
+#' 
+#' @details This function allows toolkit clients to retrieve the contents of a project's
+#' report file while the project is still open.
+#' @export
+#' @return Returns NULL invisibly; called for side effect
+#' @useDynLib epanet2toolkit RENcopyreport
+#' @return Returns NULL invisibly; called for side effect
+ENcopyreport <- function(rptFile){
+
+  if( !is.character(rptFile) ) stop("rptFile must be character")   
+  x <- .C("RENcopyreport", rptFile, as.integer(-1))
+  check_epanet_error(x[[2]])
+  return(invisible())
+}

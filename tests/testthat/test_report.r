@@ -5,7 +5,7 @@
 #
 #****************************************/
 
-context("report")
+context("ENreport")
 test_that("no crash calling on closed toolkit",{
   expect_error( x <- ENreport() ) 
 })
@@ -23,4 +23,27 @@ test_that("works",{
      file.remove("Net1-rpt.test")
      file.remove("Net1-rt.bin")
      
+})
+
+context("ENcopyreport")
+
+test_that("no crash calling on closed toolkit",{
+  expect_error( x <- ENcopyreport() ) 
+})
+
+test_that("writes report on open project",{
+
+  ENopen("Net1.inp", "Net1-rpt.test", "Net1-rt.bin")
+  t = NULL
+  ENopenH()
+  ENinitH(11)
+  t <- c(t,ENrunH())
+  tstep <- ENnextH()
+  ENcopyreport("temp.rpt")
+  ENcloseH()
+  ENclose()
+
+  expect_true(file.exists("temp.rpt"))
+  file.remove("temp.rpt")
+
 })
