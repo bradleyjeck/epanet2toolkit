@@ -46,6 +46,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENsetcoord"    , (DL_FUNC) &RENsetcoord    ,4},
     {"RENreport"      , (DL_FUNC) &RENreport      ,1},
     {"RENcopyreport"  , (DL_FUNC) &RENcopyreport  ,2},
+    {"RENclearreport" , (DL_FUNC) &RENclearreport ,1},
     {NULL}
 };
 

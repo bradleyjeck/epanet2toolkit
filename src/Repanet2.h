@@ -79,3 +79,4 @@ void RENsetcoord( int *index, double *xx, double *yy, int *ENreturn_value);
 void RENreport(int *ENreturn_value);
 
 void RENcopyreport( char ** rptfile, int *ENreturn_value);
+void RENclearreport(int *ENreturn_value);

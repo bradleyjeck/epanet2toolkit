@@ -324,3 +324,7 @@ void RENcopyreport(char **rptfile, int *ENreturn_value){
 	int rv = ENcopyreport(*rptfile);
     *ENreturn_value = rv;
 }
+void RENclearreport(int *ENreturn_value){
+	int rv = ENclearreport();
+    *ENreturn_value = rv;
+}

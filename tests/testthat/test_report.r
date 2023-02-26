@@ -45,5 +45,26 @@ test_that("writes report on open project",{
 
   expect_true(file.exists("temp.rpt"))
   file.remove("temp.rpt")
+  file.remove("Net1-rpt.test")
 
+})
+
+
+context("ENclearreport")
+test_that("no crash calling on closed toolkit",{
+  expect_silent( x <- ENclearreport() ) 
+})
+
+
+test_that("writes report on open project",{
+  ENopen("Net1.inp", "Net1-rpt.test", "Net1-rt.bin")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  x <- length(readLines("Net1-rpt.test", warn=FALSE))
+  ENclearreport()
+  ENreport()
+  y <- length(readLines("Net1-rpt.test", warn=FALSE))
+  expect_true( x > y)
+  file.remove("Net1-rpt.test")
 })

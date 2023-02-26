@@ -45,3 +45,15 @@ ENcopyreport <- function(rptFile){
   check_epanet_error(x[[2]])
   return(invisible())
 }
+
+#' Clears the contents of a project's report file.
+#' 
+#' @export
+#' @return Returns NULL invisibly; called for side effect
+#' @useDynLib epanet2toolkit RENclearreport
+#' @return Returns NULL invisibly; called for side effect
+ENclearreport <- function(){
+  x <- .C("RENclearreport", as.integer(-1))
+  check_epanet_error(x[[1]])
+  return(invisible())
+}
