@@ -80,3 +80,4 @@ void RENreport(int *ENreturn_value);
 
 void RENcopyreport( char ** rptfile, int *ENreturn_value);
 void RENclearreport(int *ENreturn_value);
+void RENresetreport(int *ENreturn_value);

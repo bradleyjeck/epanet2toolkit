@@ -51,9 +51,30 @@ ENcopyreport <- function(rptFile){
 #' @export
 #' @return Returns NULL invisibly; called for side effect
 #' @useDynLib epanet2toolkit RENclearreport
-#' @return Returns NULL invisibly; called for side effect
 ENclearreport <- function(){
   x <- .C("RENclearreport", as.integer(-1))
+  check_epanet_error(x[[1]])
+  return(invisible())
+}
+
+#' Resets a project's report options to their default values.
+#' 
+#' @export
+#' @return Returns NULL invisibly; called for side effect
+#' @useDynLib epanet2toolkit RENresetreport
+#' 
+#' @details After calling this function the default reporting options are in effect. These are:
+#'  * no status report
+#'  * no energy report
+#'  * no nodes reported on
+#'  * no links reported on
+#'  * node variables reported to 2 decimal places
+#'  * link variables reported to 2 decimal places (3 for friction factor)
+#'  * node variables reported are elevation, head, pressure, and quality
+#'  * link variables reported are flow, velocity, and head loss.
+#' @md
+ENresetreport <- function(){
+  x <- .C("RENresetreport", as.integer(-1))
   check_epanet_error(x[[1]])
   return(invisible())
 }

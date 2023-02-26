@@ -328,3 +328,7 @@ void RENclearreport(int *ENreturn_value){
 	int rv = ENclearreport();
     *ENreturn_value = rv;
 }
+void RENresetreport(int *ENreturn_value){
+	int rv = ENresetreport();
+    *ENreturn_value = rv;
+}

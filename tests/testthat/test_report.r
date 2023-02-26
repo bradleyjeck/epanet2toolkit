@@ -68,3 +68,9 @@ test_that("writes report on open project",{
   expect_true( x > y)
   file.remove("Net1-rpt.test")
 })
+
+
+context("ENresetreport")
+test_that("no crash calling on closed toolkit",{
+  expect_silent( x <- ENresetreport() )
+})
