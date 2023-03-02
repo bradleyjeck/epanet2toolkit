@@ -74,3 +74,23 @@ context("ENresetreport")
 test_that("no crash calling on closed toolkit",{
   expect_silent( x <- ENresetreport() )
 })
+
+context("ENsetreport")
+test_that("no crash calling on closed toolkit",{
+  expect_silent( x <- ENsetreport("links all") )
+  ENclose()
+})
+test_that("setreport",{
+  rptFile <- "Net1-rpt-linksall.test"
+  ENopen("Net1.inp",rptFile , "")
+  ENsetreport("Links All")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # confirm that links end up in the report
+  rpt <- epanetReader::read.rpt( rptFile )
+  expect_true( dim(rpt$linkResults)[1] > 10)
+  # clean up 
+  file.remove(rptFile)
+})

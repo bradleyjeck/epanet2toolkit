@@ -78,3 +78,15 @@ ENresetreport <- function(){
   check_epanet_error(x[[1]])
   return(invisible())
 }
+
+#' Processes a reporting format command.
+#' 
+#' @param format report formatting command:  one line from the [REPORT] section of an inp file
+#' @useDynLib epanet2toolkit RENsetreport
+#' @export
+ENsetreport <- function(format){  
+  if( !is.character(format) ) stop("rptFile must be character")
+  x <- .C("RENsetreport", format, as.integer(-1))
+  check_epanet_error(x[[2]])
+  return(invisible())
+}

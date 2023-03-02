@@ -332,3 +332,7 @@ void RENresetreport(int *ENreturn_value){
 	int rv = ENresetreport();
     *ENreturn_value = rv;
 }
+void RENsetreport(char **format, int *ENreturn_value){
+	int rv = ENsetreport(*format);
+	*ENreturn_value = rv;
+}
