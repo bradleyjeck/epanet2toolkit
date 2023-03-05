@@ -85,8 +85,23 @@ ENresetreport <- function(){
 #' @useDynLib epanet2toolkit RENsetreport
 #' @export
 ENsetreport <- function(format){  
-  if( !is.character(format) ) stop("rptFile must be character")
+  if( !is.character(format) ) stop("format must be character")
   x <- .C("RENsetreport", format, as.integer(-1))
+  check_epanet_error(x[[2]])
+  return(invisible())
+}
+
+
+#' Sets the level of hydraulic status reporting.
+#' 
+#' @param level one of: EN_NO_REPORT, EN_NORMAL_REPORT, EN_FULL_REPORT
+#' @useDynLib epanet2toolkit RENsetstatusreport
+#' @export
+ENsetstatusreport <- function(level){  
+  if( !is.character(level) ) stop("level must be character")
+	codeTable = c("EN_NO_REPORT", "EN_NORMAL_REPORT", "EN_FULL_REPORT")
+  value <- lookup_enum_value(codeTable, level)
+  x <- .C("RENsetstatusreport", as.integer(value), as.integer(-1))
   check_epanet_error(x[[2]])
   return(invisible())
 }

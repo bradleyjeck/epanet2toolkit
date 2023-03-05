@@ -94,3 +94,31 @@ test_that("setreport",{
   # clean up 
   file.remove(rptFile)
 })
+
+context("ENsetstatusreport")
+test_that("ENsetstatusreport",{
+  # full status report
+  fullRpt <- "Net1-rpt-status-full.test"
+  ENopen("Net1.inp", fullRpt, "")
+  ENsetstatusreport("EN_FULL_REPORT")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # no status report
+  noRpt <- "Net1-rpt-status-none.test"
+  ENopen("Net1.inp", noRpt, "")
+  ENsetstatusreport("EN_NO_REPORT")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # confirm FULL report is longer than NO report
+  expect_true(  length(readLines(fullRpt)) >
+                length(readLines(noRpt)),
+                "full status report is longer than no report")
+  # clean up 
+  file.remove(fullRpt)
+  file.remove(noRpt)
+  
+})

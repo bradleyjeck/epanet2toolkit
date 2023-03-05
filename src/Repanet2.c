@@ -336,3 +336,8 @@ void RENsetreport(char **format, int *ENreturn_value){
 	int rv = ENsetreport(*format);
 	*ENreturn_value = rv;
 }
+void RENsetstatusreport(int *level, int *ENreturn_value){
+	int lev = *level;
+	int rv = ENsetstatusreport(lev);
+	*ENreturn_value = rv;
+}

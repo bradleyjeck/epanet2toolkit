@@ -82,3 +82,4 @@ void RENcopyreport( char ** rptfile, int *ENreturn_value);
 void RENclearreport(int *ENreturn_value);
 void RENresetreport(int *ENreturn_value);
 void RENsetreport(char **format, int *ENreturn_value);
+void RENsetstatusreport(int *level, int *ENreturn_value);
