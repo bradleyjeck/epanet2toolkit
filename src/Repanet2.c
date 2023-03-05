@@ -341,3 +341,9 @@ void RENsetstatusreport(int *level, int *ENreturn_value){
 	int rv = ENsetstatusreport(lev);
 	*ENreturn_value = rv;
 }
+void RENgeterror(int *errcode, char **errmsg, int *maxLen, int *ENreturn_value){
+	int ecode = *errcode;
+	int len = *maxLen;
+	int rv = ENgeterror(ecode, *errmsg, len);
+	*ENreturn_value = rv;
+}

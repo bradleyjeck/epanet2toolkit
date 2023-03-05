@@ -122,3 +122,9 @@ test_that("ENsetstatusreport",{
   file.remove(noRpt)
   
 })
+
+context("ENgeterror")
+test_that("gets err msg",{
+    msg <- ENgeterror(200)
+    expect_false( is.na(msg))
+})
