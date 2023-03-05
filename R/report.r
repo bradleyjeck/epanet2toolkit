@@ -119,3 +119,35 @@ ENgeterror <- function(errcode){
   check_epanet_error(x[[4]])
   return(buffer)
 }
+
+
+#' Analysis convergence statistics.
+#'
+#' 
+#' @param stat one of the statistics tabulated below
+#' @returns value of the stat
+#' @useDynLib epanet2toolkit RENgetstatistic
+#' @export
+#' @details  These statistics report the convergence criteria for the most current
+#' hydraulic analysis and the cumulative water quality mass balance error at the
+#' current simulation time. 
+#' 
+#' \tabular{ll}{
+#'   \code{EN_ITERATIONS} \tab Number of hydraulic iterations taken. \cr
+#'   \code{EN_RELATIVEERROR} \tab Sum of link flow changes / sum of link flows. \cr
+#'   \code{EN_MAXHEADERROR} \tab Largest head loss error for links. \cr
+#'   \code{EN_MAXFLOWCHANGE} \tab Largest flow change in links. \cr
+#'   \code{EN_MASSBALANCE} \tab Cumulative water quality mass balance ratio. \cr
+#'   \code{EN_DEFICIENTNODES} \tab Number of pressure deficient nodes. \cr
+#'   \code{EN_DEMANDREDUCTION} \tab % demand reduction at pressure deficient nodes \cr
+#' }
+ENgetstatistic <- function(stat){
+  
+  codeTable <- c("EN_ITERATIONS", "EN_RELATIVEERROR", "EN_MAXHEADERROR", "EN_MAXFLOWCHANGE",
+                 "EN_MASSBALANCE", "EN_DEFICIENTNODES","EN_DEMANDREDUCTION")
+  statCode <- lookup_enum_value(codeTable, stat)
+  x <- .C("RENgetstatistic", as.integer(statCode), -999999.0, as.integer(-1))
+  check_epanet_error(x[[3]])
+  val <- x[[2]]
+  return(val)
+}

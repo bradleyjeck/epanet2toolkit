@@ -128,3 +128,43 @@ test_that("gets err msg",{
     msg <- ENgeterror(200)
     expect_false( is.na(msg))
 })
+
+context("ENgetstatistic")
+test_that("stats work",{
+  ENopen("Net1.inp", "Net1-stats-test.rpt")
+  ENopenH()
+  ENinitH(11)
+  ENrunH()
+  ENnextH()
+
+  stat <- "EN_ITERATIONS"
+  val <- ENgetstatistic(stat)
+  expect_true(as.integer(val) > 0)
+
+  stat <- "EN_RELATIVEERROR"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MAXHEADERROR"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MAXFLOWCHANGE"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MASSBALANCE"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_DEFICIENTNODES"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_DEMANDREDUCTION"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  ENclose()
+  file.remove("Net1-stats-test.rpt")
+})

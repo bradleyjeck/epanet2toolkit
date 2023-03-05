@@ -327,3 +327,12 @@ void RENgeterror(int *errcode, char **errmsg, int *maxLen, int *ENreturn_value){
 	int rv = ENgeterror(ecode, *errmsg, len);
 	*ENreturn_value = rv;
 }
+void RENgetstatistic(int *statcode, double *statval, int *ENreturn_value){
+	int sc = *statcode;
+	float sv=0.0;
+	float *psv;
+    psv = &sv;
+	int rv = ENgetstatistic(sc, psv);
+	*ENreturn_value = rv;
+	*statval =(double) sv;
+}

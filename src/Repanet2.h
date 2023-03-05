@@ -84,3 +84,4 @@ void RENresetreport(int *ENreturn_value);
 void RENsetreport(char **format, int *ENreturn_value);
 void RENsetstatusreport(int *level, int *ENreturn_value);
 void RENgeterror(int *errcode, char **errmsg, int *maxLen, int *ENreturn_value);
+void RENgetstatistic(int *statcode, double *statval, int *ENreturn_value);

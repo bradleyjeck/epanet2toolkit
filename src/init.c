@@ -51,6 +51,7 @@ static const R_CMethodDef cMethods[] = {
     {"RENsetreport"   , (DL_FUNC) &RENsetreport   ,2},
     {"RENsetstatusreport", (DL_FUNC) &RENsetstatusreport,2},
 	{"RENgeterror"    , (DL_FUNC) &RENgeterror    ,4},
+	{"RENgetstatistic", (DL_FUNC) &RENgetstatistic,3},
     {NULL}
 };
 
