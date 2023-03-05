@@ -12,7 +12,6 @@ ENgettitle <- function(){
    arg <- .C("RENgettitle", row1, row2, row3, as.integer(-1))
    err <- arg[[4]]
    check_epanet_error(err)
-
-   title <- c(row1, row2, row3)
+   title <- unlist(arg)[1:3]
    return(title)
 }
