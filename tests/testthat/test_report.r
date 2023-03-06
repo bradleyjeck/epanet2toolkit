@@ -168,3 +168,24 @@ test_that("stats work",{
   ENclose()
   file.remove("Net1-stats-test.rpt")
 })
+
+context("ENgetresultindex")
+test_that("index matches",{
+
+  rptFile <- "Net1-indexcheck.rpt"
+  ENopen("Net1.inp", rptFile)
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+
+  nix <- 3
+  nid <- ENgetnodeid(nix)
+  rix <- ENgetresultindex("EN_NODE", nix)
+  
+  ENclose()
+
+  # supporess warning about missing link results
+  rpt <- suppressWarnings( epanetReader::read.rpt(rptFile))
+  expect_equal( rpt$nodeResults$ID[rix], nid, 
+                "node ID in report file matches rix") 
+})

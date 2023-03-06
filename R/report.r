@@ -151,3 +151,23 @@ ENgetstatistic <- function(stat){
   val <- x[[2]]
   return(val)
 }
+
+
+#' Retrieves the order in which a node or link appears in an output file.
+#' 
+#' @param type a type of element (either EN_NODE or EN_LINK).
+#' @param index the element's current index (starting from 1).
+#' @returns the order in which the element's results were written to file.
+#' @details If the element does not appear in the file then its result index is 0.
+#'
+#'  This function can be used to correctly retrieve results from an EPANET binary output file
+#'  after the order of nodes or links in a network's database has been changed due to editing
+#'  operations.
+ENgetresultindex <-function(type, index){
+  codeTable <- c("EN_NODE","EN_LINK")
+  codeVal <- lookup_enum_value(codeTable, type)
+  x <- .C("RENgetresultindex", as.integer(codeVal), as.integer(index), as.integer(-1), as.integer(-1))
+  check_epanet_error(x[[4]])
+  val <- x[[3]]
+  return(val)
+}

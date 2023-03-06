@@ -336,3 +336,13 @@ void RENgetstatistic(int *statcode, double *statval, int *ENreturn_value){
 	*ENreturn_value = rv;
 	*statval =(double) sv;
 }
+
+void RENgetresultindex(int *type, int *index, int *residx, int *ENreturn_value){
+	int ty = *type;
+	int iix = *index;
+	int rix = 0;
+	int *prix = &rix;
+	int rv = ENgetresultindex(ty, iix, prix);
+	*ENreturn_value = rv;
+	*residx = rix;
+}
