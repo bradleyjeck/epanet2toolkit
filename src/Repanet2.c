@@ -346,3 +346,9 @@ void RENgetresultindex(int *type, int *index, int *residx, int *ENreturn_value){
 	*ENreturn_value = rv;
 	*residx = rix;
 }
+
+void RENsetflowunits(int *units, int *ENreturn_value){
+	int fu = *units;
+	int rv = ENsetflowunits(fu);
+	*ENreturn_value = rv;
+}

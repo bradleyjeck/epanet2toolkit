@@ -53,6 +53,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENgeterror"    , (DL_FUNC) &RENgeterror    ,4},
 	{"RENgetstatistic", (DL_FUNC) &RENgetstatistic,3},
 	{"RENgetresultindex",(DL_FUNC) &RENgetresultindex,4},
+	{"RENsetflowunits", (DL_FUNC) &RENsetflowunits,2},
     {NULL}
 };
 

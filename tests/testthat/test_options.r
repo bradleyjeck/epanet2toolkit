@@ -109,3 +109,16 @@ test_that("returns NULL invisibly on success",{
 		})
 
 
+context("ENsetflowunits")
+test_that("setting net1 units",{
+	rptFile <- "net1-setunits.rpt"
+	ENopen("Net1.inp", rptFile)
+	before <- ENgetflowunits()
+	ENsetflowunits("EN_AFD")
+	after <- ENgetflowunits()
+	ENclose()
+	expect_false(before == after)
+
+	# clean up
+	file.remove(rptFile)
+})
