@@ -134,3 +134,21 @@ test_that("returns NULL invisibly on success",{
   expect_null(x$value)
   expect_false(x$visible)
 })
+
+context("ENaddnode")
+test_that("adding node works",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  outFile <- paste0("node-tests-", suffix,".out")
+  ENinit(rptFile, outFile, "EN_CFS", "EN_DW")
+  idx1 <- ENaddnode('node1', 'EN_JUNCTION')
+  idx2 <- ENaddnode('2a', 'EN_JUNCTION')
+  ENclose()
+
+  expect_true( idx1 > 0 )
+  expect_true( idx1 ==1 )
+  expect_true( idx2 ==2 )
+
+  # clean up
+  file.remove(rptFile)
+})

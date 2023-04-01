@@ -352,3 +352,12 @@ void RENsetflowunits(int *units, int *ENreturn_value){
 	int rv = ENsetflowunits(fu);
 	*ENreturn_value = rv;
 }
+
+void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value){
+	int ntype = *nodeType;
+	int nix = 0;
+	int *pnix = &nix;
+	int rv = ENaddnode( *id, ntype, pnix);
+	*ENreturn_value = rv;
+	*index = nix;
+}

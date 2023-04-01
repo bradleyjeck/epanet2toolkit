@@ -314,3 +314,21 @@ ENsetnodevalue <- function(index, paramcode = NULL, value = NULL) {
   return(invisible())
   
 }
+
+
+#'  Adds a new node
+#' 
+#' @param nodeid name of the node to be added
+#' @param nodetype the type of node being added
+#' @return index the index of the newly added node
+#' @details When a new node is created all of its properties are set to 0.
+#' @export
+#' @useDynLib epanet2toolkit RENaddnode
+ENaddnode <- function(nodeid, nodetype){
+  codeTable <- c("EN_JUNCTION", "EN_RESERVOIR","EN_TANK")
+  typeval <- lookup_enum_value(codeTable, nodetype)
+  res <- .C("RENaddnode", nodeid, typeval, as.integer(-1), as.integer(-1))
+  check_epanet_error(res[[4]])
+  nodeindex <- res[[3]]
+  return(nodeindex)
+}

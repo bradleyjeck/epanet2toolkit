@@ -87,3 +87,5 @@ void RENgeterror(int *errcode, char **errmsg, int *maxLen, int *ENreturn_value);
 void RENgetstatistic(int *statcode, double *statval, int *ENreturn_value);
 void RENgetresultindex(int *type, int *index, int *residx, int *ENreturn_value);
 void RENsetflowunits(int *units, int *ENreturn_value);
+
+void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value);
