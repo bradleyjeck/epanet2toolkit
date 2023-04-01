@@ -368,3 +368,9 @@ void RENdeletenode(int *index, int *code, int *ENreturn_value){
 	int rv = ENdeletenode(idx, acode);
 	*ENreturn_value = rv;
 }
+
+void RENsetnodeid(int *index, char **newid, int *ENreturn_value){
+	int idx = *index;
+	int rv = ENsetnodeid(idx, *newid);
+	*ENreturn_value = rv;
+}

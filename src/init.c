@@ -56,6 +56,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENsetflowunits", (DL_FUNC) &RENsetflowunits,2},
 	{"RENaddnode"     , (DL_FUNC) &RENaddnode     ,4},
 	{"RENdeletenode"  , (DL_FUNC) &RENdeletenode  ,3},
+	{"RENsetnodeid"   , (DL_FUNC) &RENsetnodeid   ,3},
     {NULL}
 };
 

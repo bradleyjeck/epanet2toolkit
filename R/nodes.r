@@ -351,3 +351,16 @@ ENdeletenode <- function( nodeindex, actionCode){
   check_epanet_error(res[[3]])
   return (invisible())
 }
+
+#' Changes the ID name of a node
+#' 
+#' @param nodeindex index of the node
+#' @param newid new ID name of the node
+#' @export
+#' @useDynLib epanet2toolkit RENsetnodeid
+ENsetnodeid <- function(nodeindex, newid){
+
+  res <- .C("RENsetnodeid", as.integer(nodeindex), as.character(newid), as.integer(-1))
+  check_epanet_error(res[[3]])
+  return(invisible())
+}

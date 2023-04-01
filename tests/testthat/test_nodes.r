@@ -156,3 +156,18 @@ test_that("add delete node",{
   # clean up
   file.remove(rptFile)
 })
+
+context("ENsetnodeid")
+test_that("set node id",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile, "")
+  oldid <- ENgetnodeid(5)
+  ENsetnodeid(5, suffix)
+  newid <- ENgetnodeid(5)
+  expect_false(oldid == newid)
+  expect_true(newid == suffix)
+  ENclose()
+
+  file.remove(rptFile)
+})
