@@ -135,19 +135,23 @@ test_that("returns NULL invisibly on success",{
   expect_false(x$visible)
 })
 
-context("ENaddnode")
-test_that("adding node works",{
+
+context("ENadd/deletenode")
+test_that("add delete node",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
   outFile <- paste0("node-tests-", suffix,".out")
   ENinit(rptFile, outFile, "EN_CFS", "EN_DW")
   idx1 <- ENaddnode('node1', 'EN_JUNCTION')
   idx2 <- ENaddnode('2a', 'EN_JUNCTION')
-  ENclose()
-
-  expect_true( idx1 > 0 )
   expect_true( idx1 ==1 )
   expect_true( idx2 ==2 )
+
+  ENdeletenode(idx1, "EN_UNCONDITIONAL")
+
+  idx2a <- ENgetnodeindex('2a')
+  expect_false(idx2 == idx2a )
+  ENclose()
 
   # clean up
   file.remove(rptFile)

@@ -89,3 +89,4 @@ void RENgetresultindex(int *type, int *index, int *residx, int *ENreturn_value);
 void RENsetflowunits(int *units, int *ENreturn_value);
 
 void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value);
+void RENdeletenode(int *index, int *code, int *ENreturn_value);

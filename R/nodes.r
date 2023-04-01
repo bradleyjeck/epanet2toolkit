@@ -319,7 +319,7 @@ ENsetnodevalue <- function(index, paramcode = NULL, value = NULL) {
 #'  Adds a new node
 #' 
 #' @param nodeid name of the node to be added
-#' @param nodetype the type of node being added
+#' @param nodetype the type of node being added. One of: EN_JUNCTION, EN_RESERVOIR, EN_TANK
 #' @return index the index of the newly added node
 #' @details When a new node is created all of its properties are set to 0.
 #' @export
@@ -331,4 +331,23 @@ ENaddnode <- function(nodeid, nodetype){
   check_epanet_error(res[[4]])
   nodeindex <- res[[3]]
   return(nodeindex)
+}
+
+#' Deletes a node
+#' 
+#' @param nodeindex the index of the node to be deleted.
+#' @param actionCode the action taken if any control contains the node and its links: EN_UNCONDITIONAL or EN_CONDITIONAL.
+#' 
+#' @details If `actionCode` is EN_UNCONDITIONAL then the node, its incident links and all
+#' simple and rule-based controls that contain them are deleted. If set to
+#' EN_CONDITIONAL then the node is not deleted if it or its incident links appear
+#' in any controls and error code 261 is returned.
+#' @export
+#' @useDynLib epanet2toolkit RENdeletenode
+ENdeletenode <- function( nodeindex, actionCode){
+  codeTable <- c("EN_UNCONDITIONAL", "EN_CONDITIONAL")
+  val <- lookup_enum_value(codeTable, actionCode)
+  res <- .C("RENdeletenode", as.integer(nodeindex), val, as.integer(-1))
+  check_epanet_error(res[[3]])
+  return (invisible())
 }

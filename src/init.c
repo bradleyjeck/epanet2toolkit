@@ -54,7 +54,8 @@ static const R_CMethodDef cMethods[] = {
 	{"RENgetstatistic", (DL_FUNC) &RENgetstatistic,3},
 	{"RENgetresultindex",(DL_FUNC) &RENgetresultindex,4},
 	{"RENsetflowunits", (DL_FUNC) &RENsetflowunits,2},
-	{"RENaddnode"     , (DL_FUNC) &RENaddnode, 4},
+	{"RENaddnode"     , (DL_FUNC) &RENaddnode     ,4},
+	{"RENdeletenode"  , (DL_FUNC) &RENdeletenode  ,3},
     {NULL}
 };
 

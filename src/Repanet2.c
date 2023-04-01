@@ -361,3 +361,10 @@ void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value){
 	*ENreturn_value = rv;
 	*index = nix;
 }
+
+void RENdeletenode(int *index, int *code, int *ENreturn_value){
+	int idx = *index;
+	int acode = *code;
+	int rv = ENdeletenode(idx, acode);
+	*ENreturn_value = rv;
+}
