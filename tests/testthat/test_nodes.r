@@ -171,3 +171,21 @@ test_that("set node id",{
 
   file.remove(rptFile)
 })
+
+context("ENsetjuncdata")
+test_that("set junc data",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile, "")
+
+  ENsetjuncdata(nodeindex=5, elevation=999, demand=123)
+
+  elev = ENgetnodevalue(5,"EN_ELEVATION")
+  expect_equal(as.integer(elev), 999)
+
+  dmd = ENgetnodevalue(5,"EN_BASEDEMAND")
+  expect_equal(as.integer(dmd), 123)
+  ENclose()
+
+  file.remove(rptFile)
+})

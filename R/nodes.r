@@ -364,3 +364,22 @@ ENsetnodeid <- function(nodeindex, newid){
   check_epanet_error(res[[3]])
   return(invisible())
 }
+
+
+#'  Sets properties for a junction
+#' 
+#' @param nodeindex a junction node's index (starting from 1).
+#' @param elevation the value of the junction's elevation.
+#' @param demand the value of the junction's primary base demand.
+#' @param demand_pattern the ID name of the demand's time pattern ("" for no pattern)
+#' @details These properties have units that depend on the units used for flow rate.
+#' @export
+#' @useDynLib epanet2toolkit RENsetjuncdata
+ENsetjuncdata <- function(nodeindex, elevation, demand, demand_pattern=""){
+
+  res <- .C("RENsetjuncdata", as.integer(nodeindex), as.numeric(elevation),
+            as.numeric(demand), as.character(demand_pattern), as.integer(-1))
+  check_epanet_error( res[[5]])
+  return(invisible())
+}
+
