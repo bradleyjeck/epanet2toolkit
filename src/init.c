@@ -104,7 +104,7 @@ static const R_CMethodDef cMethods[] = {
 	{"RENaddrule"      , (DL_FUNC) &RENaddrule      ,2},
 	{"RENdeleterule"   , (DL_FUNC) &RENdeleterule   ,2},
 	{"RENgetrule"      , (DL_FUNC) &RENgetrule      ,6},
-	{"RENgetruleid"    , (DL_FUNC) &RENgetruleid    ,3},
+	{"RENgetruleID"    , (DL_FUNC) &RENgetruleID    ,3},
 	{"RENgetpremise"   , (DL_FUNC) &RENgetpremise   ,10},
 	{"RENsetpremise"   , (DL_FUNC) &RENsetpremise   ,10},
 	{"RENsetpremiseindex",(DL_FUNC) &RENsetpremiseindex,4},

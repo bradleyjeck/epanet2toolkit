@@ -451,7 +451,7 @@ void RENgetbasedemand(int *nodeIndex, int *demandIndex, double *baseDemand, int 
 	int didx = *demandIndex;
 	EN_API_FLOAT_TYPE bdmd=0.0;
 	EN_API_FLOAT_TYPE *pbdmd = &bdmd;
-	int rv = ENgetbasedemand(nidx, didx, *pbdmd);
+	int rv = ENgetbasedemand(nidx, didx, pbdmd);
 	*baseDemand = (double) bdmd;
 	*enrv = rv;
 }
@@ -633,7 +633,7 @@ void RENgetaveragepatternvalue(int *index, double *value, int *enrv){
 	int idx = *index;
 	EN_API_FLOAT_TYPE val = 0.0;
 	EN_API_FLOAT_TYPE *pval = &val;
-	int rv = ENgetaveragepatternvalue(idx, *pval);
+	int rv = ENgetaveragepatternvalue(idx, pval);
 	*value = (double) val;
 	*enrv = rv;
 }
@@ -663,6 +663,13 @@ void RENgetcurveid(int *index, char **id, int *enrv){
 	*enrv = rv;
 }
 
+void RENsetcurveid(int *index, char **id, int *enrv){
+    int idx = *index;
+    int rv = ENsetcurveid(idx, *id);
+	*enrv = rv;
+}
+
+
 void RENgetcurvelen(int *index, int *len, int *enrv){
 	int idx = *index;
 	int length = 0;
@@ -688,7 +695,7 @@ void RENgetcurvevalue(int *curveIndex, int *pointIndex, double *x, double *y, in
 	EN_API_FLOAT_TYPE *pxx = &xx;
 	EN_API_FLOAT_TYPE yy = 0.0;
 	EN_API_FLOAT_TYPE *pyy = &yy;
-	int rv = ENgetcurvevalue(cidx, pidx, *pxx, *pyy);
+	int rv = ENgetcurvevalue(cidx, pidx, pxx, pyy);
 	*x = (double) xx;
 	*y = (double) yy;
 	*enrv = rv;
@@ -764,7 +771,7 @@ void RENgetrule(int *index, int *nPremises, int *nThenActions, int *nElseActions
 
 	EN_API_FLOAT_TYPE pty = 0.0;
 	EN_API_FLOAT_TYPE *ppty = &pty;
-	int rv = ENgetrule(idx, *nPremises, *nThenActions, *nElseActions, *ppty);
+	int rv = ENgetrule(idx, *nPremises, *nThenActions, *nElseActions, ppty);
 	*priority = (double) pty;
 	*enrv = rv;
 }
@@ -784,7 +791,7 @@ void RENgetpremise(int *ruleIndex, int *premiseIndex, int *logop, int *object, i
 	int pidx = *premiseIndex;
 	EN_API_FLOAT_TYPE val = 0.0;
 	EN_API_FLOAT_TYPE *pval = &val;
-	int rv = ENgetpremise(ridx, pidx, *logop, *object, *objIndex, *variable, *relop, *status, *pval);
+	int rv = ENgetpremise(ridx, pidx, *logop, *object, *objIndex, *variable, *relop, *status, pval);
 	*value = (double) val;
 	*enrv = rv;
 }
@@ -820,7 +827,7 @@ void RENsetpremisestatus(int *ruleIndex, int *premiseIndex, int *status, int *en
 	int pidx = *premiseIndex;
 	int stat = *status;
 	
-	int rv = ENsestpremisestatus(ridx, pidx, stat);
+	int rv = ENsetpremisestatus(ridx, pidx, stat);
 	*enrv = rv;
 }
 
@@ -838,7 +845,7 @@ void RENgetthenaction(int *ruleIndex, int *actionIndex, int *linkIndex, int *sta
 	int aidx = *actionIndex;
 	EN_API_FLOAT_TYPE stg = 0.0;
 	EN_API_FLOAT_TYPE *pstg = &stg; 
-	int rv = ENgetthenaction(ridx, aidx, *linkIndex, *status, *pstg);
+	int rv = ENgetthenaction(ridx, aidx, *linkIndex, *status, pstg);
 	*enrv = rv;
 }
 
@@ -857,7 +864,7 @@ void RENgetelseaction(int *ruleIndex, int *actionIndex, int *linkIndex, int *sta
 	EN_API_FLOAT_TYPE stg = 0.0;
 	EN_API_FLOAT_TYPE *pstg = &stg; 
 
-	int rv = ENgetelseaction(ridx, aidx, *linkIndex, *status, *pstg);
+	int rv = ENgetelseaction(ridx, aidx, *linkIndex, *status, pstg);
 	*setting = (double) stg;
 	*enrv = rv;
 }
