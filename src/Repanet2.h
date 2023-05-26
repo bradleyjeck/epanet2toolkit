@@ -136,8 +136,8 @@ void RENgetcurvelen(int *index, int *len, int *enrv);
 void RENgetcurvetype(int *index, int *type, int *enrv);
 void RENgetcurvevalue(int *curveIndex, int *pointIndex, double *x, double *y, int *enrv);
 void RENsetcurvevalue(int *curveIndex, int *pointIndex, double *x, double *y, int *enrv);
-void RENgetcurve(int *index, char **id, int *nPoints, double *xValues, double *yValues, int *enrv);
-void RENsetcurve(int *index, double *xValues, double *yValues, int *nPoints, int *enrv);
+//void RENgetcurve(int *index, char **id, int *nPoints, double *xValues, double *yValues, int *enrv);
+//void RENsetcurve(int *index, double *xValues, double *yValues, int *nPoints, int *enrv);
 
 void RENaddcontrol(int *type, int *linkIndex, double *setting, int *nodeIndex, double *level, int *index, int *enrv);
 void RENdeletecontrol(int *index, int *enrv);
