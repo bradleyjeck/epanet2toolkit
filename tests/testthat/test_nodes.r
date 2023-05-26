@@ -189,3 +189,30 @@ test_that("set junc data",{
 
   file.remove(rptFile)
 })
+
+context("ENsettankdata")
+test_that("set tank data",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile, "")
+  #;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve
+  #  2               	850         	120         	100         	150         	50.5        	0           	                	;
+  tid = ENgetnodeindex("2")
+
+  ENsettankdata(nodeindex=tid,
+                 elevation=888,
+                 init_level = 125,
+                 min_level = 99,
+                 max_level = 145,
+                 diameter = 44,
+                 min_volume = 1)
+
+  elev = ENgetnodevalue(tid,"EN_ELEVATION")
+  expect_equal(as.integer(elev), 888)
+
+  initlvl = ENgetnodevalue(tid,"EN_TANKLEVEL")
+  expect_equal(as.integer(initlvl), 125)
+  ENclose()
+
+  file.remove(rptFile)
+})

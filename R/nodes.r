@@ -383,3 +383,23 @@ ENsetjuncdata <- function(nodeindex, elevation, demand, demand_pattern=""){
   return(invisible())
 }
 
+#' Sets properties for a tank
+#' 
+#' @param nodeindex tank's node index (starting from 1)
+#' @param elevation the tank's bottom elevation.
+#' @param init_level the initial water level in the tank.
+#' @param min_level the minimum water level for the tank.
+#' @param max_level the maximum water level for the tank.
+#' @param diameter the tank's diameter (0 if a volume curve is supplied).
+#' @param min_volume the volume of the tank at its minimum water level.
+#' @param volume_curve the name of the tank's volume curve ("" for no curve)
+#' @export
+#' @useDynLib epanet2toolkit RENsettankdata
+ENsettankdata <- function(nodeindex, elevation, init_level, min_level, max_level, diameter, min_volume, volume_curve=""){
+
+  res <- .C("RENsettankdata", as.integer(nodeindex), as.numeric(elevation), as.numeric(init_level), as.numeric(min_level),
+                              as.numeric(max_level), as.numeric(diameter), as.numeric(min_volume), as.character(volume_curve), as.integer(-1) )
+  check_epanet_error(res[[9]])
+  return(invisible())
+}
+
