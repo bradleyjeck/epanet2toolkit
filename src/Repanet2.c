@@ -400,15 +400,24 @@ void RENsettankdata(int *index, double *elev, double *initlvl, double *minlvl,
 
 void RENgetdemandmodel(int *model, double *pmin, double *preq, double *pexp, int *enrv){
 
-	int rv = ENgetdemandmodel(model, pmin, preq, pexp);
+	EN_API_FLOAT_TYPE pressmin = 0.0;
+	EN_API_FLOAT_TYPE pressrqd = 0.0;
+	EN_API_FLOAT_TYPE pressexp = 0.0;
+	EN_API_FLOAT_TYPE *ppmin = &pressmin;
+	EN_API_FLOAT_TYPE *ppreq = &pressrqd;
+	EN_API_FLOAT_TYPE *ppexp = &pressexp;
+	int rv = ENgetdemandmodel(model, ppmin, ppreq, ppexp);
+	*pmin = (double) pressmin;
+	*preq = (double) pressrqd;
+	*pexp = (double) pressexp;
 	*enrv = rv;
 }
 
 void RENsetdemandmodel(int *model, double *pmin, double *preq, double *pexp, int *enrv){
 	int mod = *model;
-	double pressmin = *pmin;
-	double pressrqd = *preq;
-	double pressexp = *pexp;
+	EN_API_FLOAT_TYPE pressmin = *pmin;
+	EN_API_FLOAT_TYPE pressrqd = *preq;
+	EN_API_FLOAT_TYPE pressexp = *pexp;
 	int rv = ENsetdemandmodel(mod, pressmin, pressrqd, pressexp);
 	*enrv = rv;
 }

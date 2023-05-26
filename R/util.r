@@ -29,7 +29,6 @@ check_char_length_1 <- function( x ){
 }
 
 
-#codeTable = c("EN_TRIALS", "EN_ACCURACY", "EN_TOLERANCE", "EN_EMITEXPON", "EN_DEMANDMULT")
 lookup_enum_value <- function(codeTable, optioncode){
 
 	# check the arguments
