@@ -441,16 +441,16 @@ void RENgetnumdemands(int *nodeIndex, int *numDemands, int *enrv){
 	int nidx = *nodeIndex;
 	int numd=0;
 	int *pnumd=&numd;
-	int rv = ENgetnumdemands(nidx,*pnumd);
+	int rv = ENgetnumdemands(nidx,pnumd);
 	*numDemands=numd;
 	*enrv=rv;
 }
 
 void RENgetdemandindex(int *nodeIndex, char **demandName, int *demandIndex, int *enrv){
-	int nidx = nodeIndex;
+	int nidx = *nodeIndex;
     int didx=0;
 	int *pdidx = &didx;
-	int rv = ENgetdemandindex(nidx, *demandName, *pdidx);
+	int rv = ENgetdemandindex(nidx, *demandName, pdidx);
 	*demandIndex = didx;
 	*enrv = rv;
 }
@@ -478,7 +478,7 @@ void RENgetdemandpattern(int *nodeIndex, int *demandIndex, int *patIndex, int *e
 	int didx = *demandIndex;
 	int patidx = 0;
 	int *ppatidx = &patidx;
-	int rv = ENgetdemandpattern(nidx, didx, *ppatidx);
+	int rv = ENgetdemandpattern(nidx, didx, ppatidx);
 	*patIndex = patidx;
 	*enrv = rv;
 }
