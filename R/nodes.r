@@ -314,3 +314,92 @@ ENsetnodevalue <- function(index, paramcode = NULL, value = NULL) {
   return(invisible())
   
 }
+
+
+#'  Adds a new node
+#' 
+#' @param nodeid name of the node to be added
+#' @param nodetype the type of node being added. One of: EN_JUNCTION, EN_RESERVOIR, EN_TANK
+#' @return index the index of the newly added node
+#' @details When a new node is created all of its properties are set to 0.
+#' @export
+#' @useDynLib epanet2toolkit RENaddnode
+ENaddnode <- function(nodeid, nodetype){
+  codeTable <- c("EN_JUNCTION", "EN_RESERVOIR","EN_TANK")
+  typeval <- lookup_enum_value(codeTable, nodetype)
+  res <- .C("RENaddnode", nodeid, typeval, as.integer(-1), as.integer(-1))
+  check_epanet_error(res[[4]])
+  nodeindex <- res[[3]]
+  return(nodeindex)
+}
+
+#' Deletes a node
+#' 
+#' @param nodeindex the index of the node to be deleted.
+#' @param actionCode the action taken if any control contains the node and its links: EN_UNCONDITIONAL or EN_CONDITIONAL.
+#' 
+#' @details If `actionCode` is EN_UNCONDITIONAL then the node, its incident links and all
+#' simple and rule-based controls that contain them are deleted. If set to
+#' EN_CONDITIONAL then the node is not deleted if it or its incident links appear
+#' in any controls and error code 261 is returned.
+#' @export
+#' @useDynLib epanet2toolkit RENdeletenode
+ENdeletenode <- function( nodeindex, actionCode){
+  codeTable <- c("EN_UNCONDITIONAL", "EN_CONDITIONAL")
+  val <- lookup_enum_value(codeTable, actionCode)
+  res <- .C("RENdeletenode", as.integer(nodeindex), val, as.integer(-1))
+  check_epanet_error(res[[3]])
+  return (invisible())
+}
+
+#' Changes the ID name of a node
+#' 
+#' @param nodeindex index of the node
+#' @param newid new ID name of the node
+#' @export
+#' @useDynLib epanet2toolkit RENsetnodeid
+ENsetnodeid <- function(nodeindex, newid){
+
+  res <- .C("RENsetnodeid", as.integer(nodeindex), as.character(newid), as.integer(-1))
+  check_epanet_error(res[[3]])
+  return(invisible())
+}
+
+
+#'  Sets properties for a junction
+#' 
+#' @param nodeindex a junction node's index (starting from 1).
+#' @param elevation the value of the junction's elevation.
+#' @param demand the value of the junction's primary base demand.
+#' @param demand_pattern the ID name of the demand's time pattern ("" for no pattern)
+#' @details These properties have units that depend on the units used for flow rate.
+#' @export
+#' @useDynLib epanet2toolkit RENsetjuncdata
+ENsetjuncdata <- function(nodeindex, elevation, demand, demand_pattern=""){
+
+  res <- .C("RENsetjuncdata", as.integer(nodeindex), as.numeric(elevation),
+            as.numeric(demand), as.character(demand_pattern), as.integer(-1))
+  check_epanet_error( res[[5]])
+  return(invisible())
+}
+
+#' Sets properties for a tank
+#' 
+#' @param nodeindex tank's node index (starting from 1)
+#' @param elevation the tank's bottom elevation.
+#' @param init_level the initial water level in the tank.
+#' @param min_level the minimum water level for the tank.
+#' @param max_level the maximum water level for the tank.
+#' @param diameter the tank's diameter (0 if a volume curve is supplied).
+#' @param min_volume the volume of the tank at its minimum water level.
+#' @param volume_curve the name of the tank's volume curve ("" for no curve)
+#' @export
+#' @useDynLib epanet2toolkit RENsettankdata
+ENsettankdata <- function(nodeindex, elevation, init_level, min_level, max_level, diameter, min_volume, volume_curve=""){
+
+  res <- .C("RENsettankdata", as.integer(nodeindex), as.numeric(elevation), as.numeric(init_level), as.numeric(min_level),
+                              as.numeric(max_level), as.numeric(diameter), as.numeric(min_volume), as.character(volume_curve), as.integer(-1) )
+  check_epanet_error(res[[9]])
+  return(invisible())
+}
+

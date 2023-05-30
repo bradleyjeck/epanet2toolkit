@@ -74,3 +74,118 @@ context("ENresetreport")
 test_that("no crash calling on closed toolkit",{
   expect_silent( x <- ENresetreport() )
 })
+
+context("ENsetreport")
+test_that("no crash calling on closed toolkit",{
+  expect_silent( x <- ENsetreport("links all") )
+  ENclose()
+})
+test_that("setreport",{
+  rptFile <- "Net1-rpt-linksall.test"
+  ENopen("Net1.inp",rptFile , "")
+  ENsetreport("Links All")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # confirm that links end up in the report
+  rpt <- epanetReader::read.rpt( rptFile )
+  expect_true( dim(rpt$linkResults)[1] > 10)
+  # clean up 
+  file.remove(rptFile)
+})
+
+context("ENsetstatusreport")
+test_that("ENsetstatusreport",{
+  # full status report
+  fullRpt <- "Net1-rpt-status-full.test"
+  ENopen("Net1.inp", fullRpt, "")
+  ENsetstatusreport("EN_FULL_REPORT")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # no status report
+  noRpt <- "Net1-rpt-status-none.test"
+  ENopen("Net1.inp", noRpt, "")
+  ENsetstatusreport("EN_NO_REPORT")
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+  ENclose()
+  # confirm FULL report is longer than NO report
+  expect_true(  length(readLines(fullRpt)) >
+                length(readLines(noRpt)),
+                "full status report is longer than no report")
+  # clean up 
+  file.remove(fullRpt)
+  file.remove(noRpt)
+  
+})
+
+context("ENgeterror")
+test_that("gets err msg",{
+    msg <- ENgeterror(200)
+    expect_false( is.na(msg))
+})
+
+context("ENgetstatistic")
+test_that("stats work",{
+  ENopen("Net1.inp", "Net1-stats-test.rpt")
+  ENopenH()
+  ENinitH(11)
+  ENrunH()
+  ENnextH()
+
+  stat <- "EN_ITERATIONS"
+  val <- ENgetstatistic(stat)
+  expect_true(as.integer(val) > 0)
+
+  stat <- "EN_RELATIVEERROR"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MAXHEADERROR"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MAXFLOWCHANGE"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_MASSBALANCE"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_DEFICIENTNODES"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  stat <- "EN_DEMANDREDUCTION"
+  val <- ENgetstatistic(stat)
+  expect_true( val < 1 )
+
+  ENclose()
+  file.remove("Net1-stats-test.rpt")
+})
+
+context("ENgetresultindex")
+test_that("index matches",{
+
+  rptFile <- "Net1-indexcheck.rpt"
+  ENopen("Net1.inp", rptFile)
+  ENsolveH()
+  ENsolveQ()
+  ENreport()
+
+  nix <- 3
+  nid <- ENgetnodeid(nix)
+  rix <- ENgetresultindex("EN_NODE", nix)
+  
+  ENclose()
+
+  # supporess warning about missing link results
+  rpt <- suppressWarnings( epanetReader::read.rpt(rptFile))
+  expect_equal( rpt$nodeResults$ID[rix], nid, 
+                "node ID in report file matches rix") 
+})

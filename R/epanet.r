@@ -59,12 +59,12 @@ ENepanet <- function( inpFile, rptFile, binOutFile=""){
 ENinit <- function( rptFile, outFile, unitsType, headLossType){
 
    FlowUnitsEnums <-c("EN_CFS" ,"EN_GPM" 	,"EN_MGD" 	,"EN_IMGD" 	,"EN_AFD" ,"EN_LPS" ,"EN_LPM" ,"EN_MLD" ,"EN_CMH" ,"EN_CMD")
-   FlowUnitsVal <- lookup_enum_value(FlowUnitsEnums)
+   flowUnitsVal <- lookup_enum_value(FlowUnitsEnums, unitsType)
 
-   HeadLossEnums <- c("EN_HW","EN_HW","EN_CM")
-   headlossVal <- lookup_enum_value(HeadLossEnums)
+   HeadLossEnums <- c("EN_HW","EN_DW","EN_CM")
+   headlossVal <- lookup_enum_value(HeadLossEnums, headLossType)
 
-   arg <- .C("RENinit", rptFile, outFile, unitsVal, headlossVal, as.integer(-1))
+   arg <- .C("RENinit", rptFile, outFile, flowUnitsVal, headlossVal, as.integer(-1))
    err <- arg[[5]]
    check_epanet_error(err)
    return(invisible())
