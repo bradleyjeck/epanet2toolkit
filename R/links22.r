@@ -113,3 +113,44 @@ ENsetlinknodes <- function(index, node1_index, node2_index){
     check_epanet_error(res[[4]])
     return(invisible())
 }
+
+
+#' Get number of vertices for a link
+#' 
+#' @param index a link's index (starting from 1).
+#' @return number of indices
+#' @export 
+#' @useDynLib epanet2toolkit RENgetvertexcount
+ENgetvertexcount <- function(index){
+    res <- .C("RENgetvertexcount", as.integer(index), as.integer(-1), as.integer(-1))
+    check_epanet_error(res[[3]])
+    return(res[[2]])
+}
+
+#' Get vertex coordinates
+#' 
+#' @param index a link's index (starting from 1).
+#' @param vertex index of vertex for getting coords
+#' @return list with elements x and y 
+#' @export 
+#' @useDynLib epanet2toolkit RENgetvertex
+ENgetvertex <- function(index, vertex){
+
+    res <- .C("RENgetvertex", as.integer(index), as.integer(vertex), as.numeric(-99999), as.numeric(-9999), as.integer(-1))
+    check_epanet_error(res[[5]])
+    return( list(x=res[[3]],
+                 y=res[[4] ]) )
+}
+
+#' @param index a link's index
+#' @param x numeric vector of x-coordinates
+#' @param y numeric vector of y-coordinates
+#' @export
+#' @useDynLib epanet2toolkit RENsetvertices
+ENsetvertices <- function(index, x, y){
+
+    num <- length(x)
+    res <- .C("RENsetvertices", as.integer(index), as.numeric(x), as.numeric(y), as.integer(num), as.integer(-1))
+    check_epanet_error(res[[5]])
+    return(invisible())
+}

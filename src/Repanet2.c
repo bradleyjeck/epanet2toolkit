@@ -559,7 +559,7 @@ void RENgetvertexcount(int *index, int *count, int *enrv){
 	int idx = *index;
 	int ct = 0;
 	int *pct = &ct;
-	int rv = ENgetvertexcount(idx, *pct);
+	int rv = ENgetvertexcount(idx, pct);
 	*count = ct;
 	*enrv = rv;
 }
@@ -579,12 +579,12 @@ void RENgetvertex(int *index, int *vertex, double *x, double *y, int *enrv){
 
 void RENsetvertices(int *index, double *x, double *y, int *count, int *enrv){
 	int idx = *index;
-	double xx = *x;
+/**	double xx = *x;
 	double *pxx = &xx;
 	double yy = *y;
-	double *pyy = &yy;
+	double *pyy = &yy;  ****/
 	int ct = *count;
-	int rv = ENsetvertices(idx, pxx, pyy, ct);
+	int rv = ENsetvertices(idx, x, y, ct);
 	*enrv = rv;
 }
 
