@@ -1,4 +1,6 @@
 
+actionTypes <- c("EN_UNCONDITIONAL", "EN_CONDITIONAL")
+
 
 linkTypes <- c(
  "EN_CVPIPE",#      = 0,  //!< Pipe with check valve

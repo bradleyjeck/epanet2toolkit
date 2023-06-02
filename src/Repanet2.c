@@ -509,14 +509,15 @@ void RENaddlink( char **id, int *linkType, char **fromNode, char **toNode, int *
 	int ltype = *linkType;
 	int idx = 0;
 	int *pidx = &idx;
-	int rv = ENaddlink(*id, ltype, *fromNode, *toNode, *pidx);
+	int rv = ENaddlink(*id, ltype, *fromNode, *toNode, pidx);
 	*enrv = rv;
+	*index = idx;
 }
 
 void RENdeletelink(int *index, int *actionCode, int *enrv){
 	int idx = *index;
 	int action = *actionCode;
-	int rv = ENdeletenode(idx, action);
+	int rv = ENdeletelink(idx, action);
 	*enrv = rv; 
 }
 
@@ -527,23 +528,9 @@ void RENsetlinkid(int *index, char **newid, int *enrv){
 }
 
 void RENsetlinktype(int *index, int *linkType, int *actionCode, int *enrv){
-	int idx = *index;
-	int *pidx = &idx;
 	int type = *linkType;
 	int action = *actionCode;
-	int rv = ENsetlinktype(*pidx, type, action);
-	*enrv = rv;
-}
-
-void RENgetlinknodes( int *index, int *node1, int *node2, int *enrv){
-	int idx = *index;
-	int n1 = 0;
-	int *pn1 = &n1;
-	int n2 = 0;
-	int *pn2 = &n2;
-	int rv = ENgetlinknodes(idx, *pn1, *pn2);
-	*node1 = n1;
-	*node2 = n2;
+	int rv = ENsetlinktype(index, type, action);
 	*enrv = rv;
 }
 
@@ -579,10 +566,6 @@ void RENgetvertex(int *index, int *vertex, double *x, double *y, int *enrv){
 
 void RENsetvertices(int *index, double *x, double *y, int *count, int *enrv){
 	int idx = *index;
-/**	double xx = *x;
-	double *pxx = &xx;
-	double yy = *y;
-	double *pyy = &yy;  ****/
 	int ct = *count;
 	int rv = ENsetvertices(idx, x, y, ct);
 	*enrv = rv;

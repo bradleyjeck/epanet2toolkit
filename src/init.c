@@ -75,7 +75,6 @@ static const R_CMethodDef cMethods[] = {
 	{"RENdeletelink"   , (DL_FUNC) &RENdeletelink  ,3},
 	{"RENsetlinkid"    , (DL_FUNC) &RENsetlinkid   ,3},
 	{"RENsetlinktype"  , (DL_FUNC) &RENsetlinktype ,4},
-	{"RENgetlinknodes" , (DL_FUNC) &RENgetlinknodes,4},
 	{"RENsetlinknodes" , (DL_FUNC) &RENsetlinknodes,4},
 	{"RENgetvertexcount",(DL_FUNC) &RENgetvertexcount,3},
 	{"RENgetvertex"    , (DL_FUNC) &RENgetvertex    ,5},

@@ -1,7 +1,7 @@
-actionTypes <- c("EN_UNCONDITIONAL", "EN_CONDITIONAL")
-
+#' Add a link to the network
+#'
 #' @param id name of new link
-#' @param type of new link. One of EN_PIPE, EN_PUMP, or EN_VALVE
+#' @param type of new link, see details 
 #' @param from_node id of source node for this link
 #' @param to_node id of target node for this link
 #' @details A new pipe is assigned a diameter of 10 inches (254 mm) and a length of 330
@@ -16,11 +16,12 @@ actionTypes <- c("EN_UNCONDITIONAL", "EN_CONDITIONAL")
 #' curve or power rating assigned to it.
 #'
 #' A new valve has a diameter of 10 inches (254 mm) and all other properties set to 0.
+#'
+#' Type must be one of: EN_CVPIPE, EN_PIPE, EN_PUMP, EN_PRV, EN_PSV, EN_PBV, EN_FCV, EN_TCV, EN_GPV
 #' 
 #' @return index of new link
 #' @export 
 #' @useDynLib epanet2toolkit RENaddlink
-
 ENaddlink <- function(id, type, from_node, to_node){
 
     code <- lookup_enum_value(linkTypes, type)
@@ -42,7 +43,7 @@ ENaddlink <- function(id, type, from_node, to_node){
 #' 
 #' @export 
 #' @useDynLib epanet2toolkit RENdeletelink
-ENdeletelink <- function(index, action){
+ENdeletelink <- function(index, action="EN_UNCONDITIONAL"){
 
     code <- lookup_enum_value(actionTypes, action)
     res <- .C("RENdeletelink", as.integer(index), code, as.integer(-1))
@@ -78,26 +79,13 @@ ENsetlinkid <- function(index, newid){
 #'
 #' @export 
 #' @useDynLib epanet2toolkit RENsetlinktype  
-ENsetlinktype <- function(index, type, action){
+ENsetlinktype <- function(index, type, action="EN_UNCONDITIONAL"){
 
     tc <- lookup_enum_value(linkTypes, type)
     ac <- lookup_enum_value(actionTypes, action)
     res <- .C("RENsetlinktype", as.integer(index), tc, ac, as.integer(-1))
     check_epanet_error(res[[4]])
     return(res[[1]])
-}
-
-#' Get indexes of a link's start- and end-nodes
-#' 
-#' @param index a link's index (starting from 1)
-#' @return list with elements node1_index and node2_index
-#' @export 
-#' @useDynLib epanet2toolkit RENgetlinknodes
-ENgetlinknodes <- function(index){
-
-    res <- .C("RENgetlinknodes", as.integer(index), as.integer(-1), as.integer(-1), as.integer(-1))
-    check_epanet_error(res[[4]])
-    return(list(node1_index = res[[2]], node2_index=res[[3]]))
 }
 
 
@@ -142,6 +130,8 @@ ENgetvertex <- function(index, vertex){
                  y=res[[4] ]) )
 }
 
+#' Set a link's vertices
+#'
 #' @param index a link's index
 #' @param x numeric vector of x-coordinates
 #' @param y numeric vector of y-coordinates
