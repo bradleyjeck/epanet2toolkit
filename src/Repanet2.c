@@ -573,18 +573,13 @@ void RENsetvertices(int *index, double *x, double *y, int *count, int *enrv){
 
 void RENgetpumptype(int *index, int *pumpType, int *enrv){
 	int idx = *index;
-	int type = 0;
-	int *ptype = &type;
-	int rv = ENgetpumptype(idx, *ptype);
+	int rv = ENgetpumptype(idx, pumpType);
     *enrv = rv;
 }
 
 void RENgetheadcurveindex(int *linkIndex, int *curveIndex, int *enrv){
 	int lidx = *linkIndex;
-    int cidx = 0;
-	int *pcidx = &cidx;
-	int rv = ENgetheadcurveindex(lidx, *pcidx);
-	*curveIndex = cidx;
+	int rv = ENgetheadcurveindex(lidx, curveIndex);
 	*enrv = rv;
 }
 

@@ -12,3 +12,9 @@ linkTypes <- c(
  "EN_FCV",#      = 6,  //!< Flow control valve
  "EN_TCV",#      = 7,  //!< Throttle control valve
  "EN_GPV")#      = 8   //!< General purpose valve
+
+EN_PumpType <-c(
+  "EN_CONST_HP",#    = 0,   //!< Constant horsepower
+  "EN_POWER_FUNC",#  = 1,   //!< Power function
+  "EN_CUSTOM",#      = 2,   //!< User-defined custom curve
+  "EN_NOCURVE")#     = 3    //!< No curve
