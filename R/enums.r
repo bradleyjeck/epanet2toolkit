@@ -18,3 +18,12 @@ EN_PumpType <-c(
   "EN_POWER_FUNC",#  = 1,   //!< Power function
   "EN_CUSTOM",#      = 2,   //!< User-defined custom curve
   "EN_NOCURVE")#     = 3    //!< No curve
+
+EN_CurveType <- c(
+ "EN_VOLUME_CURVE",#  = 0,   //!< Tank volume v. depth curve
+ "EN_PUMP_CURVE",#    = 1,   //!< Pump head v. flow curve
+ "EN_EFFIC_CURVE",#   = 2,   //!< Pump efficiency v. flow curve
+ "EN_HLOSS_CURVE",#   = 3,   //!< Valve head loss v. flow curve
+ "EN_GENERIC_CURVE")# = 4    //!< Generic curve
+
+EN_MAXID <- as.integer(31)

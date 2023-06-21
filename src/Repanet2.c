@@ -628,10 +628,7 @@ void RENdeletecurve(int *index, int *enrv){
 }
 
 void RENgetcurveindex(char **id, int *index, int *enrv){
-	int idx = 0;
-	int *pidx = &idx;
-	int rv = ENgetcurveindex(*id, *pidx);
-	*index = idx;
+	int rv = ENgetcurveindex(*id, index);
 	*enrv = rv;
 }
 
@@ -650,19 +647,13 @@ void RENsetcurveid(int *index, char **id, int *enrv){
 
 void RENgetcurvelen(int *index, int *len, int *enrv){
 	int idx = *index;
-	int length = 0;
-	int *plen =  &length;
-	int rv = ENgetcurvelen(idx, *plen);
-	*len = length;
+	int rv = ENgetcurvelen(idx, len);
 	*enrv = rv;
 }
 
 void RENgetcurvetype(int *index, int *type, int *enrv){
 	int idx = *index;
-	int ctype=0;
-	int *pctype= &ctype;
-	int rv = ENgetcurvetype(idx, *pctype);
-	*type = ctype;
+	int rv = ENgetcurvetype(idx, type);
 	*enrv = rv;
 }
 
