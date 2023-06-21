@@ -607,15 +607,6 @@ void RENsetpatternid(int *index, char **id, int *enrv){
 	*enrv = rv;
 }
 
-void RENgetpatternlen(int *index, int *len, int *enrv){
-	int idx = *index;
-	int length = 0;
-	int *plength = &length;
-	int rv = ENgetpatternlen(idx, *plength);
-	*len= length;
-	*enrv = rv;
-}
-
 void RENgetaveragepatternvalue(int *index, double *value, int *enrv){
 	int idx = *index;
 	EN_API_FLOAT_TYPE val = 0.0;

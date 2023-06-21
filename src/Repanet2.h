@@ -124,7 +124,6 @@ void RENsetheadcurveindex(int *linkIndex, int *curveIndex, int *enrv);
 void RENaddpattern(char **id, int *enrv);
 void RENdeletepattern(int *index, int *enrv);
 void RENsetpatternid(int *index, char **id, int *enrv);
-void RENgetpatternlen(int *index, int *len, int *enrv);
 void RENgetaveragepatternvalue(int *index, double *value, int *enrv);
 
 void RENaddcurve(char **id, int *enrv);

@@ -85,7 +85,6 @@ static const R_CMethodDef cMethods[] = {
 	{"RENaddpattern"   , (DL_FUNC) &RENaddpattern   ,2},
 	{"RENdeletepattern", (DL_FUNC) &RENdeletepattern,2},
 	{"RENsetpatternid" , (DL_FUNC) &RENsetpatternid ,3},
-	{"RENgetpatternlen", (DL_FUNC) &RENgetpatternlen,3},
 	{"RENgetaveragepatternvalue", (DL_FUNC) &RENgetaveragepatternvalue,3},
 	{"RENaddcurve"     , (DL_FUNC) &RENaddcurve     ,2},
 	{"RENdeletecurve"  , (DL_FUNC) &RENdeletecurve  ,2},
