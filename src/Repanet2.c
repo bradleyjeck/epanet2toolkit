@@ -711,9 +711,9 @@ void RENaddcontrol(int *type, int *linkIndex, double *setting, int *nodeIndex, d
 
 	int ct = *type;
 	int lidx = *linkIndex;
-	EN_API_FLOAT_TYPE set = (EN_API_FLOAT_TYPE) *setting;
+	EN_API_FLOAT_TYPE set = *setting;
 	int nidx = *nodeIndex;
-	EN_API_FLOAT_TYPE lvl = (EN_API_FLOAT_TYPE) *level;
+	EN_API_FLOAT_TYPE lvl =  *level;
 	int rv = ENaddcontrol(ct, lidx, set, nidx, lvl, *index);
 	*enrv = rv;
 }

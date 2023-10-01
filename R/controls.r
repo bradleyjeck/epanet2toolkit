@@ -164,18 +164,25 @@ ENsetcontrol <- function(cindex, ctype = NULL, lindex = NULL, setting = NULL, ni
 #' @useDynLib epanet2toolkit RENaddcontrol
 ENaddcontrol <- function(type, linkIndex, setting, nodeIndex, level){
 
-    res <- .C("RENaddcontrol", as.integer(linkIndex), as.numeric(setting), as.integer(nodeIndex)) 
-    return(res[[]])
+
+    control_type_int <- lookup_enum_value(EN_ControlType,type)
+    res <- .C("RENaddcontrol", as.integer(control_type_int), as.integer(linkIndex), 
+              as.numeric(setting), as.integer(nodeIndex), as.numeric(level),
+              as.integer(-1), as.integer(-1))
+    check_epanet_error(res[[7]])
+    controlIndex <- res[[6]]
+    return(controlIndex)
 }
-  */
-  int  DLLEXPORT EN_addcontrol(EN_Project ph, int type, int linkIndex,
-                 double setting, int nodeIndex, double level, int *index);
 
-  /**
-  @brief Deletes an existing simple control.
-  @param ph an EPANET project handle.
-  @param index the index of the control to delete (starting from 1).
-  @return an error code.
-  */
-  int  DLLEXPORT EN_deletecontrol(EN_Project ph, int index);
 
+#'  Deletes an existing simple control
+#' 
+#' @param controlIndex the index of the control to delete (starting from 1).
+#' @return null invisibly
+#' @useDynLib epanet2toolkit, ENdeletecontrol
+ENdeletecontrol <- function(controlIndex){
+
+    res <- .C("RENdeletecontrol", as.integer(controlIndex), as.integer(-1))
+    check_epanet_error(res[[2]])
+    return(invisible())
+}

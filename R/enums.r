@@ -27,3 +27,10 @@ EN_CurveType <- c(
  "EN_GENERIC_CURVE")# = 4    //!< Generic curve
 
 EN_MAXID <- as.integer(31)
+
+EN_ControlType <- c(
+ "EN_LOWLEVEL",#    = 0,   //!< Act when pressure or tank level drops below a setpoint
+ "EN_HILEVEL",#     = 1,   //!< Act when pressure or tank level rises above a setpoint
+ "EN_TIMER",#       = 2,   //!< Act at a prescribed elapsed amount of time
+ "EN_TIMEOFDAY"#   = 3    //!< Act at a particular time of day
+)
