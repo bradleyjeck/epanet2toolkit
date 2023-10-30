@@ -65,7 +65,7 @@ ENgetpatternid <- function(patternindex) {
 #' ENclose()
 ENgetpatternindex <- function(patternid) {
 	
-	if (missing(patternid)) {V
+	if (missing(patternid)) {
 		stop("Need to specify the pattern ID label(s).")
 	}
 	if (is.character(patternid)) {
@@ -285,7 +285,7 @@ ENsetpatternvalue <- function(index, period, value) {
 #' @export 
 #' @useDynLib epanet2toolkit RENaddpattern
 ENaddpattern <- function(patternid){
-	if (missing(patternid)) {V
+	if (missing(patternid)) {
 		stop("Need to specify the pattern ID")
 	}
 	if (is.character(patternid)) {
