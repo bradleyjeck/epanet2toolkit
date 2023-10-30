@@ -740,7 +740,7 @@ void RENgetrule(int *index, int *nPremises, int *nThenActions, int *nElseActions
 
 	EN_API_FLOAT_TYPE pty = 0.0;
 	EN_API_FLOAT_TYPE *ppty = &pty;
-	int rv = ENgetrule(idx, *nPremises, *nThenActions, *nElseActions, ppty);
+	int rv = ENgetrule(idx, nPremises, nThenActions, nElseActions, ppty);
 	*priority = (double) pty;
 	*enrv = rv;
 }
@@ -760,7 +760,7 @@ void RENgetpremise(int *ruleIndex, int *premiseIndex, int *logop, int *object, i
 	int pidx = *premiseIndex;
 	EN_API_FLOAT_TYPE val = 0.0;
 	EN_API_FLOAT_TYPE *pval = &val;
-	int rv = ENgetpremise(ridx, pidx, *logop, *object, *objIndex, *variable, *relop, *status, pval);
+	int rv = ENgetpremise(ridx, pidx, logop, object, objIndex, variable, relop, status, pval);
 	*value = (double) val;
 	*enrv = rv;
 }
@@ -814,7 +814,8 @@ void RENgetthenaction(int *ruleIndex, int *actionIndex, int *linkIndex, int *sta
 	int aidx = *actionIndex;
 	EN_API_FLOAT_TYPE stg = 0.0;
 	EN_API_FLOAT_TYPE *pstg = &stg; 
-	int rv = ENgetthenaction(ridx, aidx, *linkIndex, *status, pstg);
+	int rv = ENgetthenaction(ridx, aidx, linkIndex, status, pstg);
+	*setting = (double) stg;
 	*enrv = rv;
 }
 
@@ -833,7 +834,7 @@ void RENgetelseaction(int *ruleIndex, int *actionIndex, int *linkIndex, int *sta
 	EN_API_FLOAT_TYPE stg = 0.0;
 	EN_API_FLOAT_TYPE *pstg = &stg; 
 
-	int rv = ENgetelseaction(ridx, aidx, *linkIndex, *status, pstg);
+	int rv = ENgetelseaction(ridx, aidx, linkIndex, status, pstg);
 	*setting = (double) stg;
 	*enrv = rv;
 }
