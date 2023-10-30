@@ -71,7 +71,8 @@ test_that("can add new control",{
   ENopen("Net3.inp", "Net3.rpt")
   # pipe from river operates only part of the day
   lidx <- ENgetlinkindex("50")
-  #cidx <- ENaddcontrol(type="EN_TIMEOFDAY", linkIndex=lidx,setting=0, nodeIndex = 0, level=20000)
+  cidx <- ENaddcontrol(type="EN_TIMEOFDAY", linkIndex=lidx,setting=0, nodeIndex = 0, level=20000)
+  ctrl <- ENgetcontrol(cidx)
+  expect_equal(ctrl$lindex,lidx)
   ENclose()
-  expect_true(FALSE, "TODO -- fix segfault on ENaddcontrol")
 })
