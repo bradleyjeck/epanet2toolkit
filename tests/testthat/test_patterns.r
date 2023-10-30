@@ -209,5 +209,5 @@ test_that("net 3 get pattern avg",{
 	a2 <- ENgetaveragepatternvalue(2)
 	expect_false( as.integer(a2) == 0 )
 
-
+    ENclose()
 })
