@@ -4,9 +4,6 @@
 #' 
 #' @param rule text of the rule following the format used in an EPANET input file.
 #' @return null 
-#'
-#' @details  Consult the RulesPage section of the InpFile topic to learn about a
-#'  rule's format. Each clause of the rule must end with a newline character <b>`\n`</b>.
 #' @useDynLib epanet2toolkit RENaddrule 
 ENaddrule <- function(rule){
 
@@ -73,13 +70,15 @@ ENgetruleID <- function(index){
 #' @param ruleIndex the rule's index (starting from 1).
 #' @param premiseIndex the position of the premise in the rule's list of premises  (starting from 1).
 #' @returns list with components:
-#'    logop the premise's logical operator ( \b IF = 1, \b AND = 2, \b OR = 3 );
-#'     object the type of object the premise refers to (see @ref EN_RuleObject);
-#'     objIndex the index of the object (e.g. the index of a tank);
-#'     variable the object's variable being compared (see @ref EN_RuleVariable);
-#'     relop the premise's comparison operator (see @ref EN_RuleOperator);
-#'     status the status that the object's status is compared to; 
-#'     value the value that the object's variable is compared to.
+#' \describe{
+#' \item{logop}{the premise's logical operator ( IF = 1, AND = 2, OR = 3 )}
+#' \item{object}{the type of object the premise refers to}
+#' \item{objIndex}{the index of the object (e.g. the index of a tank)}
+#' \item{variable}{the object's variable being compared}
+#' \item{relop}{the premise's comparison operator}
+#' \item{status}{the status that the object's status is compared to}
+#' \item{value}{the value that the object's variable is compared to}
+#' }
 #' @useDynLib epanet2toolkit RENgetpremise
 ENgetpremise <- function(ruleIndex, premiseIndex){
 
@@ -110,12 +109,12 @@ ENgetpremise <- function(ruleIndex, premiseIndex){
 #' 
 #' @param ruleIndex the rule's index (starting from 1).
 #' @param premiseIndex the position of the premise in the rule's list of premises.
-#' @param logop the premise's logical operator ( \b IF = 1, \b AND = 2, \b OR = 3 ).
-#' @param object the type of object the premise refers to (see @ref EN_RuleObject).
-#' @param objIndex the index of the object (e.g. the index of a tank).
-#' @param variable the object's variable being compared (see @ref EN_RuleVariable).
-#' @param relop the premise's comparison operator (see @ref EN_RuleOperator).
-#' @param status the status that the object's status is compared to (see @ref EN_RuleStatus).
+#' @param logop the premise's logical operator ( IF = 1, AND = 2, OR = 3 ).
+#' @param object the type of object the premise refers to
+#' @param objIndex the index of the object (e.g. the index of a tank)
+#' @param variable the object's variable being compared
+#' @param relop the premise's comparison operator
+#' @param status the status that the object's status is compared to
 #' @param value the value that the object's variable is compared to.
 #' @return null
 #' @useDynLib epanet2toolkit RENsetpremise
@@ -143,7 +142,7 @@ ENsetpremise <- function(ruleIndex, premiseIndex, logop, object, objIndex, varia
 #' @param premiseIndex the premise's index (starting from 1).
 #' @param objIndex the index of the premise's object (e.g. the index of a tank).
 #' @return null
-#' @useDynLib epanet2toolkit RESNsetpremiseindex
+#' @useDynLib epanet2toolkit RENsetpremiseindex
 ENsetpremiseindex <- function(ruleIndex, premiseIndex, objIndex){
 
     res <- .C("RENsetpremiseindex", 

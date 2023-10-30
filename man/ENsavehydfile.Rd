@@ -24,5 +24,5 @@ Use this function to save the current set of hydraulics results to a file, eithe
 
  Before calling this function hydraulic results must have been generated and saved by having
  called \code{ENsolveH} or the \code{ENinitH} - \code{ENrunH} - \code{ENnextH} sequence with the initflag
- argument of \code{ENinitH} set to EN_SAVE or \b EN_SAVE_AND_INIT.
+ argument of \code{ENinitH} set to EN_SAVE or EN_SAVE_AND_INIT.
 }

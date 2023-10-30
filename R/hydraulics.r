@@ -292,8 +292,7 @@ ENcloseH <- function() {
 #'
 #'  Before calling this function hydraulic results must have been generated and saved by having
 #'  called \code{ENsolveH} or the \code{ENinitH} - \code{ENrunH} - \code{ENnextH} sequence with the initflag
-#'  argument of \code{ENinitH} set to EN_SAVE or \b EN_SAVE_AND_INIT.
-#' 
+#'  argument of \code{ENinitH} set to EN_SAVE or EN_SAVE_AND_INIT.
 ENsavehydfile <- function(hydfile){
 
     if( !is.character(hydfile) ) stop("hydfile must be character")   

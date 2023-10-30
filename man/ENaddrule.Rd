@@ -15,7 +15,3 @@ null
 \description{
 Adds a new rule-based control to a project
 }
-\details{
-Consult the RulesPage section of the InpFile topic to learn about a
- rule's format. Each clause of the rule must end with a newline character <b>`\n`</b>.
-}

@@ -175,11 +175,11 @@ ENaddcontrol <- function(type, linkIndex, setting, nodeIndex, level){
 }
 
 
-#'  Deletes an existing simple control
-#' 
+#' Deletes an existing simple control
+#'
 #' @param controlIndex the index of the control to delete (starting from 1).
 #' @return null invisibly
-#' @useDynLib epanet2toolkit, RENdeletecontrol
+#' @useDynLib epanet2toolkit RENdeletecontrol
 ENdeletecontrol <- function(controlIndex){
 
     res <- .C("RENdeletecontrol", as.integer(controlIndex), as.integer(-1))

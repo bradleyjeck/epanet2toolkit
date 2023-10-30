@@ -13,13 +13,15 @@ ENgetpremise(ruleIndex, premiseIndex)
 }
 \value{
 list with components:
-   logop the premise's logical operator ( \b IF = 1, \b AND = 2, \b OR = 3 );
-    object the type of object the premise refers to (see @ref EN_RuleObject);
-    objIndex the index of the object (e.g. the index of a tank);
-    variable the object's variable being compared (see @ref EN_RuleVariable);
-    relop the premise's comparison operator (see @ref EN_RuleOperator);
-    status the status that the object's status is compared to; 
-    value the value that the object's variable is compared to.
+\describe{
+\item{logop}{the premise's logical operator ( IF = 1, AND = 2, OR = 3 )}
+\item{object}{the type of object the premise refers to}
+\item{objIndex}{the index of the object (e.g. the index of a tank)}
+\item{variable}{the object's variable being compared}
+\item{relop}{the premise's comparison operator}
+\item{status}{the status that the object's status is compared to}
+\item{value}{the value that the object's variable is compared to}
+}
 }
 \description{
 Gets the properties of a premise in a rule-based control.

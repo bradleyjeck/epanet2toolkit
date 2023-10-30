@@ -21,17 +21,17 @@ ENsetpremise(
 
 \item{premiseIndex}{the position of the premise in the rule's list of premises.}
 
-\item{logop}{the premise's logical operator ( \b IF = 1, \b AND = 2, \b OR = 3 ).}
+\item{logop}{the premise's logical operator ( IF = 1, AND = 2, OR = 3 ).}
 
-\item{object}{the type of object the premise refers to (see @ref EN_RuleObject).}
+\item{object}{the type of object the premise refers to}
 
-\item{objIndex}{the index of the object (e.g. the index of a tank).}
+\item{objIndex}{the index of the object (e.g. the index of a tank)}
 
-\item{variable}{the object's variable being compared (see @ref EN_RuleVariable).}
+\item{variable}{the object's variable being compared}
 
-\item{relop}{the premise's comparison operator (see @ref EN_RuleOperator).}
+\item{relop}{the premise's comparison operator}
 
-\item{status}{the status that the object's status is compared to (see @ref EN_RuleStatus).}
+\item{status}{the status that the object's status is compared to}
 
 \item{value}{the value that the object's variable is compared to.}
 }
