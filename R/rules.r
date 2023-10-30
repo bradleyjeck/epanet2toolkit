@@ -218,14 +218,14 @@ ENgetthenaction <- function(ruleIndex, actionIndex){
    return(x)
 }
 
-#'  Sets the properties of a THEN action in a rule-based control.
-#' 
-#'  @param ruleIndex the rule's index (starting from 1).
-#'  @param actionIndex the index of the THEN action to modify (starting from 1).
-#'  @param linkIndex the index of the link in the action.
-#'  @param status the new status assigned to the link (see @ref EN_RuleStatus).
-#'  @param setting the new value assigned to the link's setting.
-#'  @return null 
+#' Set properties of THEN action in a rule-based control
+#'
+#' @param ruleIndex the rule's index (starting from 1)
+#' @param actionIndex the index of the THEN action to modify (starting from 1)
+#' @param linkIndex the index of the link in the action
+#' @param status the new status assigned to the link 
+#' @param setting the new value assigned to the link's setting
+#' @return null
 #' @export
 #' @useDynLib epanet2toolkit RENsetthenaction
 ENsetthenaction <-function(ruleIndex, actionIndex, linkIndex, status, setting){
@@ -247,9 +247,11 @@ ENsetthenaction <-function(ruleIndex, actionIndex, linkIndex, status, setting){
 #'  @param ruleIndex the rule's index (starting from 1).
 #'  @param actionIndex the index of the ELSE action to retrieve (starting from 1).
 #'  @return list with the following components:
-#'   * linkIndex -  the index of the link in the action
-#'   * status  - the status assigned to the link
-#'   * setting - the value assigned to the link's setting.
+#'   \describe{
+#'   \item{linkIndex}{ the index of the link in the action}
+#'   \item{status}{the status assigned to the link}
+#'   \item{setting}{the value assigned to the link's setting}
+#' }
 #' @export
 #' @useDynLib epanet2toolkit RENgetelseaction
 ENgetelseaction <- function(ruleIndex, actionIndex){
