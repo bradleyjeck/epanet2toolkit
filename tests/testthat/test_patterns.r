@@ -176,7 +176,7 @@ test_that("net 3 pattern CRUD",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pattern-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
 
     ENaddpattern(suffix)
@@ -201,7 +201,7 @@ test_that("net 3 get pattern avg",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pattern-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
 	a1 <- ENgetaveragepatternvalue(1)
 	expect_false( as.integer(a1) == 0 )

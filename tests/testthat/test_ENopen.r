@@ -8,7 +8,7 @@
 context("ENopen")
 
 test_that("open w good inputs",{
-		expect_silent(  ENopen("Net1.inp", "Net1.rpt", ""))
+		expect_silent(  ENopen("Net1.inp", "Net1.rpt"))
 		ENclose()
 })
 
@@ -16,14 +16,14 @@ test_that("error if it's already open",{
 			
 		ENopen("Net1.inp", "Net1.rpt", "")	
 		expect_false( suppressWarnings( is.null(ENgetflowunits() ) ) ) 
-		expect_error(ENopen("Net3.inp", "Net3.rpt", "")	)
+		expect_error(ENopen("Net3.inp", "Net3.rpt")	)
 		ENclose()
 		expect_true( suppressWarnings( is.null(ENgetflowunits() ) ) ) 
 			
 		})
 
 test_that("returns NULL invisibly on success",{
-		x <- withVisible( ENopen("Net1.inp", "Net1.rpt", "")	)
+		x <- withVisible( ENopen("Net1.inp", "Net1.rpt")	)
 		ENclose()
 		
 		expect_null( x$value)

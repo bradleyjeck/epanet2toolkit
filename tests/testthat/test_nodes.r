@@ -161,7 +161,7 @@ context("ENsetnodeid")
 test_that("set node id",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
   oldid <- ENgetnodeid(5)
   ENsetnodeid(5, suffix)
   newid <- ENgetnodeid(5)
@@ -176,7 +176,7 @@ context("ENsetjuncdata")
 test_that("set junc data",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   ENsetjuncdata(nodeindex=5, elevation=999, demand=123)
 
@@ -194,7 +194,7 @@ context("ENsettankdata")
 test_that("set tank data",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
   #;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve
   #  2               	850         	120         	100         	150         	50.5        	0           	                	;
   tid = ENgetnodeindex("2")

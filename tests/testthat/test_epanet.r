@@ -49,7 +49,7 @@ test_that("func loads",{
 })
 
 test_that("func works",{
- ENopen("Net1.inp", "Net1.rpt","")
+ ENopen("Net1.inp", "Net1.rpt")
  ENsaveinpfile("new.inp")
  expect_true( file.exists("new.inp"))
  ENclose()

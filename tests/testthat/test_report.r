@@ -82,7 +82,7 @@ test_that("no crash calling on closed toolkit",{
 })
 test_that("setreport",{
   rptFile <- "Net1-rpt-linksall.test"
-  ENopen("Net1.inp",rptFile , "")
+  ENopen("Net1.inp",rptFile)
   ENsetreport("Links All")
   ENsolveH()
   ENsolveQ()
@@ -99,7 +99,7 @@ context("ENsetstatusreport")
 test_that("ENsetstatusreport",{
   # full status report
   fullRpt <- "Net1-rpt-status-full.test"
-  ENopen("Net1.inp", fullRpt, "")
+  ENopen("Net1.inp", fullRpt)
   ENsetstatusreport("EN_FULL_REPORT")
   ENsolveH()
   ENsolveQ()
@@ -107,7 +107,7 @@ test_that("ENsetstatusreport",{
   ENclose()
   # no status report
   noRpt <- "Net1-rpt-status-none.test"
-  ENopen("Net1.inp", noRpt, "")
+  ENopen("Net1.inp", noRpt)
   ENsetstatusreport("EN_NO_REPORT")
   ENsolveH()
   ENsolveQ()

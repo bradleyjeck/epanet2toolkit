@@ -6,7 +6,7 @@ test_that("func exists",{
 
 test_that("func works",{
 
-    ENopen("Net1.inp", "Net1.rpt", "")
+    ENopen("Net1.inp", "Net1.rpt")
     title <- ENgettitle()
     expect_equal(length(title), 3)
     expect_true( grepl("EPANET", title[1]))

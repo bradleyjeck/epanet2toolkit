@@ -5,7 +5,7 @@ test_that("Net 3 curve gets",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("curve-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
     cid <- ENgetcurveid(1)
     idx <- ENgetcurveindex(cid)
@@ -30,7 +30,7 @@ test_that("Net 3 curve CRUD",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("curve-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
     ENaddcurve(suffix)
     idx <- ENgetcurveindex(suffix)

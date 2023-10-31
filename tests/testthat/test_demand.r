@@ -5,7 +5,7 @@ test_that("get demand model",{
 
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   dmdmdl <- ENgetdemandmodel()
   expect_true( is.list(dmdmdl))
@@ -19,7 +19,7 @@ context("ENsetdemandmodel")
 test_that("set demand model",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   ENsetdemandmodel(model="EN_PDA", pmin=10, preq=25, pexp=1.1)
 
@@ -41,7 +41,7 @@ context("Net3 node 40 existing demand")
 test_that("base demand",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix, ".rpt")
-  ENopen("Net3.inp", rptFile, "")
+  ENopen("Net3.inp", rptFile)
   nidx <- ENgetnodeindex("40")
 
   bdmd <- ENgetbasedemand(nodeindex = nidx, demand_index = 1)
@@ -66,7 +66,7 @@ context("Net3 node 40 adding demand")
 test_that("add demand",{
   suffix <- paste0(sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix, ".rpt")
-  ENopen("Net3.inp", rptFile, "")
+  ENopen("Net3.inp", rptFile)
   nidx <- ENgetnodeindex("40")
   x <- ENadddemand(nodeindex=nidx, base_demand=123, demand_pattern=3, demand_name="test")
   expect_null(x)
@@ -99,7 +99,7 @@ test_that("get set demand patterns",{
 
   suffix <- paste0(sample(letters, 4), collapse="")
   rptFile <- paste0("node-tests-", suffix, ".rpt")
-  ENopen("Net3.inp", rptFile, "")
+  ENopen("Net3.inp", rptFile)
   
   # node 35 has demand pattern 4
   p4idx <- ENgetpatternindex("4")

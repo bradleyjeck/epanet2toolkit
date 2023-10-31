@@ -2,7 +2,7 @@ context("links crud")
 test_that("link crud",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("link22-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   #Create
   lidx <- ENaddlink("new", "EN_CVPIPE","12","22")
@@ -44,7 +44,7 @@ context("vertex crud")
 test_that("ENgetvertexcount",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("link22-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   nv5 <- ENgetvertexcount(5)
   expect_equal(nv5,0)
@@ -58,7 +58,7 @@ test_that("ENgetvertexcount",{
 test_that("Create vertex",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("link22-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   ENsetvertices(5, 22, 33)
 
@@ -78,7 +78,7 @@ test_that("Create vertex",{
 test_that("Create vertices",{
   suffix <- paste0( sample(letters, 4), collapse="")
   rptFile <- paste0("link22-tests-", suffix,".rpt")
-  ENopen("Net1.inp", rptFile, "")
+  ENopen("Net1.inp", rptFile)
 
   ENsetvertices(5, c(22,44), c(33,55))
 

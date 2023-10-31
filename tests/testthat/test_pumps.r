@@ -7,7 +7,7 @@ test_that("Net 1 pump type",{
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pump-tests-", suffix,".rpt")
 
-    ENopen("Net1.inp", rptFile, "")
+    ENopen("Net1.inp", rptFile)
 
     pidx <- ENgetlinkindex("9")
 
@@ -23,7 +23,7 @@ test_that("Net 3 pump type",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pump-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
     pidx <- ENgetlinkindex("10")
     type <- ENgetpumptype(pidx)
@@ -42,7 +42,7 @@ test_that("net 1 get head curve index",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pump-tests-", suffix,".rpt")
-    ENopen("Net1.inp", rptFile, "")
+    ENopen("Net1.inp", rptFile)
 
     hcidx <- ENgetheadcurveindex(13)
 
@@ -58,7 +58,7 @@ test_that("net 3 set head curve index",{
 
     suffix <- paste0( sample(letters, 4), collapse="")
     rptFile <- paste0("pump-tests-", suffix,".rpt")
-    ENopen("Net3.inp", rptFile, "")
+    ENopen("Net3.inp", rptFile)
 
     p335idx <- ENgetlinkindex("335") 
     p335_old_hcidx <- ENgetheadcurveindex(p335idx)

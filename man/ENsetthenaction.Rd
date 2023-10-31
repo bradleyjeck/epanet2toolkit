@@ -2,15 +2,24 @@
 % Please edit documentation in R/rules.r
 \name{ENsetthenaction}
 \alias{ENsetthenaction}
-\title{Sets the properties of a THEN action in a rule-based control.}
+\title{Set properties of THEN action in a rule-based control}
 \usage{
 ENsetthenaction(ruleIndex, actionIndex, linkIndex, status, setting)
 }
+\arguments{
+\item{ruleIndex}{the rule's index (starting from 1)}
+
+\item{actionIndex}{the index of the THEN action to modify (starting from 1)}
+
+\item{linkIndex}{the index of the link in the action}
+
+\item{status}{the new status assigned to the link}
+
+\item{setting}{the new value assigned to the link's setting}
+}
+\value{
+null
+}
 \description{
-@param ruleIndex the rule's index (starting from 1).
- @param actionIndex the index of the THEN action to modify (starting from 1).
- @param linkIndex the index of the link in the action.
- @param status the new status assigned to the link (see @ref EN_RuleStatus).
- @param setting the new value assigned to the link's setting.
- @return null
+Set properties of THEN action in a rule-based control
 }

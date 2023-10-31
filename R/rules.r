@@ -242,11 +242,11 @@ ENsetthenaction <-function(ruleIndex, actionIndex, linkIndex, status, setting){
 }
   
   
-#'  Gets the properties of an ELSE action in a rule-based control.
+#' Gets the properties of an ELSE action in a rule-based control.
 #'
-#'  @param ruleIndex the rule's index (starting from 1).
-#'  @param actionIndex the index of the ELSE action to retrieve (starting from 1).
-#'  @return list with the following components:
+#' @param ruleIndex the rule's index (starting from 1).
+#' @param actionIndex the index of the ELSE action to retrieve (starting from 1).
+#' @return list with the following components:
 #'   \describe{
 #'   \item{linkIndex}{ the index of the link in the action}
 #'   \item{status}{the status assigned to the link}
