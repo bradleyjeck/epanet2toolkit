@@ -66,23 +66,24 @@ test_that("writes report on open project",{
   ENreport()
   y <- length(readLines("Net1-rpt.test", warn=FALSE))
   expect_true( x > y)
+  ENclose()
   file.remove("Net1-rpt.test")
 })
 
 
 context("ENresetreport")
 test_that("no crash calling on closed toolkit",{
-  expect_silent( x <- ENresetreport() )
+  expect_error( x <- ENresetreport() )
 })
 
 context("ENsetreport")
 test_that("no crash calling on closed toolkit",{
-  expect_silent( x <- ENsetreport("links all") )
-  ENclose()
+  expect_error( x <- ENsetreport("links all") )
 })
 test_that("setreport",{
   rptFile <- "Net1-rpt-linksall.test"
-  ENopen("Net1.inp",rptFile)
+  outFile <- "Net1-out-linksall.test"
+  ENopen("Net1.inp",rptFile,outFile)
   ENsetreport("Links All")
   ENsolveH()
   ENsolveQ()
@@ -93,13 +94,15 @@ test_that("setreport",{
   expect_true( dim(rpt$linkResults)[1] > 10)
   # clean up 
   file.remove(rptFile)
+  file.remove(outFile)
 })
 
 context("ENsetstatusreport")
 test_that("ENsetstatusreport",{
   # full status report
   fullRpt <- "Net1-rpt-status-full.test"
-  ENopen("Net1.inp", fullRpt)
+  fullOut <- "Net1-out-status-full.test"
+  ENopen("Net1.inp", fullRpt, fullOut)
   ENsetstatusreport("EN_FULL_REPORT")
   ENsolveH()
   ENsolveQ()
@@ -107,7 +110,8 @@ test_that("ENsetstatusreport",{
   ENclose()
   # no status report
   noRpt <- "Net1-rpt-status-none.test"
-  ENopen("Net1.inp", noRpt)
+  noOut <- "Net1-out-status-none.test"
+  ENopen("Net1.inp", noRpt, noOut)
   ENsetstatusreport("EN_NO_REPORT")
   ENsolveH()
   ENsolveQ()
@@ -119,7 +123,9 @@ test_that("ENsetstatusreport",{
                 "full status report is longer than no report")
   # clean up 
   file.remove(fullRpt)
+  file.remove(fullOut)
   file.remove(noRpt)
+  file.remove(noOut)
   
 })
 
@@ -173,7 +179,8 @@ context("ENgetresultindex")
 test_that("index matches",{
 
   rptFile <- "Net1-indexcheck.rpt"
-  ENopen("Net1.inp", rptFile)
+  outFile <- "Net1-indexcheck.out"
+  ENopen("Net1.inp", rptFile, outFile)
   ENsolveH()
   ENsolveQ()
   ENreport()
@@ -187,5 +194,8 @@ test_that("index matches",{
   # supporess warning about missing link results
   rpt <- suppressWarnings( epanetReader::read.rpt(rptFile))
   expect_equal( rpt$nodeResults$ID[rix], nid, 
-                "node ID in report file matches rix") 
+                "node ID in report file matches rix")
+  
+  file.remove(rptFile)
+  file.remove(outFile)
 })
