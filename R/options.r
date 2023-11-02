@@ -124,3 +124,20 @@ ENsetoption <- function(optioncode, value) {
 	check_epanet_error( x[[3]])
 	return( invisible())
 }
+
+
+#' Sets flow units.
+#' 
+#' @param units	the choice of flow units. One of: "EN_CFS", "EN_GPM", "EN_MGD",
+#'  "EN_IMGD", "EN_AFD", "EN_LPS", "EN_LPM", "EN_MLD", "EN_CMH", "EN_CMD"
+#' @returns null invisibly
+#' @details Flow units in liters or cubic meters implies that SI metric units
+#' are used for all other quantities in addition to flow. Otherwise US Customary
+#' units are employed.
+#' @useDynLib epanet2toolkit RENsetflowunits
+ENsetflowunits <- function(units){
+   FlowUnitsEnums <-c("EN_CFS" ,"EN_GPM" 	,"EN_MGD" 	,"EN_IMGD" 	,"EN_AFD" ,"EN_LPS" ,"EN_LPM" ,"EN_MLD" ,"EN_CMH" ,"EN_CMD")
+   flowUnitsVal <- lookup_enum_value(FlowUnitsEnums, units)
+	x <- .C("RENsetflowunits", as.integer(flowUnitsVal), as.integer(-1))
+	check_epanet_error(x[[2]])
+}

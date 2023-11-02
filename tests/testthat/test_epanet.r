@@ -49,7 +49,7 @@ test_that("func loads",{
 })
 
 test_that("func works",{
- ENopen("Net1.inp", "Net1.rpt","")
+ ENopen("Net1.inp", "Net1.rpt")
  ENsaveinpfile("new.inp")
  expect_true( file.exists("new.inp"))
  ENclose()
@@ -114,3 +114,15 @@ test_that("works",{
 			
 		})
 
+
+context("ENinit")
+
+test_that("func exists",{
+  expect_true( is.loaded("RENinit"))
+})
+
+test_that("func works",{
+	ENinit(rptFile="xxx.rpt", outFile="yyy.out", unitsType="EN_LPS", headLossType="EN_DW")
+	expect_silent(ENclose())
+	file.remove("xxx.rpt")
+})

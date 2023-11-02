@@ -14,7 +14,7 @@ test_that("func exists",{
 })
 
 test_that("func works",{
-    ENopen("Net1.inp","n1.rpt","")
+    ENopen("Net1.inp","n1.rpt")
     ENclose() 
     # if you got here it's OK 
     expect_true(TRUE) 
@@ -28,7 +28,7 @@ test_that("warns not crashes when already closed",{
 }) 
 
 test_that("returns NULL invisibly on Success",{
-    ENopen("Net1.inp","n1.rpt","")
+    ENopen("Net1.inp","n1.rpt")
     x <- withVisible( ENclose() ) 
     expect_null( x$value)
     expect_false( x$visible)

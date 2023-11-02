@@ -54,3 +54,25 @@ test_that("get error on wrong control",{
   expect_error(ENsetcontrol(7,1,116,1,95,21.5))
   ENclose()
 })
+
+context("delete control")
+test_that("can delete existing control",{
+
+  ENopen("Net3.inp", "Net3.rpt")
+  x <- ENdeletecontrol(1)
+  ENclose()
+  expect_null(x)
+
+})
+
+context("add control")
+test_that("can add new control",{
+
+  ENopen("Net3.inp", "Net3.rpt")
+  # pipe from river operates only part of the day
+  lidx <- ENgetlinkindex("50")
+  cidx <- ENaddcontrol(type="EN_TIMEOFDAY", linkIndex=lidx,setting=0, nodeIndex = 0, level=20000)
+  ctrl <- ENgetcontrol(cidx)
+  expect_equal(ctrl$lindex,lidx)
+  ENclose()
+})

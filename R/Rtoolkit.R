@@ -116,7 +116,8 @@ ENclose <- function() {
 #'   \code{EN_LINKCOUNT}    \tab 2 \tab Links\cr
 #'   \code{EN_PATCOUNT}     \tab 3 \tab Time patterns\cr
 #'   \code{EN_CURVECOUNT}   \tab 4 \tab Curves\cr
-#'   \code{EN_CONTROLCOUNT} \tab 5 \tab Simple controls
+#'   \code{EN_CONTROLCOUNT} \tab 5 \tab Simple controls\cr
+#'   \code{EN_RULECOUNT} \tab 5 \tab Simple controls
 #'   }
 #' 
 #'   The number of junctions in a network equals the number of nodes minus the number of tanks and reservoirs.
@@ -129,7 +130,7 @@ ENclose <- function() {
 #' ENclose()
 ENgetcount <- function(compcode) {
 	
-	codeTable = c("EN_NODECOUNT", "EN_TANKCOUNT", "EN_LINKCOUNT", "EN_PATCOUNT", "EN_CURVECOUNT", "EN_CONTROLCOUNT")
+	codeTable = c("EN_NODECOUNT", "EN_TANKCOUNT", "EN_LINKCOUNT", "EN_PATCOUNT", "EN_CURVECOUNT", "EN_CONTROLCOUNT", "EN_RULECOUNT")
 	
     # check the arguments
 	if( length(compcode) != 1 ) stop("can only get one component at time")

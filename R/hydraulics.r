@@ -274,3 +274,50 @@ ENcloseH <- function() {
 #    }
     return( invisible() )
 } 
+
+
+#' Saves temporary hydraulics file to disk
+#' 
+#' @param hydfile the name of the file to be created.
+#' @return Returns NULL invisibly; called for side effect
+#' 
+#' @export
+#' @useDynLib epanet2toolkit RENsavehydfile
+#' 
+#' @details Use this function to save the current set of hydraulics results to a file, either for
+#'  post-processing or to be used at a later time by calling \code{ENusehydfile}.
+#'
+#'  The hydraulics file contains nodal demands and heads and link flows, status, and settings
+#'  for all hydraulic time steps, even intermediate ones.
+#'
+#'  Before calling this function hydraulic results must have been generated and saved by having
+#'  called \code{ENsolveH} or the \code{ENinitH} - \code{ENrunH} - \code{ENnextH} sequence with the initflag
+#'  argument of \code{ENinitH} set to EN_SAVE or EN_SAVE_AND_INIT.
+ENsavehydfile <- function(hydfile){
+
+    if( !is.character(hydfile) ) stop("hydfile must be character")   
+    arg <- .C("RENsavehydfile", hydfile, as.integer(-1))
+    err <- arg[[2]]
+    check_epanet_error( err )
+	  return( invisible() )
+}
+
+
+#' Uses previously saved binary hydraulics file to supply a project's hydraulics.
+#' 
+#' @param hydfile name of file containing hydraulic results
+#' @export
+#' @useDynLib epanet2toolkit RENusehydfile
+#' @details Call this function to re-use a set of hydraulic analysis results saved previously. This
+#'  can save computational time if water quality analyses are being made under the same set
+#'  of hydraulic conditions.
+#'
+#'  Do not call this function while the hydraulics solver is open.
+ENusehydfile <- function(hydfile){
+
+    if( !is.character(hydfile) ) stop("hydfile must be character")   
+    arg <- .C("RENusehydfile", hydfile, as.integer(-1))
+    err <- arg[[2]]
+    check_epanet_error( err )
+	  return( invisible() )
+}

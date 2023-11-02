@@ -24,7 +24,8 @@ Component codes consist of the following:
   \code{EN_LINKCOUNT}    \tab 2 \tab Links\cr
   \code{EN_PATCOUNT}     \tab 3 \tab Time patterns\cr
   \code{EN_CURVECOUNT}   \tab 4 \tab Curves\cr
-  \code{EN_CONTROLCOUNT} \tab 5 \tab Simple controls
+  \code{EN_CONTROLCOUNT} \tab 5 \tab Simple controls\cr
+  \code{EN_RULECOUNT} \tab 5 \tab Simple controls
   }
 
   The number of junctions in a network equals the number of nodes minus the number of tanks and reservoirs.

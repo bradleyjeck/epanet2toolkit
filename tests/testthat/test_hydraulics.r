@@ -9,12 +9,12 @@
 
 context("ENsolveH")
 test_that("func works",{
-  ENopen("Net1.inp", "Net1.rpt", "")
+  ENopen("Net1.inp", "Net1.rpt")
   expect_silent( ENsolveH()) 
   ENclose()
 })
 test_that("returns null invisbly on success",{
-  ENopen("Net1.inp", "Net1.rpt", "")
+  ENopen("Net1.inp", "Net1.rpt")
   x <- withVisible( ENsolveH() ) 
   ENclose()
   
@@ -52,7 +52,7 @@ test_that("func works",{
 })
 
 test_that("no crash calling twice",{
-  ENopen("Net1.inp", "Net1.rpt", "")	
+  ENopen("Net1.inp", "Net1.rpt")	
     expect_silent(ENopenH())
     expect_silent(ENopenH())
     expect_silent(ENcloseH())
@@ -154,4 +154,42 @@ test_that("func gives an error when hydraulics are not open", {
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
   expect_silent(ENcloseH())
   ENclose()
+})
+
+context("ENsavehydfile")
+test_that("func exists",{
+   expect_true(is.loaded("RENsavehydfile"))
+})
+test_that("file saves",{
+  ENopen("Net1.inp", "Net1.rpt")
+  ENsolveH()
+  hydfile <- "net1.hyd"
+  ENsavehydfile(hydfile)
+  ENclose()
+  expect_true( file.exists(hydfile))
+
+  # clean-up from the test
+  file.remove(hydfile)
+})
+context("ENusehydfile")
+test_that("func exists",{
+   expect_true(is.loaded("RENusehydfile"))
+})
+test_that("file loads",{
+  # create hydraulics file
+  ENopen("Net1.inp", "Net1.rpt")
+  ENsolveH()
+  hydfile <- "net1.hyd"
+  ENsavehydfile(hydfile)
+  ENclose()
+  expect_true( file.exists(hydfile))
+
+  # now open the network again and load the file
+  ENopen("Net1.inp", "Net1.rpt")
+  expect_silent( ENusehydfile(hydfile))
+  ENclose()
+
+
+  # clean-up from the test
+  file.remove(hydfile)
 })

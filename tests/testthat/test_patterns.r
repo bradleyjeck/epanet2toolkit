@@ -169,3 +169,45 @@ test_that("returns NULL invisibly on success",{
 			expect_null( x$value )
 			expect_false( x$visible )
 		})
+
+
+context("pattern CRUD")
+test_that("net 3 pattern CRUD",{
+
+    suffix <- paste0( sample(letters, 4), collapse="")
+    rptFile <- paste0("pattern-tests-", suffix,".rpt")
+    ENopen("Net3.inp", rptFile)
+
+
+    ENaddpattern(suffix)
+	idx <- ENgetpatternindex(suffix)
+	expect_true(idx > 0)
+	plen <- ENgetpatternlen(idx)
+	expect_equal(plen, 1)
+
+    suffix2 <- paste0( sample(letters, 4), collapse="")
+	ENsetpatternid(idx, suffix2)
+	idx2 <- ENgetpatternindex(suffix2)
+	expect_equal(idx, idx2)
+
+	ENdeletepattern(idx)
+
+	ENclose()
+	file.remove(rptFile)
+})
+
+context("pattern avg")
+test_that("net 3 get pattern avg",{
+
+    suffix <- paste0( sample(letters, 4), collapse="")
+    rptFile <- paste0("pattern-tests-", suffix,".rpt")
+    ENopen("Net3.inp", rptFile)
+
+	a1 <- ENgetaveragepatternvalue(1)
+	expect_false( as.integer(a1) == 0 )
+
+	a2 <- ENgetaveragepatternvalue(2)
+	expect_false( as.integer(a2) == 0 )
+
+    ENclose()
+})

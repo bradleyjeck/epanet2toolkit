@@ -41,7 +41,36 @@ ENepanet <- function( inpFile, rptFile, binOutFile=""){
    invisible()
 }
 
- 
+#' ENinit
+#' 
+#' Initializes an empty EPANET network
+#' 
+#' @param rptFile	the name of a report file to be created (or "" if not needed).
+#' @param outFile	the name of a binary output file to be created (or "" if not needed).
+#' @param unitsType	the choice of flow units. One of: "EN_CFS", "EN_GPM", "EN_MGD",
+#'  "EN_IMGD", "EN_AFD", "EN_LPS", "EN_LPM", "EN_MLD", "EN_CMH", "EN_CMD"
+#' @param headLossType	the choice of head loss formula . One of: EN_HW, EN_DW, EN_CM
+#' @return Returns NULL invisibly; called for side effect
+#' @useDynLib epanet2toolkit RENinit
+#' @details This function should be called to create an empty EPANET project without 
+#' an EPANET-formatted input file.  If the
+#' project receives it's network data from an input file then there is no need to
+#' call this function; use ENopen instead.
+ENinit <- function( rptFile, outFile, unitsType, headLossType){
+
+   FlowUnitsEnums <-c("EN_CFS" ,"EN_GPM" 	,"EN_MGD" 	,"EN_IMGD" 	,"EN_AFD" ,"EN_LPS" ,"EN_LPM" ,"EN_MLD" ,"EN_CMH" ,"EN_CMD")
+   flowUnitsVal <- lookup_enum_value(FlowUnitsEnums, unitsType)
+
+   HeadLossEnums <- c("EN_HW","EN_DW","EN_CM")
+   headlossVal <- lookup_enum_value(HeadLossEnums, headLossType)
+
+   arg <- .C("RENinit", rptFile, outFile, flowUnitsVal, headlossVal, as.integer(-1))
+   err <- arg[[5]]
+   check_epanet_error(err)
+   return(invisible())
+}
+
+
 #' ENaveinpfile
 #'   
 #' Saves current data to "INP" formatted text file.

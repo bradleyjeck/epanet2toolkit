@@ -16,7 +16,7 @@ test_that("behavior calling on closed toolkit",{
 
 test_that("basic usage",{
  
-  ENopen("Net1.inp", "Net1.rpt", "")
+  ENopen("Net1.inp", "Net1.rpt")
   units <- ENgetflowunits()
   expect_equal( unname(units),  1 ) 
   ENclose()

@@ -25,4 +25,11 @@ test_that("can return char",{
 			
 		})
 
+context("enum lookup")
+test_that("lookup works",{
+
+  option_enums <- c("EN_TRIALS", "EN_ACCURACY", "EN_TOLERANCE", "EN_EMITEXPON", "EN_DEMANDMULT")
+  intval <- lookup_enum_value(option_enums, "EN_ACCURACY")
+  expect_equal(intval,1)
+})
 

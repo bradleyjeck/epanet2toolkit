@@ -147,3 +147,42 @@ ENsetcontrol <- function(cindex, ctype = NULL, lindex = NULL, setting = NULL, ni
   return(invisible())
   
 } 
+
+
+
+#'  Add a new simple control
+#'
+#' @param type the type of control to add (see details)
+#' @param linkIndex the index of a link to control (starting from 1)
+#' @param setting control setting applied to the link
+#' @param nodeIndex index of the node used to control the link
+#' (0 for EN_TIMER and EN_TIMEOFDAY controls).
+#' @param level action level (tank level, junction pressure, or time in seconds)
+#' that triggers the control.
+#' @return index index of the new control.
+#' @export
+#' @useDynLib epanet2toolkit RENaddcontrol
+ENaddcontrol <- function(type, linkIndex, setting, nodeIndex, level){
+
+
+    control_type_int <- lookup_enum_value(EN_ControlType,type)
+    res <- .C("RENaddcontrol", as.integer(control_type_int), as.integer(linkIndex), 
+              as.numeric(setting), as.integer(nodeIndex), as.numeric(level),
+              as.integer(-1), as.integer(-1))
+    check_epanet_error(res[[7]])
+    controlIndex <- res[[6]]
+    return(controlIndex)
+}
+
+
+#' Deletes an existing simple control
+#'
+#' @param controlIndex the index of the control to delete (starting from 1).
+#' @return null invisibly
+#' @useDynLib epanet2toolkit RENdeletecontrol
+ENdeletecontrol <- function(controlIndex){
+
+    res <- .C("RENdeletecontrol", as.integer(controlIndex), as.integer(-1))
+    check_epanet_error(res[[2]])
+    return(invisible())
+}

@@ -3,6 +3,7 @@
 \docType{package}
 \name{epanet2toolkit}
 \alias{epanet2toolkit}
+\alias{epanet2toolkit-package}
 \title{epanet2toolkit}
 \description{
 Package for using EPANET 2 from R.  Run a full EPANET simulation

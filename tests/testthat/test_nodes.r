@@ -134,3 +134,85 @@ test_that("returns NULL invisibly on success",{
   expect_null(x$value)
   expect_false(x$visible)
 })
+
+
+context("ENadd/deletenode")
+test_that("add delete node",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  outFile <- paste0("node-tests-", suffix,".out")
+  ENinit(rptFile, outFile, "EN_CFS", "EN_DW")
+  idx1 <- ENaddnode('node1', 'EN_JUNCTION')
+  idx2 <- ENaddnode('2a', 'EN_JUNCTION')
+  expect_true( idx1 ==1 )
+  expect_true( idx2 ==2 )
+
+  ENdeletenode(idx1, "EN_UNCONDITIONAL")
+
+  idx2a <- ENgetnodeindex('2a')
+  expect_false(idx2 == idx2a )
+  ENclose()
+
+  # clean up
+  file.remove(rptFile)
+})
+
+context("ENsetnodeid")
+test_that("set node id",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile)
+  oldid <- ENgetnodeid(5)
+  ENsetnodeid(5, suffix)
+  newid <- ENgetnodeid(5)
+  expect_false(oldid == newid)
+  expect_true(newid == suffix)
+  ENclose()
+
+  file.remove(rptFile)
+})
+
+context("ENsetjuncdata")
+test_that("set junc data",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile)
+
+  ENsetjuncdata(nodeindex=5, elevation=999, demand=123)
+
+  elev = ENgetnodevalue(5,"EN_ELEVATION")
+  expect_equal(as.integer(elev), 999)
+
+  dmd = ENgetnodevalue(5,"EN_BASEDEMAND")
+  expect_equal(as.integer(dmd), 123)
+  ENclose()
+
+  file.remove(rptFile)
+})
+
+context("ENsettankdata")
+test_that("set tank data",{
+  suffix <- paste0( sample(letters, 4), collapse="")
+  rptFile <- paste0("node-tests-", suffix,".rpt")
+  ENopen("Net1.inp", rptFile)
+  #;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve
+  #  2               	850         	120         	100         	150         	50.5        	0           	                	;
+  tid = ENgetnodeindex("2")
+
+  ENsettankdata(nodeindex=tid,
+                 elevation=888,
+                 init_level = 125,
+                 min_level = 99,
+                 max_level = 145,
+                 diameter = 44,
+                 min_volume = 1)
+
+  elev = ENgetnodevalue(tid,"EN_ELEVATION")
+  expect_equal(as.integer(elev), 888)
+
+  initlvl = ENgetnodevalue(tid,"EN_TANKLEVEL")
+  expect_equal(as.integer(initlvl), 125)
+  ENclose()
+
+  file.remove(rptFile)
+})

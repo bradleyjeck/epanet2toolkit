@@ -276,3 +276,69 @@ ENsetpatternvalue <- function(index, period, value) {
   return(invisible())
   
 } 
+
+#' Add a new time pattern
+#'
+#' @param patternid the ID name of the pattern to add.
+#' @return invisible NULL
+#' @details The new pattern contains a single time period whose factor is 1.0.
+#' @export 
+#' @useDynLib epanet2toolkit RENaddpattern
+ENaddpattern <- function(patternid){
+	if (missing(patternid)) {
+		stop("Need to specify the pattern ID")
+	}
+	if (is.character(patternid)) {
+		patternid = as.character(patternid)
+	}
+	else {
+		stop("The pattern ID must be a character string.")
+	}
+
+	res <- .C("RENaddpattern", patternid, as.integer(-1))
+	check_epanet_error(res[[2]])
+	return(invisible())
+}
+
+
+#' Delete a new time pattern
+#'
+#' @param index of the pattern to delete
+#' @return invisible NULL
+#' @export 
+#' @useDynLib epanet2toolkit RENdeletepattern
+ENdeletepattern <- function(index){
+
+	res <- .C("RENdeletepattern", as.integer(index), as.integer(-1))
+	check_epanet_error(res[[2]])
+	return(invisible())
+}
+
+#' Change the ID name of a time pattern given its index.
+#'
+#' @param index a time pattern index (starting from 1).
+#' @param id the time pattern's new ID name.
+#' @return NULL invisibly
+#' @export
+#' @useDynLib epanet2toolkit RENsetpatternid
+ENsetpatternid <- function(index, id){
+
+	res <- .C("RENsetpatternid", as.integer(index), id, as.integer(-1))
+	check_epanet_error(res[[3]])
+	return(invisible())
+}
+
+#' Get average of all time factors in a pattern
+#'
+#' @param index a time pattern index (starting from 1).
+#' @return the average value 
+#' @export
+#' @useDynLib epanet2toolkit RENgetaveragepatternvalue
+#' @export
+#' @useDynLib epanet2toolkit RENgetaveragepatternvalue
+ENgetaveragepatternvalue <- function(index){
+
+	res <- .C("RENgetaveragepatternvalue", as.integer(index), 0.0, as.integer(-1))
+	check_epanet_error(res[[3]])
+	return(res[[2]])
+}

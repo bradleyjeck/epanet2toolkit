@@ -13,6 +13,7 @@
 #' functions like \code{\link{ENopen}}. 
 #'
 #' @docType package
+#' @aliases epanet2toolkit-package
 #' @name epanet2toolkit
 #' @author Ernesto Arandia & Bradley J. Eck
 NULL
