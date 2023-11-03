@@ -116,8 +116,12 @@ ENsetstatusreport <- function(level){
 ENgeterror <- function(errcode){
   buffer <- paste0(rep_len(" ",255), collapse='')  
   x <- .C("RENgeterror", as.integer(errcode), buffer, as.integer(nchar(buffer)), as.integer(-1))
-  check_epanet_error(x[[4]])
-  return(buffer)
+  rv = x[[4]]
+  if(rv != 0){
+    msg <- paste("got error", rv, "when trying to get the error message for", errcode)
+    stop(msg)
+  }
+  return(x[[2]])
 }
 
 

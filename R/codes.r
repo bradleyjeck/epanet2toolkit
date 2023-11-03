@@ -12,7 +12,7 @@ check_epanet_error <- function( rv ){
 	if( !is.integer(rv)) stop("rv must be integer")
 
     goodMsg <- NA
-	#try(goodMsg <- ENgeterror(rv))
+	try(goodMsg <- ENgeterror(rv))
 	
 	if( rv == 0){
 		return()
