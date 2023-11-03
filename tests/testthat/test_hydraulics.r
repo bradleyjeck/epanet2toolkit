@@ -97,7 +97,7 @@ test_that("func gives a warning when hydraulics are not open", {
     expect_error(ENrunH(), "103")
   ENclose()
 })
-test_that("func warns of lack of hydraulic initialization", {
+test_that("func warns of due to lack of hydraulic initialization", {
   ENopen("Net1.inp", "Net1.rpt", "Net1.bin")
     ENopenH()
       expect_warning(x <- ENrunH(), "6")
