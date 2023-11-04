@@ -576,6 +576,7 @@ int writeresults(Project *pr)
         fseek(outFile, out->OutOffset2, SEEK_SET);
         time->Htime = time->Rstart;
 
+        size_t res;
 
         // For each reporting time:
         for (np = 1; np <= rpt->Nperiods; np++)
@@ -584,14 +585,14 @@ int writeresults(Project *pr)
             // (Remember to offset x[j] by 1 because array is zero-based)
             for (j = DEMAND; j <= QUALITY; j++)
             {
-                fread((x[j - DEMAND]) + 1, sizeof(REAL4), net->Nnodes, outFile);
+                res = fread((x[j - DEMAND]) + 1, sizeof(REAL4), net->Nnodes, outFile);
             }
             if (nnv > 0 && rpt->Nodeflag > 0) writenodetable(pr, x);
 
             // Read in link results & write link table
             for (j = FLOW; j <= FRICTION; j++)
             {
-                fread((x[j - FLOW]) + 1, sizeof(REAL4), net->Nlinks, outFile);
+                res = fread((x[j - FLOW]) + 1, sizeof(REAL4), net->Nlinks, outFile);
             }
             if (nlv > 0 && rpt->Linkflag > 0) writelinktable(pr, x);
             time->Htime += time->Rstep;
@@ -1462,7 +1463,7 @@ char *clocktime(char *atime, long seconds, long atimelen)
     h = seconds / 3600;
     m = seconds % 3600 / 60;
     s = seconds - 3600 * h - 60 * m;
-    snprintf(atime, atimelen, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
+    int ret = snprintf(atime, atimelen, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
     return atime;
 }
 
