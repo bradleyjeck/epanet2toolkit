@@ -585,14 +585,14 @@ int writeresults(Project *pr)
             // (Remember to offset x[j] by 1 because array is zero-based)
             for (j = DEMAND; j <= QUALITY; j++)
             {
-                res = fread((x[j - DEMAND]) + 1, sizeof(REAL4), net->Nnodes, outFile);
+                if( fread((x[j - DEMAND]) + 1, sizeof(REAL4), net->Nnodes, outFile) < net->Nnodes) return 309;
             }
             if (nnv > 0 && rpt->Nodeflag > 0) writenodetable(pr, x);
 
             // Read in link results & write link table
             for (j = FLOW; j <= FRICTION; j++)
             {
-                res = fread((x[j - FLOW]) + 1, sizeof(REAL4), net->Nlinks, outFile);
+                if( fread((x[j - FLOW]) + 1, sizeof(REAL4), net->Nlinks, outFile) < net->Nlinks) return 309;
             }
             if (nlv > 0 && rpt->Linkflag > 0) writelinktable(pr, x);
             time->Htime += time->Rstep;
