@@ -1463,7 +1463,7 @@ char *clocktime(char *atime, long seconds, long atimelen)
     h = seconds / 3600;
     m = seconds % 3600 / 60;
     s = seconds - 3600 * h - 60 * m;
-    int ret = snprintf(atime, atimelen, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
+    snprintf(atime, atimelen, "%01d:%02d:%02d", (int)h, (int)m, (int)s);
     return atime;
 }
 
