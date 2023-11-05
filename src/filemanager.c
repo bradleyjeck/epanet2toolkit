@@ -131,12 +131,6 @@ int printf_file(file_handle_t *file_handle, const char *format, ... )
     return error;
 }
 
-int gets_file(char *str, int num, file_handle_t *file_handle)
-{
-    char* res;
-    res = fgets(str, num, file_handle->file);
-    return 0;
-}
 
 
 int close_file(file_handle_t *file_handle) {
