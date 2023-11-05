@@ -576,7 +576,6 @@ int writeresults(Project *pr)
         fseek(outFile, out->OutOffset2, SEEK_SET);
         time->Htime = time->Rstart;
 
-        size_t res;
 
         // For each reporting time:
         for (np = 1; np <= rpt->Nperiods; np++)
