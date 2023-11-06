@@ -12,7 +12,7 @@ check_epanet_error <- function( rv ){
 	if( !is.integer(rv)) stop("rv must be integer")
 
     goodMsg <- NA
-	#try(goodMsg <- ENgeterror(rv))
+	try(goodMsg <- ENgeterror(rv))
 	
 	if( rv == 0){
 		return()
@@ -30,7 +30,7 @@ check_epanet_error <- function( rv ){
 		  # unable to obtain a good message so just return the error code
 		  msg <- paste("epanet warning ", rv)
 		} else {
-			msg <- goodMsg
+		  msg <- paste("epanet warning", rv, goodMsg)
 		}
 		warning(msg)
 	}

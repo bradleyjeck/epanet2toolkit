@@ -92,7 +92,7 @@ void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value);
 void RENdeletenode(int *index, int *code, int *ENreturn_value);
 void RENsetnodeid(int *index, char **newid, int *ENreturn_value);
 void RENsetjuncdata(int *index, double *elev, double *dmnd, char **dmndpat, int *enrv);
-void RENsettankdata(int *index, double *elev, double *initlvl, double *maxlvl, double *diam, double *minvol, char **volcurve, int *enrv);
+void RENsettankdata(int *index, double *elev, double *initlvl, double *minlvl, double *maxlvl, double *diam, double *minvol, char **volcurve, int *enrv);
 
 void RENgetdemandmodel( int *model, double *pmin, double *preq, double *pexp, int *enrv);
 void RENsetdemandmodel(int *model, double *pmin, double *preq, double *pexp, int *enrv);

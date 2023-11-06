@@ -132,7 +132,8 @@ test_that("ENsetstatusreport",{
 context("ENgeterror")
 test_that("gets err msg",{
     msg <- ENgeterror(200)
-    expect_false( is.na(msg))
+    expect_true(nchar(gsub(" ", "", msg)) > 0,
+                "msg should have something besides spaces")
 })
 
 context("ENgetstatistic")
