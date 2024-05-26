@@ -2,3 +2,4 @@ travis.yml$
 ^\.so$
 ^\.o$
 Makefile
+.github\
