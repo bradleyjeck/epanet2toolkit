@@ -864,7 +864,7 @@ void inperrmsg(Project *pr, int err, int sect, char *line)
     trunc_tok[sizeof trunc_tok - 1] = '\0'; 
 
     // write error message to report file
-    snprintf(pr->Msg, sizeof(pr->Msg), "Error %d: %s %s in %s section:",
+    snprintf(pr->Msg, sizeof(pr->Msg), "Err %d: %s %s in %s section",
             err, geterrmsg(err, errStr), trunc_tok, SectTxt[sect]);
     writeline(pr, pr->Msg);
 
