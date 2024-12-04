@@ -42,6 +42,8 @@ int SEXP2int(SEXP mySEXP) {
 
     int result;
     mySEXP = coerceVector(mySEXP, INTSXP);
+    if (Rf_length(mySEXP) == 0)
+      Rf_error("empty integer vector (internal error)");
     result = INTEGER(mySEXP)[0];
     return result;
 
@@ -63,6 +65,8 @@ float SEXP2float(SEXP mySEXP) {
 
     float result;
     mySEXP = coerceVector(mySEXP, REALSXP);
+    if (Rf_length(mySEXP) == 0)
+      Rf_error("empty real vector (internal error)");
     result = (float)REAL(mySEXP)[0];
     return result;
 
