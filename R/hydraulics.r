@@ -57,7 +57,7 @@ ENsaveH <- function(){
 #' \code{ENopenH} opens the EPANET hydraulics analysis system.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enOpenH
+#' @useDynLib epanet2toolkit RENopenH
 #' 
 #' @details Call \code{ENopenH} prior to running the first hydraulic analysis using the 
 #'   \code{ENinitH-ENrunH-ENnextH} sequence. Multiple analyses can be made before calling 
@@ -79,15 +79,9 @@ ENsaveH <- function(){
 #' # clean-up the created files
 #' file.remove("Net1.rpt") 
 ENopenH <- function() {
-	
-#  if( getOpenHflag()){
-#    warning("Epanet hydraulic solver was already open")
-#  } 
-#  else { 
-    result <- .Call("enOpenH")					
-    check_epanet_error(result$errorcode)
-#  }
-  
+  arg <- .C("RENopenH", as.integer(-1))
+  err <- arg[[1]]
+  check_epanet_error( err )
   return( invisible() )
   
 } 
@@ -99,7 +93,7 @@ ENopenH <- function() {
 #'   time prior to running a hydraulic analysis.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enInitH
+#' @useDynLib epanet2toolkit RENinitH
 #' 
 #' @param flag A two-digit flag indicating if hydraulic results will be saved to the
 #'   hydraulics file (rightmost digit) and if link flows should be re-initialized.
@@ -146,12 +140,13 @@ ENinitH <- function(flag) {
 		stop("The initialization flag must be an integer.")
 	}	
   
-  result <- .Call("enInitH", flag)					
-  check_epanet_error(result$errorcode)
+  args <- .C("RENinitH", as.integer(flag), as.integer(-1))
+  err <- args[[2]]
+  check_epanet_error(err)
   
   return(invisible())
 	
-} 
+}
 
 #' run hydraulics engine
 #' 
@@ -159,7 +154,7 @@ ENinitH <- function(flag) {
 #' current simulation clock time \code{t}.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enRunH
+#' @useDynLib epanet2toolkit RENrunH
 #' 
 #' @details Use \code{ENrunH} along with \code{ENnextH} in a while loop to 
 #'   analyze hydraulics in each period of an extended period simulation. 
@@ -172,7 +167,7 @@ ENinitH <- function(flag) {
 #'   See \code{ENnextH} for an example of using this function.
 #'   
 #' @seealso \code{ENopenH}, \code{ENinitH}, \code{ENnextH}, \code{ENcloseH}
-#' @return Returns NULL invisibly; called for side effect
+#' @return Current simulation clock time.
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -186,12 +181,13 @@ ENinitH <- function(flag) {
 #' file.remove("Net1.rpt") 
 ENrunH <- function() {
 	
-  result <- .Call("enRunH")					
-  check_epanet_error(result$errorcode)
-  
-  return(result$value)
-  
-} 
+  args <- .C("RENrunH", as.integer(-1), as.integer(-1))
+  err <- args[[2]]
+  check_epanet_error(err)
+  time <- args[[1]] 
+  return(time)
+
+}
 
 #' determine the next hydraulic step
 #' 
@@ -199,7 +195,7 @@ ENrunH <- function() {
 #' hydraulic event occurs in an extended period simulation.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enNextH
+#' @useDynLib epanet2toolkit RENnextH
 #' 
 #' @return An integer, the time (in seconds) until next hydraulic event 
 #'   occurs or 0 if at the end of the simulation period.
@@ -241,11 +237,10 @@ ENrunH <- function() {
 #' 
 ENnextH <- function() {
 	
-  result <- .Call("enNextH")					
-  check_epanet_error(result$errorcode)
-  
-  return(result$value)
-  
+  args <- .C("RENnextH", as.integer(-1), as.integer(-1))
+  err <- args[[2]]
+  check_epanet_error(err)
+  return(args[[1]])
 }
 
 #' close hydraulics engine
@@ -256,7 +251,7 @@ ENnextH <- function() {
 #' @return Returns NULL invisibly; called for side effect
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enCloseH
+#' @useDynLib epanet2toolkit RENcloseH
 #' 
 #' @details Call \code{ENcloseH} after all hydraulics analyses have been made using 
 #'   \code{ENinitH-ENrunH-ENnextH}. Do not call this function if \code{ENsolveH} is being used.
@@ -265,13 +260,9 @@ ENnextH <- function() {
 #' 
 ENcloseH <- function() {
   
-#    if( !getOpenHflag()){
-#      warning("Epanet hydraulics already closed")
-#    } 
-#    else { 
-      result <- .Call("enCloseH")					
-      check_epanet_error(result$errorcode)
-#    }
+    args <- .C("RENcloseH", as.integer(-1))
+    err <- args[[1]]
+    check_epanet_error(err)
     return( invisible() )
 } 
 

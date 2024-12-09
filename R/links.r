@@ -311,7 +311,7 @@ ENgetlinkvalue <- function(linkindex, paramcode) {
 #'   For pipes, either \code{EN_ROUGHNESS} or \code{EN_INITSETTING} can be used to change roughness.
 #'   
 #' @export
-#' @useDynLib epanet2toolkit enSetLinkValue
+#' @useDynLib epanet2toolkit RENsetlinkvalue
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -344,8 +344,9 @@ ENsetlinkvalue <- function(index, paramcode, value) {
                      "EN_STATUS", "EN_SETTING", "EN_ENERGY")
   pc <- check_enum_code( paramcode, codetable) 
 
-  out <- .Call("enSetLinkValue", index, pc, value)
-  check_epanet_error(out$errorcode)
+  args <- .C("RENsetlinkvalue", as.integer(index), as.integer(pc), as.numeric(value), as.integer(-1))
+  err <- args[[4]]
+  check_epanet_error(err)
 
   return(invisible())
   
