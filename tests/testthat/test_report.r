@@ -68,6 +68,7 @@ test_that("writes report on open project",{
   expect_true( x > y)
   ENclose()
   file.remove("Net1-rpt.test")
+  file.remove("Net1-rt.bin")
 })
 
 
