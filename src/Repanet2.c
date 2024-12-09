@@ -92,6 +92,32 @@ void RENinitH(int initFlag, int* ENreturn_value){
   *ENreturn_value = rv;
 }
 
+void RENrunH(int* currentTime, int* ENreturn_value){
+	int rv;
+	long curtime;
+	long *pcurtime = &curtime;
+	rv = ENrunH(pcurtime);
+	// return an int since R does not support long
+	*currentTime = curtime; 
+	*ENreturn_value = rv;
+}
+
+void RENnextH(int* tStep, int* ENreturn_value){
+	int rv;
+	long lngStep;
+	long *pStep = &lngStep;
+	rv = ENnextH(pStep);
+	// return an int since R does not support long
+	*tStep = lngStep;
+	*ENreturn_value = rv;
+}
+
+void RENcloseH(int* ENreturn_value){
+	int rv;
+	rv = ENcloseH();
+	*ENreturn_value = rv;
+}
+
 void RENsavehydfile(char **filename, int *ENreturn_value){
 	int rv;
 	rv = ENsavehydfile(*filename);
@@ -375,6 +401,14 @@ void RENsetnodeid(int *index, char **newid, int *ENreturn_value){
 	*ENreturn_value = rv;
 }
 
+
+void RENsetnodevalue(int *index, int *property, double *value, int *enrv){
+	int rv;
+	EN_API_FLOAT_TYPE val = (EN_API_FLOAT_TYPE) *value;
+	rv = ENsetnodevalue(*index, *property, val);
+	*enrv = rv;
+}
+
 void RENsetjuncdata(int *index, double *elev, double *dmd, char **dmdpat, int *ENreturn_value){
 	int idx = *index;
 	double elevation = *elev;
@@ -527,6 +561,13 @@ void RENsetlinkid(int *index, char **newid, int *enrv){
 	*enrv = rv;
 }
 
+void RENsetlinkvalue(int *index, int *property, double *value, int *enrv){
+	int rv;
+	EN_API_FLOAT_TYPE val = (EN_API_FLOAT_TYPE) *value;
+	rv = ENsetlinkvalue(*index, *property, val);
+	*enrv = rv;
+}
+
 void RENsetlinktype(int *index, int *linkType, int *actionCode, int *enrv){
 	int type = *linkType;
 	int action = *actionCode;
@@ -604,6 +645,23 @@ void RENdeletepattern(int *index, int *enrv){
 void RENsetpatternid(int *index, char **id, int *enrv){
 	int idx = *index;
 	int rv = ENsetpatternid(idx,*id);
+	*enrv = rv;
+}
+
+void RENsetpattern(int *index, double *values, int *len, int *enrv){
+	int rv;
+	int patlen=*len;
+	EN_API_FLOAT_TYPE vals[patlen];
+	for(int i=0; i < patlen; i++)
+	    vals[i] = (EN_API_FLOAT_TYPE) values[i];
+	rv = ENsetpattern(*index, vals, patlen);
+	*enrv = rv;
+} 
+
+void RENsetpatternvalue(int *index, int *period, double *value, int *enrv){
+	int rv;
+	EN_API_FLOAT_TYPE val = (EN_API_FLOAT_TYPE) *value;
+	rv = ENsetpatternvalue(*index, *period, val);
 	*enrv = rv;
 }
 
@@ -717,6 +775,16 @@ void RENaddcontrol(int *type, int *linkIndex, double *setting, int *nodeIndex, d
 	int rv = ENaddcontrol(ct, lidx, set, nidx, lvl, index);
 	*enrv = rv;
 }
+
+void RENsetcontrol(int *index, int *type, int *linkIndex, double *setting, int *nodeIndex, double *level, int *enrv){
+	int rv;
+	EN_API_FLOAT_TYPE set = (EN_API_FLOAT_TYPE) *setting;
+	EN_API_FLOAT_TYPE lev = (EN_API_FLOAT_TYPE) *level;
+	rv = ENsetcontrol(*index, *type, *linkIndex, set, *nodeIndex, lev);
+	*enrv = rv;
+}
+
+
 
 void RENdeletecontrol(int *index, int *enrv){
 	int idx = *index;
