@@ -10,7 +10,7 @@ context("ENclose")
 
 
 test_that("func exists",{
-  expect_true( is.loaded("enClose"))
+  expect_true( is.loaded("RENclose"))
 })
 
 test_that("func works",{
