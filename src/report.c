@@ -792,7 +792,7 @@ void writeheader(Project *pr, int type, int contin)
         writeline(pr, s);
         // truncate s1 for gcc
         char trunc_s1[967];
-        strncpy(trunc_s1, s1, sizeof trunc_s1);
+        strncpy(trunc_s1, s1, sizeof trunc_s1 - 1);
         trunc_s1[sizeof trunc_s1 - 1] = '\0';
         snprintf(s,sizeof(s), FMT73, trunc_s1);
         writeline(pr, s);
