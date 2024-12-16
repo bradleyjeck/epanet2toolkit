@@ -7,7 +7,7 @@
 ENrunH()
 }
 \value{
-Returns NULL invisibly; called for side effect
+Current simulation clock time.
 }
 \description{
 \code{ENrunH} Runs a single period hydraulic analysis, retrieving the 

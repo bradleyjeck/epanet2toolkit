@@ -19,8 +19,6 @@
 #include "epanet2.h"
 
 //void RgetOpenHflag(int* flagval );
-SEXP enOpen(SEXP files);
-SEXP enClose(void);
 SEXP enGetNodeIndex(SEXP id);
 SEXP enGetNodeID(SEXP index);
 SEXP enGetNodeType(SEXP index);
@@ -41,16 +39,6 @@ SEXP enGetTimeParam(SEXP paramcode);
 SEXP enGetQualType(void);
 SEXP enGetOption(SEXP optioncode);
 SEXP enGetVersion(void);
-SEXP enSetControl(SEXP cindex, SEXP ctype, SEXP lindex, SEXP setting, SEXP nindex, SEXP level);
-SEXP enSetNodeValue(SEXP index, SEXP paramcode, SEXP value);
-SEXP enSetLinkValue(SEXP index, SEXP paramcode, SEXP value);
-SEXP enSetPattern(SEXP index, SEXP factors, SEXP nfactors);
-SEXP enOpenH(void);
-SEXP enInitH(SEXP flag);
-SEXP enRunH(void);
-SEXP enNextH(void);
-SEXP enCloseH(void);
-SEXP enSetPatternValue(SEXP index, SEXP period, SEXP value);
 SEXP enSetQualType(SEXP qualcode, SEXP chemname, SEXP chemunits, SEXP tracenode);
 SEXP int2SEXP(int myInt);
 SEXP char2SEXP(char *myChar);

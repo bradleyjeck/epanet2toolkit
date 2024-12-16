@@ -30,9 +30,15 @@ void RENsolveH(int* ENreturn_value);
 
 void RENsaveH(int* ENreturn_value);
 
-void  RENopenH(int* ENreturn_value);
+void RENopenH(int* ENreturn_value);
 
 void RENinitH(int initFlag, int* ENreturn_value);
+
+void RENrunH(int* currentTime, int* ENreturn_value);
+
+void RENnextH(int* tStep, int*ENreturn_value);
+
+void RENcloseH(int* ENreturn_value);
 
 void RENsavehydfile(char **filename, int *ENreturn_value);
 
@@ -91,6 +97,7 @@ void RENsetflowunits(int *units, int *ENreturn_value);
 void RENaddnode(char **id, int *nodeType, int *index, int *ENreturn_value);
 void RENdeletenode(int *index, int *code, int *ENreturn_value);
 void RENsetnodeid(int *index, char **newid, int *ENreturn_value);
+void RENsetnodevalue(int *index, int *property, double *value, int *enrv);
 void RENsetjuncdata(int *index, double *elev, double *dmnd, char **dmndpat, int *enrv);
 void RENsettankdata(int *index, double *elev, double *initlvl, double *minlvl, double *maxlvl, double *diam, double *minvol, char **volcurve, int *enrv);
 
@@ -109,6 +116,7 @@ void RENsetdemandname(int *nodeIndex, int *demandIndex, char **demandName, int *
 
 void RENaddlink(char **id, int *linkType, char **fromNode, char **toNode, int *index, int *enrv);
 void RENdeletelink(int *index, int *actionCode, int *enrv);
+void RENsetlinkvalue(int *index, int *property, double *value, int *enrv);
 void RENsetlinkid(int *index, char **newid, int *enrv);
 void RENsetlinktype(int *index, int *linkType, int *actionCode, int *enrv);
 void RENgetlinknodes(int *index, int *node1, int *node2, int *enrv);
@@ -124,6 +132,8 @@ void RENsetheadcurveindex(int *linkIndex, int *curveIndex, int *enrv);
 void RENaddpattern(char **id, int *enrv);
 void RENdeletepattern(int *index, int *enrv);
 void RENsetpatternid(int *index, char **id, int *enrv);
+void RENsetpattern(int *index, double *values, int *len, int *enrv);
+void RENsetpatternvalue(int *index, int *period, double *value, int *enrv);
 void RENgetaveragepatternvalue(int *index, double *value, int *enrv);
 
 void RENaddcurve(char **id, int *enrv);

@@ -43,6 +43,8 @@ test_that("warns if time param is too large for integers in R",{
 			ENopen("Net1-longduration.inp", "Net1-ld.rpt")
 			expect_warning( dur <- ENgettimeparam("EN_DURATION"))
 			ENclose()
+			# clean-up the test file
+			file.remove("Net1-ld.rpt")
 
 		})
 

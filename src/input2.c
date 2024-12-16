@@ -299,7 +299,9 @@ int newline(Project *pr, int sect, char *line)
               if (line[n - 1] == 10)
               line[n - 1] = '\0';
               char trunc_line[TITLELEN];
-              strncpy(trunc_line, line, sizeof trunc_line);
+              //strncpy(trunc_line, line, sizeof trunc_line - 1);
+              // use memcpy instead of strncpy to avoid Wstingop-truncation on gcc
+              memcpy(trunc_line, line, sizeof trunc_line - 1);
               trunc_line[sizeof trunc_line - 1] = '\0';
               strcpy(pr->Title[parser->Ntitle], trunc_line);
               parser->Ntitle++;
@@ -860,7 +862,9 @@ void inperrmsg(Project *pr, int err, int sect, char *line)
 
     // for gcc - truncate tok to avoid Wformat-overflow
     char trunc_tok[MAXMSG - 29];
-    strncpy(trunc_tok, tok, sizeof trunc_tok);
+    //strncpy(trunc_tok, tok, sizeof trunc_tok - 1);
+    // use memcpy instead of strncpy to avoid Wstingop-truncation on gcc
+    memcpy(trunc_tok, tok, sizeof trunc_tok - 1);
     trunc_tok[sizeof trunc_tok - 1] = '\0'; 
 
     // write error message to report file

@@ -10,7 +10,7 @@
 #' \code{ENopen} opens the EPANET Toolkit to analyze a particular water distribution system.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enOpen
+#' @useDynLib epanet2toolkit RENopen
 #' @param inpFileName A string, the name of the EPANET Input file.
 #' @param rptFileName A string, the name of the EPANET Report file.
 #' @param outFileName A string, the name of an optional binary Output file.
@@ -55,8 +55,8 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 	if( !epanet_is_closed ){
 		stop("Epanet toolkit is already open.")
 	} else { 
-		errcode <- .Call("enOpen", c(inpFileName, rptFileName, outFileName))					
-		check_epanet_error(errcode)
+		args <- .C("RENopen", inpFileName, rptFileName, outFileName, as.integer(-1))					
+		check_epanet_error(args[[4]])
 	}
 	
 	return( invisible() )
@@ -70,7 +70,7 @@ ENopen <- function(inpFileName, rptFileName, outFileName) {
 #' @return Returns NULL invisibly; called for the side effect of closing EPANET.
 #'
 #' @export
-#' @useDynLib epanet2toolkit enClose
+#' @useDynLib epanet2toolkit RENclose
 #' 
 #' @note \code{ENclose} must be called when all processing has been completed, even if an error
 #'   condition was encountered.
@@ -89,8 +89,8 @@ ENclose <- function() {
 	if( epanet_is_closed ){
 		warning("Epanet toolkit already closed")
 	} else { 
-		errcode <- .Call("enClose")					
-		check_epanet_error(errcode)
+		args <- .C("RENclose", as.integer(-1))					
+		check_epanet_error(args[[1]])
 	}
 	return( invisible() )
 }

@@ -210,4 +210,6 @@ test_that("net 3 get pattern avg",{
 	expect_false( as.integer(a2) == 0 )
 
     ENclose()
+
+	file.remove(rptFile)
 })

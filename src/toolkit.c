@@ -42,6 +42,8 @@ int SEXP2int(SEXP mySEXP) {
 
     int result;
     mySEXP = coerceVector(mySEXP, INTSXP);
+    if (Rf_length(mySEXP) == 0)
+      Rf_error("empty integer vector (internal error)");
     result = INTEGER(mySEXP)[0];
     return result;
 
@@ -63,6 +65,8 @@ float SEXP2float(SEXP mySEXP) {
 
     float result;
     mySEXP = coerceVector(mySEXP, REALSXP);
+    if (Rf_length(mySEXP) == 0)
+      Rf_error("empty real vector (internal error)");
     result = (float)REAL(mySEXP)[0];
     return result;
 
@@ -315,52 +319,6 @@ SEXP setcontrollist(SEXP sxctype, SEXP sxlindex, SEXP sxsetting, SEXP sxnindex, 
 }
 
 
-//=================================
-// Functions for opening/closing
-//=================================
-
-
-SEXP enOpen(SEXP files) {
-
-    char *pFiles[3];
-
-    PROTECT(files = AS_CHARACTER(files));
-
-    // allocate memory
-    pFiles[0] = R_alloc(strlen(CHAR(STRING_ELT(files, 0))), sizeof(char));
-    pFiles[1] = R_alloc(strlen(CHAR(STRING_ELT(files, 1))),  sizeof(char));
-    pFiles[2] = R_alloc(strlen(CHAR(STRING_ELT(files, 2))),  sizeof(char));
-
-    // copy argument to allocated variable
-    strcpy(pFiles[0], CHAR(STRING_ELT(files, 0)));
-    strcpy(pFiles[1], CHAR(STRING_ELT(files, 1)));
-    strcpy(pFiles[2], CHAR(STRING_ELT(files, 2)));
-
-    // open the INP file
-    int errcode = ENopen(pFiles[0], pFiles[1], pFiles[2]);
-    int res;
-    if (errcode > 0) {
-        res = errcode;
-    }
-    else {
-        res = errcode;
-    }
-    SEXP result = int2SEXP(res);
-    UNPROTECT(1);
-    return result;
-
- }
-
-SEXP enClose(void) {
-
-    // close the INP file
-    int errcode = ENclose();
-
-    // make the output
-    SEXP result = int2SEXP(errcode);
-    return result;
-
-}
 
 
 //======================
@@ -493,24 +451,6 @@ SEXP enGetNodeValue(SEXP index, SEXP paramCode) {
     UNPROTECT(2);
     return resultlist;
 
-}
-
-
-SEXP enSetNodeValue(SEXP index, SEXP paramcode, SEXP value) {
-    
-    // set the node value and return error code
-    int ind = SEXP2int(index);
-    int code = SEXP2int(paramcode);
-    float val = SEXP2float(value);
-    int errcode = ENsetnodevalue(ind, code, val);
-    
-    // store error code in the result list
-    SEXP sxerr = PROTECT(int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-    
 }
 
 
@@ -665,23 +605,6 @@ SEXP enGetLinkValue(SEXP index, SEXP paramCode) {
 }
 
 
-SEXP enSetLinkValue(SEXP index, SEXP paramcode, SEXP value) {
-    
-    int ind = SEXP2int(index);
-    int code = SEXP2int(paramcode);
-    float val = SEXP2float(value);
-    int errcode = ENsetlinkvalue(ind, code, val);
-    
-    // store error code in the result list
-    SEXP sxerr = PROTECT( int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-
-    
-}
-
 
 //=========================
 // Functions for patterns
@@ -822,51 +745,6 @@ SEXP enGetPatternValue(SEXP index, SEXP period) {
 }
 
 
-SEXP enSetPattern(SEXP index, SEXP factors, SEXP nfactors) {
-    
-    // set the pattern and return error code
-    int ind = SEXP2int(index);
-    int nfac = SEXP2int(nfactors);
-    float *pFac;
-    float fac[nfac];
-    SEXP sxpFac;
-    PROTECT(sxpFac = allocVector(REALSXP, 1));
-    for (int i = 0; i < nfac; i++) {
-        REAL(sxpFac)[0] = REAL(factors)[i];
-        fac[i] = SEXP2float(sxpFac);
-    }
-    UNPROTECT(1);
-    
-    // store error code in the result list
-    pFac = fac;
-    int errcode = ENsetpattern(ind, pFac, nfac);
-    SEXP sxerr = PROTECT(int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistfloat(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-    
-}
-
-
-SEXP enSetPatternValue(SEXP index, SEXP period, SEXP value) {
-    
-    // set the pattern value and return error code
-    int ind = SEXP2int(index);
-    int code = SEXP2int(period);
-    float val = SEXP2float(value);
-    int errcode = ENsetpatternvalue(ind, code, val);
-    
-    // store error code in the result list
-    SEXP sxerr = PROTECT(int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-    
-}
-
-
 //==========================
 //  Functions for controls
 //==========================
@@ -893,26 +771,6 @@ SEXP enGetControl(SEXP cindex) {
 
 }
 
-
-SEXP enSetControl(SEXP cindex, SEXP ctype, SEXP lindex, SEXP setting, SEXP nindex, SEXP level) {
-    
-    // set the control values
-    int cind = SEXP2int(cindex);
-    int ctyp = SEXP2int(ctype);
-    int lind = SEXP2int(lindex);
-    int nind = SEXP2int(nindex);
-    float sett = SEXP2float(setting);
-    float lev = SEXP2float(level);
-    int errcode = ENsetcontrol(cind, ctyp, lind, sett, nind, lev);
-
-    // store error code in the result list
-    SEXP sxerr = PROTECT(int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-    
-}
 
 
 
@@ -1018,89 +876,4 @@ SEXP enSetQualType(SEXP qualcode, SEXP chemname, SEXP chemunits, SEXP tracenode)
 	return result;
 
 }
-
-
-//============================
-//  Functions for hydraulics
-//============================
-
-
-SEXP enOpenH(void) {
-
-    // run toolkit function and return error code
-	int errcode = ENopenH();
-    
-    // store error code in the result list
-    SEXP sxerr = PROTECT( int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2); 
-    return resultlist;
-
-}
-
-
-SEXP enInitH(SEXP flag) {
-
-    // run toolkit function and return error code
-	int flg = SEXP2int(flag);
-	int errcode = ENinitH(flg);
-    
-    // store error code in the result list
-    SEXP sxerr = PROTECT( int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(R_NilValue);
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-
-}
-
-
-SEXP enRunH(void) {
-
-	// run toolkit function and return error code
-    long time;
-	int errcode = ENrunH(&time);
-    
-    // store value and error code in the result list
-    SEXP sxerr = PROTECT( int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(int2SEXP((int)time));
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-
-}
-
-
-SEXP enNextH(void) {
-
-    // run toolkit function and return error code
-	long tst;
-	int errcode = ENnextH(&tst);
-    
-    // store value and error code in the result list
-    SEXP sxerr = PROTECT(int2SEXP(errcode));
-    SEXP sxvalue = PROTECT(int2SEXP((int)tst));
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-
-}
-
-
-SEXP enCloseH(void) {
-
-    // run toolkit function and return error code
-	int errcode = ENcloseH();
-    
-    // store value and error code in the result list
-    SEXP sxerr = PROTECT( int2SEXP(errcode) );
-    SEXP sxvalue = PROTECT( R_NilValue);
-    SEXP resultlist = setlistint(sxvalue, sxerr);
-    UNPROTECT(2);
-    return resultlist;
-
-} 
-
-
 

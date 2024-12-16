@@ -192,7 +192,7 @@ ENgetpatternvalue <- function(index, period) {
 #' \code{ENsetpattern} sets all of the multiplier factors for a specific time pattern.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enSetPattern
+#' @useDynLib epanet2toolkit RENsetpattern
 #' @param index An integer, the pattern index.
 #' @param factors A numeric vector, the multiplier factors for the entire pattern.
 #' 
@@ -229,8 +229,9 @@ ENsetpattern <- function(index, factors) {
 		stop("Can only set for one index at a time.")
 	}			
   
-  out <- .Call("enSetPattern", index, as.numeric(factors), length(factors))
-  check_epanet_error(out$errorcode)
+  args <- .C("RENsetpattern", as.integer(index), as.numeric(factors), as.integer(length(factors)), as.integer(-1))
+  err <- args[[4]]
+  check_epanet_error(err)
   
   return(invisible())
 	
@@ -243,7 +244,7 @@ ENsetpattern <- function(index, factors) {
 #' @param value value to set
 #' @return returns NULL inivisbly on success
 #' @export
-#' @useDynLib epanet2toolkit enSetPatternValue
+#' @useDynLib epanet2toolkit RENsetpatternvalue
 #' @examples
 #' # path to Net1.inp example file included with this package
 #' inp <- file.path( find.package("epanet2toolkit"), "extdata","Net1.inp")  
@@ -270,8 +271,9 @@ ENsetpatternvalue <- function(index, period, value) {
   ml <- max( length(index), length(period), length(value))
   if (ml != 1)stop("sets one value at a time")
   
-  out <- .Call("enSetPatternValue", index, period, value)
-  check_epanet_error(out$errorcode)
+  args <- .C("RENsetpatternvalue", as.integer(index), as.integer(period), as.numeric(value), as.integer(-1))
+  err <- args[[4]]
+  check_epanet_error(err)
   
   return(invisible())
   

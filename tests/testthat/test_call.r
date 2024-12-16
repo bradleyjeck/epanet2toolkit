@@ -15,7 +15,8 @@ test_that("call the funcs",{
 expect_silent({
 
 # open the inp file
-out <- .Call("enOpen", c("Net3.inp","net3.rpt"," "))
+rptFile = "net3.rpt"
+args <- .C("RENopen", "Net3.inp", rptFile," ", as.integer(-1))
 
 # get functions for nodes
 ind1 <- .Call("enGetNodeIndex", "10")
@@ -60,18 +61,11 @@ qtype <- .Call("enGetQualType")
 # version
 ver <- .Call("enGetVersion")
 
-# set control
-setctrl <- .Call("enSetControl", 3, 0, 119, 1, 95, 17)
-
-nodevalout <- .Call("enSetNodeValue", 1, 0, 156)
-
-linkvalout <- .Call("enSetLinkValue", 3, 2, 189)
-
-setpatt <- .Call("enSetPattern", 3, as.numeric(rep(621,24)),24)
-valpatt <- .Call("enGetPatternValue", 3, 12)
-
 # close the toolkit
-out <- .Call("enClose")
+args <- .C("RENclose", as.integer(-1))
+
+# cleanup
+file.remove(rptFile)
 })
 
 })

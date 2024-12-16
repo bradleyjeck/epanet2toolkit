@@ -65,7 +65,7 @@ ENgetcontrol <- function(controlindex) {
 #' \code{ENsetcontrol} sets the parameters of a simple control statements.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enSetControl
+#' @useDynLib epanet2toolkit RENsetcontrol
 #' @param cindex Integer, control statement index
 #' @param ctype	Integer or character string, the control type code (see Details below).
 #' @param lindex Integer, index of the link being controlled.
@@ -141,8 +141,10 @@ ENsetcontrol <- function(cindex, ctype = NULL, lindex = NULL, setting = NULL, ni
   codeTable <- c("EN_LOWLEVEL", "EN_HILEVEL", "EN_TIMER", "EN_TIMEOFDAY")
   ct <- check_enum_code( ctype, codeTable) 
  
-  out <- .Call("enSetControl", cindex, ct, lindex, setting, nindex, level)
-  check_epanet_error(out$errorcode)
+  args <- .C("RENsetcontrol", as.integer(cindex), as.integer(ct), as.integer(lindex), 
+             as.numeric(setting), as.integer(nindex), as.numeric(level), as.integer(-1))
+  err <- args[[7]]
+  check_epanet_error(err)
   
   return(invisible())
   

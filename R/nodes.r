@@ -236,7 +236,7 @@ ENgetnodevalue <- function(nodeindex, paramcode ) {
 #' \code{ENsetnodevalue} sets parameter value for one node.
 #' 
 #' @export
-#' @useDynLib epanet2toolkit enSetNodeValue
+#' @useDynLib epanet2toolkit RENsetnodevalue
 #' @param index An integer vector, the node index.
 #' @param paramcode An integer vector, the parameter code (see Details below).
 #' @param value A numeric vector, the new value of the parameter.
@@ -308,8 +308,9 @@ ENsetnodevalue <- function(index, paramcode = NULL, value = NULL) {
     }
   }
   
-  out <- .Call("enSetNodeValue", index, paramcode, value)
-  check_epanet_error(out$errorcode)
+  args <- .C("RENsetnodevalue", as.integer(index), as.integer(paramcode), as.numeric(value), as.integer(-1))
+  err <- args[[4]]
+  check_epanet_error(err)
   
   return(invisible())
   
